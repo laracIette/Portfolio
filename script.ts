@@ -39,7 +39,7 @@ function addProjects(){
 }
 
 function addProject(project: Project) {
-    var toolsHTML: string = "";
+    let toolsHTML: string = "";
     project.tools.forEach(tool => {
         toolsHTML += `
             <a href="${tool.pageUrl}" target="_blank">
@@ -64,10 +64,10 @@ function addProject(project: Project) {
         <div class="reft-shit">
 
             <div>
-                <h2>${project.name}</h2>
-                <p class="text">${project.description}</p>
+                <h1>${project.name}</h1>
+                <p>${project.description}</p>
             </div>
-                
+
             <div class="tools-list">
                 ${toolsHTML}
             </div>
@@ -82,6 +82,6 @@ function addProject(project: Project) {
         projectsDiv.insertAdjacentHTML('beforeend', projectHTML);
     }
 
-   
+
 }
 

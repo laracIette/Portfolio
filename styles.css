@@ -5,8 +5,11 @@ body {
 }
 
 h1 {
-    background-color: rgb(134, 167, 196);
     margin: 0;
+}
+
+header {
+    background-color: rgb(134, 167, 196);
 }
 
 main {
@@ -17,7 +20,7 @@ main {
 .whole-ass-div {
     display: flex;
     flex-direction: column;
-    width: 64%;
+    width: 70em;
     gap: 3em
 }
 
@@ -41,7 +44,7 @@ main {
     background-color: gainsboro;
     padding: 1em;
     display: flex;
-    align-items: center;
+    align-items: top;
 }
 
 .image {
@@ -59,7 +62,12 @@ main {
     padding: 1em;
 }
 
-.text {
+.reft-shit h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.reft-shit p {
     font-size: 22px;
 }
 
@@ -80,6 +88,6 @@ main {
 }
 
 footer {
-    bottom: 0; width: 100%;
+    width: 100%;
     background-color: rgb(25, 25, 39);
 }
