@@ -4,33 +4,39 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1{
+h1 {
     background-color: rgb(134, 167, 196);
     margin: 0;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
 }
 
-.whole-ass-div{
+.whole-ass-div {
     display: flex;
     flex-direction: column;
     width: 64%;
-    gap: 1em
+    gap: 3em
 }
 
-.top-stuff{
+.top-stuff {
     background-color: rgb(97, 207, 170);
 }
 
-.content{
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.project {
     display: flex;
     flex-direction: row;
 }
 
-.left-shit{
+.left-shit {
     width: 55%;
     background-color: gainsboro;
     padding: 1em;
@@ -38,14 +44,14 @@ main{
     align-items: center;
 }
 
-.image{
+.image {
     width: 100%;
     height: auto;
     margin: auto;
     border-radius: 1em;
 }
 
-.reft-shit{
+.reft-shit {
     background-color: rgb(207, 97, 97);
     width: 45%;
     display: flex;
@@ -53,27 +59,27 @@ main{
     padding: 1em;
 }
 
-.text{
+.text {
     font-size: 22px;
 }
 
-.tools-list{
+.tools-list {
     display: flex;
     gap: 1em;
 }
 
-.tool{
+.tool {
     border: 1px solid black;
     border-radius: 1em;
     width: 3em;
     height: 3em;
 }
 
-.bottom-shit{
+.bottom-shit {
     background-color: rgb(115, 124, 31);
 }
 
-footer{
+footer {
     bottom: 0; width: 100%;
     background-color: rgb(25, 25, 39);
 }
