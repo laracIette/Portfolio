@@ -1,15 +1,14 @@
+enum Category {
+    Game = "Game",
+    Program = "Program",
+    Test = "Test"
+}
+
 type Tool = {
     name: string;
     pageUrl: string;
     imageUrl: string;
 };
-
-
-enum Category {
-    Game,
-    Program,
-    Test
-}
 
 type Project = {
     name: string;
@@ -17,35 +16,72 @@ type Project = {
     pageUrl: string;
     imageUrl: string;
     description: string;
+    date: string;
     tools: Tool[];
 };
 
 const unrealEngine: Tool = {
     name: "Unreal Engine",
     pageUrl: "https://www.unrealengine.com",
-    imageUrl: "https://logowik.com/content/uploads/images/unreal-engine-icon1721420032.logowik.com.webp"
+    imageUrl: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/video-games/unreal-engine-qdh1c46xy8c1nedruo2v5.png/unreal-engine-xwo7bd8vu6fzpnkcifgtu.png?_a=DAJFJtWIZAAC"
+};
+const python: Tool = {
+    name: "Python",
+    pageUrl: "https://www.python.org",
+    imageUrl: "https://cdn.iconscout.com/icon/free/png-256/free-python-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-5-pack-logos-icons-3030224.png?f=webp"
+};
+
+const pygame: Tool = {
+    name: "Pygame",
+    pageUrl: "https://www.pygame.org/news",
+    imageUrl: "https://www.pygame.org/ftp/pygame-head-party.png"
+};
+
+const cpp: Tool = {
+    name: "C++",
+    pageUrl: "https://isocpp.org",
+    imageUrl: "https://img.icons8.com/?size=512&id=40669&format=png"
+};
+
+const sdl2: Tool = {
+    name: "SDL2",
+    pageUrl: "https://www.libsdl.org",
+    imageUrl: "https://icon.icepanel.io/Technology/png-shadow-512/Simple-DirectMedia-Layer-%28SDL%29.png"
 };
 
 function addProjects(){
     const project1: Project = {
-        name: "Test",
+        name: "Maze",
         category: Category.Game,
-        pageUrl: "https://www.google.com",
-        imageUrl: "https://cdn.discordapp.com/attachments/1103224489078181889/1360005469992915006/image.png?ex=67f98b4b&is=67f839cb&hm=db4ad30aa62616eb8d564850325402d23a2033ca32eda29d535b335a4a49c248&",
-        description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium voluptatibus officiis placeat quaerat mollitia voluptatem doloribus architecto itaque deserunt.",
-        tools: [unrealEngine]
+        pageUrl: "https://youtu.be/edjYLYggQ_M?si=XSOTVVHwQgjpIerI",
+        imageUrl: "maze.png",
+        description: "Randomly Generated Maze Game",
+        date: "April 2022",
+        tools: [python, pygame]
     };
-    addProject(project1);
-
     const project2: Project = {
         name: "Test",
         category: Category.Program,
-        pageUrl: "https://www.google.com",
-        imageUrl: "https://cdn.discordapp.com/attachments/1103224489078181889/1360005469992915006/image.png?ex=67f98b4b&is=67f839cb&hm=db4ad30aa62616eb8d564850325402d23a2033ca32eda29d535b335a4a49c248&",
-        description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-        tools: [unrealEngine]
+        pageUrl: "https://www.youtube.com/watch?v=soree9B7Zs4",
+        imageUrl: "reactiontime.png",
+        description: "Reaction Time Test",
+        date: "August 2022",
+        tools: [cpp, sdl2]
     };
+    const project3: Project = {
+        name: "Rhythm Game",
+        category: Category.Game,
+        pageUrl: "https://www.youtube.com/watch?v=ZwmMd3aLjXk",
+        imageUrl: "rhythmgame.png",
+        description: "Rhythm Game",
+        date: "December 2022",
+        tools: [cpp, sdl2]
+    };
+
+
+    addProject(project1);
     addProject(project2);
+    addProject(project3);
 }
 
 function addProject(project: Project) {
@@ -73,10 +109,13 @@ function addProject(project: Project) {
 
         <div class="reft-shit">
 
-            <div>
+            <div class="title">
                 <h1>${project.name}</h1>
-                <p>${project.description}</p>
+                <div class="date">
+                    <p>${project.date}</p>
+                </div>
             </div>
+            <p>${project.description}</p>
 
             <div class="tools-list">
                 ${toolsHTML}
@@ -96,13 +135,13 @@ function addProject(project: Project) {
     if (!projectsCategory){
         const projectsCategoryHTML: string = `
         <div id="projects-${project.category}">
-            <p>${project.category}</p>
+            <h1>${project.category}</h1>
         </div>
         `;
         projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
+        projectsCategory = document.getElementById(`projects-${project.category}`);
     }
 
-    projectsCategory = document.getElementById(`projects-${project.category}`);
     if (projectsCategory){
         projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
     }

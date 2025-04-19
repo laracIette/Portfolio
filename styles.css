@@ -60,6 +60,7 @@ main {
     display: flex;
     flex-direction: column;
     padding: 1em;
+    gap: 1em;
 }
 
 .reft-shit h1 {
@@ -68,15 +69,28 @@ main {
 }
 
 .reft-shit p {
+    margin: 0em;
     font-size: 22px;
 }
 
-.tools-list {
+.reft-shit div {
+    display: flex;
+}
+
+.reft-shit .title {
+    flex-direction: row;
+}
+.reft-shit .title .date {
+    justify-content: end;
+    flex: auto;
+}
+
+.reft-shit .tools-list {
     display: flex;
     gap: 1em;
 }
 
-.tool {
+.reft-shit .tools-list .tool {
     border: 1px solid black;
     border-radius: 1em;
     width: 3em;
