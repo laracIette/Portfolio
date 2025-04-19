@@ -4,8 +4,16 @@ type Tool = {
     imageUrl: string;
 };
 
+
+enum Category {
+    Game,
+    Program,
+    Test
+}
+
 type Project = {
     name: string;
+    category: Category;
     pageUrl: string;
     imageUrl: string;
     description: string;
@@ -21,6 +29,7 @@ const unrealEngine: Tool = {
 function addProjects(){
     const project1: Project = {
         name: "Test",
+        category: Category.Game,
         pageUrl: "https://www.google.com",
         imageUrl: "https://cdn.discordapp.com/attachments/1103224489078181889/1360005469992915006/image.png?ex=67f98b4b&is=67f839cb&hm=db4ad30aa62616eb8d564850325402d23a2033ca32eda29d535b335a4a49c248&",
         description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium voluptatibus officiis placeat quaerat mollitia voluptatem doloribus architecto itaque deserunt.",
@@ -30,6 +39,7 @@ function addProjects(){
 
     const project2: Project = {
         name: "Test",
+        category: Category.Program,
         pageUrl: "https://www.google.com",
         imageUrl: "https://cdn.discordapp.com/attachments/1103224489078181889/1360005469992915006/image.png?ex=67f98b4b&is=67f839cb&hm=db4ad30aa62616eb8d564850325402d23a2033ca32eda29d535b335a4a49c248&",
         description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
@@ -75,13 +85,26 @@ function addProject(project: Project) {
     </div>
     `;
 
-    // Grab the parent div where you want to add the project
-    const projectsDiv: HTMLElement | null = document.getElementById('projects-div'); // replace this with your actual ID
+    const projectsDiv: HTMLElement | null = document.getElementById('projects-div');
 
-    if (projectsDiv){
-        projectsDiv.insertAdjacentHTML('beforeend', projectHTML);
+    if (!projectsDiv){
+        return;
     }
 
+    let projectsCategory: HTMLElement | null = document.getElementById(`projects-${project.category}`);
 
+    if (!projectsCategory){
+        const projectsCategoryHTML: string = `
+        <div id="projects-${project.category}">
+            <p>${project.category}</p>
+        </div>
+        `;
+        projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
+    }
+
+    projectsCategory = document.getElementById(`projects-${project.category}`);
+    if (projectsCategory){
+        projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    }
 }
 
