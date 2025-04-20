@@ -2,6 +2,8 @@
     --nico-dark: #1f1f1f;
     --nico-normal: #b5b5b5;
     --nico-light: #dadada;
+    --nico-light-red: rgb(86, 38, 45);
+    --nico-dark-red: rgb(52, 24, 28);
 }
 
 * {
@@ -59,13 +61,13 @@ a {
 .content .projects .category .project {
     display: flex;
     flex-direction: row;
-    background-color: rgb(86, 38, 45);
+    background-color: var(--nico-light-red);
 
     border-width: 0.5em;
     border-style: solid;
-    border-color: rgb(52, 24, 28);
+    border-color: var(--nico-dark-red);
     border-radius: 3em;
-    box-shadow: 0 0 0.2em rgb(52, 24, 28);
+    box-shadow: 0 0 0.2em var(--nico-dark-red);
 
     transition: transform 0.25s ease, filter 0.3s ease;
     filter: grayscale(50%);
@@ -86,11 +88,10 @@ a {
     width: 100%;
     height: auto;
     margin: auto;
-    border-width: 1em;
-    border-style: double;
+    border-width: 0.3em;
+    border-style: solid;
     border-color: var(--nico-dark);
     border-radius: 2em;
-    background-color: rgb(32, 14, 16);
 }
 
 .content .projects .category .project .infos {
@@ -129,7 +130,7 @@ a {
 }
 
 .content .projects .category .project .infos .tools img {
-    background-color: var(--nico-normal);
+    background-color: color-mix(in srgb, var(--nico-light-red) 50%, var(--nico-dark) 50%);
     border-width: 0.2em;
     border-color: var(--nico-dark);
     border-style: solid;
