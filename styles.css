@@ -25,6 +25,10 @@ main {
     justify-content: center;
 }
 
+a {
+    display: flex;
+}
+
 .content {
     display: flex;
     flex-direction: column;
