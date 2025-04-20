@@ -118,7 +118,7 @@ function addProject(project: Project) {
     project.tools.forEach(tool => {
         toolsHTML += `
             <a href="${tool.pageUrl}" target="_blank">
-                <img class="tool"
+                <img
                     src="${tool.imageUrl}"
                     alt="${tool.name}" />
             </a>
@@ -128,7 +128,7 @@ function addProject(project: Project) {
     const projectHTML: string = `
     <div class="project">
 
-        <div class="left">
+        <div class="preview">
             <a href="${project.pageUrl}" target="_blank">
                 <img
                     src="${project.imageUrl}"
@@ -136,7 +136,7 @@ function addProject(project: Project) {
             </a>
         </div>
 
-        <div class="right">
+        <div class="infos">
 
             <div class="title">
                 <h1>${project.name}</h1>
@@ -146,7 +146,7 @@ function addProject(project: Project) {
             </div>
             <p>${project.description}</p>
 
-            <div class="tools-list">
+            <div class="tools">
                 ${toolsHTML}
             </div>
         </div>
@@ -175,4 +175,3 @@ function addProject(project: Project) {
         projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
     }
 }
-

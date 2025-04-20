@@ -94,9 +94,9 @@ function addProjects() {
 function addProject(project) {
     var toolsHTML = "";
     project.tools.forEach(function (tool) {
-        toolsHTML += "\n            <a href=\"".concat(tool.pageUrl, "\" target=\"_blank\">\n                <img class=\"tool\"\n                    src=\"").concat(tool.imageUrl, "\"\n                    alt=\"").concat(tool.name, "\" />\n            </a>\n        ");
+        toolsHTML += "\n            <a href=\"".concat(tool.pageUrl, "\" target=\"_blank\">\n                <img\n                    src=\"").concat(tool.imageUrl, "\"\n                    alt=\"").concat(tool.name, "\" />\n            </a>\n        ");
     });
-    var projectHTML = "\n    <div class=\"project\">\n\n        <div class=\"left\">\n            <a href=\"".concat(project.pageUrl, "\" target=\"_blank\">\n                <img\n                    src=\"").concat(project.imageUrl, "\"\n                    alt=\"").concat(project.name, "\" />\n            </a>\n        </div>\n\n        <div class=\"right\">\n\n            <div class=\"title\">\n                <h1>").concat(project.name, "</h1>\n                <div class=\"date\">\n                    <p>").concat(project.date, "</p>\n                </div>\n            </div>\n            <p>").concat(project.description, "</p>\n\n            <div class=\"tools-list\">\n                ").concat(toolsHTML, "\n            </div>\n        </div>\n    </div>\n    ");
+    var projectHTML = "\n    <div class=\"project\">\n\n        <div class=\"preview\">\n            <a href=\"".concat(project.pageUrl, "\" target=\"_blank\">\n                <img\n                    src=\"").concat(project.imageUrl, "\"\n                    alt=\"").concat(project.name, "\" />\n            </a>\n        </div>\n\n        <div class=\"infos\">\n\n            <div class=\"title\">\n                <h1>").concat(project.name, "</h1>\n                <div class=\"date\">\n                    <p>").concat(project.date, "</p>\n                </div>\n            </div>\n            <p>").concat(project.description, "</p>\n\n            <div class=\"tools\">\n                ").concat(toolsHTML, "\n            </div>\n        </div>\n    </div>\n    ");
     var projectsDiv = document.getElementById('projects-div');
     if (!projectsDiv) {
         return;

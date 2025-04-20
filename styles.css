@@ -1,11 +1,19 @@
-body {
-    background-color: darkblue;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+    --nico-dark: #1f1f1f;
+    --nico-normal: #b5b5b5;
+    --nico-light: #dadada;
 }
 
-h1 {
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body {
+    background-color: #0D1117;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -17,44 +25,45 @@ main {
     justify-content: center;
 }
 
-.stuff {
+.content {
     display: flex;
     flex-direction: column;
     width: 70em;
     gap: 3em
 }
 
-.stuff .top {
+.content .top {
     background-color: rgb(97, 207, 170);
 }
 
-.stuff .projects {
+.content .projects {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.stuff .projects .project {
+.content .projects .project {
     display: flex;
     flex-direction: row;
 }
 
-.stuff .projects .project .left {
+.content .projects .project .preview {
     width: 55%;
     background-color: gainsboro;
     padding: 1em;
     display: flex;
-    align-items: top;
+    align-items: flex-start;
 }
 
-.stuff .projects .project .left img {
+.content .projects .project .preview img {
     width: 100%;
     height: auto;
     margin: auto;
-    border-radius: 1em;
+    border: 1em double var(--nico-dark);
+    border-radius: 2em;
 }
 
-.stuff .projects .project .right {
+.content .projects .project .infos {
     background-color: rgb(207, 97, 97);
     width: 45%;
     display: flex;
@@ -63,41 +72,43 @@ main {
     gap: 1em;
 }
 
-.stuff .projects .project .right h1 {
+.content .projects .project .infos h1 {
     font-size: 32px;
     font-weight: bold;
 }
 
-.stuff .projects .project .right p {
+.content .projects .project .infos p {
     margin: 0em;
     font-size: 22px;
 }
 
-.stuff .projects .project .right div {
+.content .projects .project .infos div {
     display: flex;
 }
 
-.stuff .projects .project .right .title {
+.content .projects .project .infos .title {
     flex-direction: row;
 }
-.stuff .projects .project .right .title .date {
+.content .projects .project .infos .title .date {
     justify-content: end;
     flex: auto;
 }
 
-.stuff .projects .project .right .tools-list {
+.content .projects .project .infos .tools {
     display: flex;
     gap: 1em;
 }
 
-.stuff .projects .project .right .tools-list .tool {
-    border: 1px solid black;
+.content .projects .project .infos .tools img {
+    background-color: var(--nico-normal);
+    border: 0.2em solid var(--nico-dark);
     border-radius: 1em;
     width: 3em;
     height: 3em;
+    padding: 0.2em;
 }
 
-.stuff .bottom {
+.content .bottom {
     background-color: rgb(115, 124, 31);
 }
 
