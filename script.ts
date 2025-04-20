@@ -126,31 +126,31 @@ function addProject(project: Project) {
     });
 
     const projectHTML: string = `
-    <div class="project">
+        <div class="project">
 
-        <div class="preview">
-            <a href="${project.pageUrl}" target="_blank">
-                <img
-                    src="${project.imageUrl}"
-                    alt="${project.name}" />
-            </a>
-        </div>
+            <div class="preview">
+                <a href="${project.pageUrl}" target="_blank">
+                    <img
+                        src="${project.imageUrl}"
+                        alt="${project.name}" />
+                </a>
+            </div>
 
-        <div class="infos">
+            <div class="infos">
 
-            <div class="title">
-                <h1>${project.name}</h1>
-                <div class="date">
-                    <p>${project.date}</p>
+                <div class="title">
+                    <h1>${project.name}</h1>
+                    <div class="date">
+                        <p>${project.date}</p>
+                    </div>
+                </div>
+                <p>${project.description}</p>
+
+                <div class="tools">
+                    ${toolsHTML}
                 </div>
             </div>
-            <p>${project.description}</p>
-
-            <div class="tools">
-                ${toolsHTML}
-            </div>
         </div>
-    </div>
     `;
 
     const projectsDiv: HTMLElement | null = document.getElementById('projects-div');
@@ -163,9 +163,9 @@ function addProject(project: Project) {
 
     if (!projectsCategory){
         const projectsCategoryHTML: string = `
-        <div class="category" id="projects-${project.category}">
-            <h1>${project.category}</h1>
-        </div>
+            <div class="category" id="projects-${project.category}">
+                <h1>${project.category}</h1>
+            </div>
         `;
         projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
         projectsCategory = document.getElementById(`projects-${project.category}`);
