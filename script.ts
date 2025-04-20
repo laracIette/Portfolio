@@ -163,7 +163,7 @@ function addProject(project: Project) {
 
     if (!projectsCategory){
         const projectsCategoryHTML: string = `
-        <div id="projects-${project.category}">
+        <div class="category" id="projects-${project.category}">
             <h1>${project.category}</h1>
         </div>
         `;

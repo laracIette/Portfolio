@@ -103,7 +103,7 @@ function addProject(project) {
     }
     var projectsCategory = document.getElementById("projects-".concat(project.category));
     if (!projectsCategory) {
-        var projectsCategoryHTML = "\n        <div id=\"projects-".concat(project.category, "\">\n            <h1>").concat(project.category, "</h1>\n        </div>\n        ");
+        var projectsCategoryHTML = "\n        <div class=\"category\" id=\"projects-".concat(project.category, "\">\n            <h1>").concat(project.category, "</h1>\n        </div>\n        ");
         projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
         projectsCategory = document.getElementById("projects-".concat(project.category));
     }

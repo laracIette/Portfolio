@@ -39,32 +39,44 @@ main {
 .content .projects {
     display: flex;
     flex-direction: column;
+    gap: 2em;
+}
+
+.content .projects .category {
+    display: flex;
+    flex-direction: column;
     gap: 1em;
 }
 
-.content .projects .project {
+.content .projects .category .project {
     display: flex;
     flex-direction: row;
+    background-color: rgb(86, 38, 45);
+    border-width: 0.5em;
+    border-style: solid;
+    border-color: rgb(52, 24, 28);
+    border-radius: 3em;
 }
 
-.content .projects .project .preview {
+.content .projects .category .project .preview {
     width: 55%;
-    background-color: gainsboro;
     padding: 1em;
     display: flex;
     align-items: flex-start;
 }
 
-.content .projects .project .preview img {
+.content .projects .category .project .preview img {
     width: 100%;
     height: auto;
     margin: auto;
-    border: 1em double var(--nico-dark);
+    border-width: 1em;
+    border-style: double;
+    border-color: var(--nico-dark);
     border-radius: 2em;
+    background-color: black;
 }
 
-.content .projects .project .infos {
-    background-color: rgb(207, 97, 97);
+.content .projects .category .project .infos {
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -72,36 +84,38 @@ main {
     gap: 1em;
 }
 
-.content .projects .project .infos h1 {
+.content .projects .category .project .infos h1 {
     font-size: 32px;
     font-weight: bold;
 }
 
-.content .projects .project .infos p {
+.content .projects .category .project .infos p {
     margin: 0em;
     font-size: 22px;
 }
 
-.content .projects .project .infos div {
+.content .projects .category .project .infos div {
     display: flex;
 }
 
-.content .projects .project .infos .title {
+.content .projects .category .project .infos .title {
     flex-direction: row;
 }
-.content .projects .project .infos .title .date {
+.content .projects .category .project .infos .title .date {
     justify-content: end;
     flex: auto;
 }
 
-.content .projects .project .infos .tools {
+.content .projects .category .project .infos .tools {
     display: flex;
     gap: 1em;
 }
 
-.content .projects .project .infos .tools img {
+.content .projects .category .project .infos .tools img {
     background-color: var(--nico-normal);
-    border: 0.2em solid var(--nico-dark);
+    border-width: 0.2em;
+    border-color: var(--nico-dark);
+    border-style: solid;
     border-radius: 1em;
     width: 3em;
     height: 3em;
