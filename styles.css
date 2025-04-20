@@ -17,29 +17,29 @@ main {
     justify-content: center;
 }
 
-.whole-ass-div {
+.stuff {
     display: flex;
     flex-direction: column;
     width: 70em;
     gap: 3em
 }
 
-.top-stuff {
+.stuff .top {
     background-color: rgb(97, 207, 170);
 }
 
-.projects {
+.stuff .projects {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.project {
+.stuff .projects .project {
     display: flex;
     flex-direction: row;
 }
 
-.left-shit {
+.stuff .projects .project .left {
     width: 55%;
     background-color: gainsboro;
     padding: 1em;
@@ -47,14 +47,14 @@ main {
     align-items: top;
 }
 
-.image {
+.stuff .projects .project .left img {
     width: 100%;
     height: auto;
     margin: auto;
     border-radius: 1em;
 }
 
-.reft-shit {
+.stuff .projects .project .right {
     background-color: rgb(207, 97, 97);
     width: 45%;
     display: flex;
@@ -63,41 +63,41 @@ main {
     gap: 1em;
 }
 
-.reft-shit h1 {
+.stuff .projects .project .right h1 {
     font-size: 32px;
     font-weight: bold;
 }
 
-.reft-shit p {
+.stuff .projects .project .right p {
     margin: 0em;
     font-size: 22px;
 }
 
-.reft-shit div {
+.stuff .projects .project .right div {
     display: flex;
 }
 
-.reft-shit .title {
+.stuff .projects .project .right .title {
     flex-direction: row;
 }
-.reft-shit .title .date {
+.stuff .projects .project .right .title .date {
     justify-content: end;
     flex: auto;
 }
 
-.reft-shit .tools-list {
+.stuff .projects .project .right .tools-list {
     display: flex;
     gap: 1em;
 }
 
-.reft-shit .tools-list .tool {
+.stuff .projects .project .right .tools-list .tool {
     border: 1px solid black;
     border-radius: 1em;
     width: 3em;
     height: 3em;
 }
 
-.bottom-shit {
+.stuff .bottom {
     background-color: rgb(115, 124, 31);
 }
 
