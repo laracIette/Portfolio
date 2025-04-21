@@ -34,12 +34,24 @@ body {
 }
 
 header {
-    background-color: rgb(134, 167, 196);
+    background-color: color-mix(in srgb, var(--nico-dark-blue) 80%, transparent);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: top 0.4s ease-in-out;
+}
+
+header img {
+    height: 2em;
+    width: auto;
+    margin: 1em;
 }
 
 main {
     display: flex;
     justify-content: center;
+    margin-top: 4em;
 }
 
 a {
@@ -54,11 +66,12 @@ p {
     display: flex;
     flex-direction: column;
     width: 70em;
-    gap: 3em
+    gap: 3em;
 }
 
 .content .top {
-    background-color: rgb(97, 207, 170);
+    margin-top: 1em;
+    text-align: justify;
 }
 
 .content .projects {
@@ -107,6 +120,12 @@ p {
     border-style: solid;
     border-color: var(--nico-dark-blue);
     border-radius: 2em;
+
+    transition: transform 0.25s ease, filter 0.3s ease;
+}
+
+.content .projects .category .project .preview img:hover {
+    transform: scale(1.005);
 }
 
 .content .projects .category .project .infos {
@@ -162,6 +181,12 @@ p {
     width: 3.5em;
     height: 3.5em;
     padding: 0.3em;
+
+    transition: transform 0.25s ease, filter 0.3s ease;
+}
+
+.content .projects .category .project .infos .tools img:hover {
+    transform: scale(1.05);
 }
 
 .content .bottom {

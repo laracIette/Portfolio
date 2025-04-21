@@ -1,7 +1,7 @@
 enum Category {
-    Game = "Game",
-    Program = "Program",
-    Test = "Test"
+    Game = "Games",
+    Program = "Programs",
+    Test = "Tests"
 }
 
 type Tool = {
@@ -171,7 +171,33 @@ function addProject(project: Project) {
         projectsCategory = document.getElementById(`projects-${project.category}`);
     }
 
-    if (projectsCategory){
-        projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    if (!projectsCategory) {
+        console.error("no projects category");
+        return;
     }
+
+    projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 }
+
+
+
+
+let lastScrollY = 0;
+
+window.addEventListener('scroll', () => {
+    const header: HTMLElement | null = document.getElementById('header');
+
+    if (!header) {
+        console.error("no header");
+        return;
+    }
+
+    if (window.scrollY > lastScrollY) {
+        // scrolling down
+        header.style.top = '-4em'; // hide header
+    } else {
+        // scrolling up
+        header.style.top = '0'; // show header
+    }
+    lastScrollY = window.scrollY;
+});

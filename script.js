@@ -1,8 +1,8 @@
 var Category;
 (function (Category) {
-    Category["Game"] = "Game";
-    Category["Program"] = "Program";
-    Category["Test"] = "Test";
+    Category["Game"] = "Games";
+    Category["Program"] = "Programs";
+    Category["Test"] = "Tests";
 })(Category || (Category = {}));
 function addProjects() {
     var unrealEngine = {
@@ -107,7 +107,26 @@ function addProject(project) {
         projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
         projectsCategory = document.getElementById("projects-".concat(project.category));
     }
-    if (projectsCategory) {
-        projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    if (!projectsCategory) {
+        console.error("no projects category");
+        return;
     }
+    projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 }
+var lastScrollY = 0;
+window.addEventListener('scroll', function () {
+    var header = document.getElementById('header');
+    if (!header) {
+        console.error("no header");
+        return;
+    }
+    if (window.scrollY > lastScrollY) {
+        // scrolling down
+        header.style.top = '-4em'; // hide header
+    }
+    else {
+        // scrolling up
+        header.style.top = '0'; // show header
+    }
+    lastScrollY = window.scrollY;
+});
