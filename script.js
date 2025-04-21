@@ -96,14 +96,14 @@ function addProject(project) {
     project.tools.forEach(function (tool) {
         toolsHTML += "\n            <a href=\"".concat(tool.pageUrl, "\" target=\"_blank\">\n                <img\n                    src=\"").concat(tool.imageUrl, "\"\n                    alt=\"").concat(tool.name, "\" />\n            </a>\n        ");
     });
-    var projectHTML = "\n    <div class=\"project\">\n\n        <div class=\"preview\">\n            <a href=\"".concat(project.pageUrl, "\" target=\"_blank\">\n                <img\n                    src=\"").concat(project.imageUrl, "\"\n                    alt=\"").concat(project.name, "\" />\n            </a>\n        </div>\n\n        <div class=\"infos\">\n\n            <div class=\"title\">\n                <h1>").concat(project.name, "</h1>\n                <div class=\"date\">\n                    <p>").concat(project.date, "</p>\n                </div>\n            </div>\n            <p>").concat(project.description, "</p>\n\n            <div class=\"tools\">\n                ").concat(toolsHTML, "\n            </div>\n        </div>\n    </div>\n    ");
+    var projectHTML = "\n        <div class=\"project\">\n\n            <div class=\"preview\">\n                <a href=\"".concat(project.pageUrl, "\" target=\"_blank\">\n                    <img\n                        src=\"").concat(project.imageUrl, "\"\n                        alt=\"").concat(project.name, "\" />\n                </a>\n            </div>\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n                    ").concat(toolsHTML, "\n                </div>\n            </div>\n        </div>\n    ");
     var projectsDiv = document.getElementById('projects-div');
     if (!projectsDiv) {
         return;
     }
     var projectsCategory = document.getElementById("projects-".concat(project.category));
     if (!projectsCategory) {
-        var projectsCategoryHTML = "\n        <div class=\"category\" id=\"projects-".concat(project.category, "\">\n            <h1>").concat(project.category, "</h1>\n        </div>\n        ");
+        var projectsCategoryHTML = "\n            <div class=\"category\" id=\"projects-".concat(project.category, "\">\n                <h1>").concat(project.category, "</h1>\n            </div>\n        ");
         projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
         projectsCategory = document.getElementById("projects-".concat(project.category));
     }

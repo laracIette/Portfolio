@@ -1,16 +1,18 @@
 :root {
-    --nico-dark: #1f1f1f;
-    --nico-normal: #b5b5b5;
-    --nico-light: #dadada;
-    --nico-light-red: rgb(86, 38, 45);
-    --nico-dark-red: rgb(52, 24, 28);
+    --nico-black: #010409;
+    --nico-dark-blue: #0D1117;
+    --nico-blue: rgb(30, 46, 110);
+    --nico-light-blue: #79C0FF;
+    --nico-gray: #909AA6;
+    --nico-light-gray: #E6EDF3;
+    --nico-light-yellow: #DCDCAA;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: white;
+    color: var(--nico-light-gray);
 }
 
 html {
@@ -18,7 +20,7 @@ html {
 }
 
 body {
-    background-color: #0D1117;
+    background-color: var(--nico-black);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -61,13 +63,13 @@ a {
 .content .projects .category .project {
     display: flex;
     flex-direction: row;
-    background-color: var(--nico-light-red);
+    background-color: var(--nico-blue);
 
     border-width: 0.5em;
     border-style: solid;
-    border-color: var(--nico-dark-red);
+    border-color: var(--nico-dark-blue);
     border-radius: 3em;
-    box-shadow: 0 0 0.2em var(--nico-dark-red);
+    box-shadow: 0 0 0.2em var(--nico-dark-blue);
 
     transition: transform 0.25s ease, filter 0.3s ease;
     filter: grayscale(50%);
@@ -90,7 +92,7 @@ a {
     margin: auto;
     border-width: 0.3em;
     border-style: solid;
-    border-color: var(--nico-dark);
+    border-color: var(--nico-dark-blue);
     border-radius: 2em;
 }
 
@@ -119,25 +121,34 @@ a {
 .content .projects .category .project .infos .title {
     flex-direction: row;
 }
+
 .content .projects .category .project .infos .title .date {
     justify-content: end;
     flex: auto;
+    padding-top: 0.2em;
+    padding-right: 0.2em;
+}
+
+.content .projects .category .project .infos .title .date p {
+    font-size: 16px;
 }
 
 .content .projects .category .project .infos .tools {
     display: flex;
     gap: 1em;
+    margin-top: auto;
+    margin-bottom: 1em;
 }
 
 .content .projects .category .project .infos .tools img {
-    background-color: color-mix(in srgb, var(--nico-light-red) 50%, var(--nico-dark) 50%);
+    background-color: color-mix(in srgb, var(--nico-blue) 80%, var(--nico-dark-blue));
     border-width: 0.2em;
-    border-color: var(--nico-dark);
+    border-color: var(--nico-dark-blue);
     border-style: solid;
     border-radius: 1em;
-    width: 3em;
-    height: 3em;
-    padding: 0.2em;
+    width: 3.5em;
+    height: 3.5em;
+    padding: 0.3em;
 }
 
 .content .bottom {
