@@ -24,47 +24,47 @@ function addProjects(){
     const unrealEngine: Tool = {
         name: "Unreal Engine",
         pageUrl: "https://www.unrealengine.com",
-        imageUrl: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/video-games/unreal-engine-qdh1c46xy8c1nedruo2v5.png/unreal-engine-xwo7bd8vu6fzpnkcifgtu.png?_a=DAJFJtWIZAAC"
+        imageUrl: "tools/unrealEngine.png"
     };
     const unity: Tool = {
         name: "Unity",
         pageUrl: "https://unity.com",
-        imageUrl: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/unity-game-engine-icon.png"
+        imageUrl: "tools/unity.png"
     };
     const python: Tool = {
         name: "Python",
         pageUrl: "https://www.python.org",
-        imageUrl: "https://cdn.iconscout.com/icon/free/png-256/free-python-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-5-pack-logos-icons-3030224.png?f=webp"
+        imageUrl: "tools/python.png"
     };
     const pygame: Tool = {
         name: "Pygame",
         pageUrl: "https://www.pygame.org/news",
-        imageUrl: "https://www.pygame.org/ftp/pygame-head-party.png"
+        imageUrl: "tools/pygame.png"
     };
     const cpp: Tool = {
         name: "C++",
         pageUrl: "https://isocpp.org",
-        imageUrl: "https://img.icons8.com/?size=512&id=40669&format=png"
+        imageUrl: "tools/cpp.png"
     };
     const csharp: Tool = {
         name: "C#",
         pageUrl: "https://dotnet.microsoft.com/languages/csharp",
-        imageUrl: "https://www.vikingsoftware.com/wp-content/uploads/2024/02/C.png"
+        imageUrl: "tools/csharp.png"
     };
     const sdl2: Tool = {
         name: "SDL2",
         pageUrl: "https://www.libsdl.org",
-        imageUrl: "https://icon.icepanel.io/Technology/png-shadow-512/Simple-DirectMedia-Layer-%28SDL%29.png"
+        imageUrl: "tools/sdl2.png"
     };
     const opentk: Tool = {
         name: "OpenTK",
         pageUrl: "https://opentk.net",
-        imageUrl: "https://avatars.githubusercontent.com/u/5914736?s=280&v=4"
+        imageUrl: "tools/opentk.png"
     };
     const vulkan: Tool = {
         name: "Vulkan",
         pageUrl: "https://www.vulkan.org",
-        imageUrl: "https://cdn.fosstodon.org/accounts/avatars/109/643/629/499/755/890/original/0210aa2f69b05ebc.png"
+        imageUrl: "tools/vulkan.png"
     };
 
 
