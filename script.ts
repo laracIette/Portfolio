@@ -136,9 +136,12 @@ function addProject(project: Project) {
                 </a>
             </div>
 
+
+
             <div class="infos">
 
                 <div class="title">
+
                     <h1>${project.name}</h1>
                     <div class="date">
                         <p>${project.date}</p>
@@ -147,9 +150,16 @@ function addProject(project: Project) {
                 <p>${project.description}</p>
 
                 <div class="tools">
-                    ${toolsHTML}
+
+                    <div class="list">
+                        ${toolsHTML}
+                    </div>
+
+                    <div class="spacer"></div>
                 </div>
+
             </div>
+
         </div>
     `;
 
