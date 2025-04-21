@@ -74,6 +74,10 @@ p {
     text-align: justify;
 }
 
+.content .top p {
+    margin-top: 1em;
+}
+
 .content .projects {
     display: flex;
     flex-direction: column;
