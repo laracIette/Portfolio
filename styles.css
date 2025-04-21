@@ -51,6 +51,8 @@ header .bar {
 header .bar .end {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 1em;
 }
 
 header img {
@@ -177,6 +179,7 @@ p {
 
 .content .projects .category .project .infos .title .date p {
     font-size: 16px;
+    color: var(--nico-gray)
 }
 
 .content .projects .category .project .infos .tools {
