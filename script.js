@@ -75,7 +75,7 @@ function addProjects() {
         category: Category.Program,
         pageUrl: "https://youtu.be/soree9B7Zs4?si=UjgEidNrgp5tXuxn",
         imageUrl: "projects/images/reactiontime.png",
-        gifUrl: "",
+        gifUrl: "projects/gifs/reactiontime.gif",
         description: "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
         date: "August 2022",
         tools: [cpp, sdl2]
@@ -85,7 +85,7 @@ function addProjects() {
         category: Category.Game,
         pageUrl: "https://youtu.be/ZwmMd3aLjXk?si=Q4a69uhPGtkVzlnQ",
         imageUrl: "projects/images/rhythmgame.png",
-        gifUrl: "",
+        gifUrl: "projects/gifs/rhythmgame.gif",
         description: "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
         date: "December 2022",
         tools: [cpp, sdl2]
@@ -95,8 +95,8 @@ function addProjects() {
         category: Category.Test,
         pageUrl: "https://youtu.be/A3TB4-_OypA?si=MyJS3uOYRslv0Dd8",
         imageUrl: "projects/images/first3drender.png",
-        gifUrl: "",
-        description: "A test project made to understand vector math that inspired me to later make a 3D engine.",
+        gifUrl: "projects/gifs/first3drender.gif",
+        description: "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
         date: "July 2022",
         tools: [cpp, sdl2]
     };
@@ -115,7 +115,7 @@ function addProjects() {
         category: Category.Program,
         pageUrl: "https://youtu.be/DkHal2KlUbM?si=ditjJb_EUEfWp54U",
         imageUrl: "projects/images/kotono.png",
-        gifUrl: "",
+        gifUrl: "projects/gifs/kotono.gif",
         description: "A first attempt at making a 3D game engine in C# using OpenGL with OpenTK.",
         date: "March 2023 - 2024",
         tools: [csharp, opentk]
@@ -155,7 +155,7 @@ function addProjects() {
         category: Category.Test,
         pageUrl: "https://youtu.be/8Rn2myJjLbo?si=Bp9i1S-IXVR9_dKw",
         imageUrl: "projects/images/shipShooter.png",
-        gifUrl: "",
+        gifUrl: "projects/gifs/shipShooter.gif",
         description: "A little program made to understand how movement works in a realtime game.",
         date: "September 2022",
         tools: [cpp, sdl2]
@@ -165,7 +165,7 @@ function addProjects() {
         category: Category.Game,
         pageUrl: "https://youtu.be/mL0DNwiN798?si=is88izhV0ROeqG_H",
         imageUrl: "projects/images/osu.png",
-        gifUrl: "",
+        gifUrl: "projects/gifs/osu.gif",
         description: "A project about recreating the rhythm game osu!, including saving game data, importing maps from files in a custom file format I made for the game.",
         date: "March 2022",
         tools: [python, pygame]
