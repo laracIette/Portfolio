@@ -201,8 +201,19 @@ function addProjects(){
         date: "June 2022",
         tools: [cpp, sdl2]
     };
+    const wanderBlossom: Project = {
+        name: "Wander Blossom",
+        category: Category.Game,
+        pageUrl: "https://youtu.be/2RYzSmP6kX0?si=GeswzKZOlibR_J6_",
+        imageUrl: "projects/images/wanderblossom.png",
+        gifUrl: "projects/gifs/wanderblossom.gif",
+        description: "An original game created in 10 weeks with 3 friends, I was the team's developper. Also the project that made me learn Unreal Engine the most and the project in which I had the most creative liberty so far.",
+        date: "April - June 2025",
+        tools: [unrealEngine]
+    };
 
     // Order from latest to oldest
+    addProject(wanderBlossom);
     addProject(twoCrowns);
     addProject(kotonoEngine);
     addProject(mazeGenerator);
