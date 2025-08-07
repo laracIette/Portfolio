@@ -95,8 +95,8 @@ function addProjects(){
         name: "Reaction Time",
         category: Category.Program,
         pageUrl: "https://youtu.be/soree9B7Zs4?si=UjgEidNrgp5tXuxn",
-        imageUrl: "projects/images/reactiontime.png",
-        gifUrl: "projects/gifs/reactiontime.gif",
+        imageUrl: "projects/images/reactionTime.png",
+        gifUrl: "projects/gifs/reactionTime.gif",
         description: "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
         date: "August 2022",
         tools: [cpp, sdl2]
@@ -105,8 +105,8 @@ function addProjects(){
         name: "Rhythm Game",
         category: Category.Game,
         pageUrl: "https://youtu.be/ZwmMd3aLjXk?si=Q4a69uhPGtkVzlnQ",
-        imageUrl: "projects/images/rhythmgame.png",
-        gifUrl: "projects/gifs/rhythmgame.gif",
+        imageUrl: "projects/images/rhythmGame.png",
+        gifUrl: "projects/gifs/rhythmGame.gif",
         description: "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
         date: "December 2022",
         tools: [cpp, sdl2]
@@ -115,8 +115,8 @@ function addProjects(){
         name: "3D Render",
         category: Category.Test,
         pageUrl: "https://youtu.be/A3TB4-_OypA?si=MyJS3uOYRslv0Dd8",
-        imageUrl: "projects/images/first3drender.png",
-        gifUrl: "projects/gifs/first3drender.gif",
+        imageUrl: "projects/images/first3DRender.png",
+        gifUrl: "projects/gifs/first3DRender.gif",
         description: "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
         date: "July 2022",
         tools: [cpp, sdl2]
@@ -205,8 +205,8 @@ function addProjects(){
         name: "Wander Blossom",
         category: Category.Game,
         pageUrl: "https://laraclette.itch.io/wander-blossom",
-        imageUrl: "projects/images/wanderblossom.png",
-        gifUrl: "projects/gifs/wanderblossom.gif",
+        imageUrl: "projects/images/wanderBlossom.png",
+        gifUrl: "projects/gifs/wanderBlossom.gif",
         description: "An original game created in 10 weeks with 3 friends, I was the team's developper. Also the project that made me learn Unreal Engine the most and the project in which I had the most creative liberty so far.",
         date: "April - June 2025",
         tools: [unrealEngine]
