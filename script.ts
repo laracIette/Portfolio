@@ -144,9 +144,9 @@ function addProjects(){
     const kotonoEngine: Project = {
         name: "Kotono Engine",
         category: Category.Program,
-        pageUrl: "",
+        pageUrl: "https://github.com/laracIette/KotonoEngine",
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "",
+        gifUrl: "projects/images/kotonoEngine.png", // no gif yet
         description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
@@ -156,7 +156,7 @@ function addProjects(){
         category: Category.Game,
         pageUrl: "",
         imageUrl: "projects/images/twoCrowns.png",
-        gifUrl: "",
+        gifUrl: "projects/images/twoCrowns.png", // no gif yet
         description: "A reproduction of the game Two Crowns, the visuals were made by a friend.",
         date: "April 2025",
         tools: [unrealEngine]
@@ -204,7 +204,7 @@ function addProjects(){
     const wanderBlossom: Project = {
         name: "Wander Blossom",
         category: Category.Game,
-        pageUrl: "https://youtu.be/2RYzSmP6kX0?si=GeswzKZOlibR_J6_",
+        pageUrl: "https://laraclette.itch.io/wander-blossom",
         imageUrl: "projects/images/wanderblossom.png",
         gifUrl: "projects/gifs/wanderblossom.gif",
         description: "An original game created in 10 weeks with 3 friends, I was the team's developper. Also the project that made me learn Unreal Engine the most and the project in which I had the most creative liberty so far.",
@@ -229,11 +229,6 @@ function addProjects(){
     addProject(maze);
 }
 
-
-
-// todo: replace vid by gif, link to github / site
-
-
 function addProject(project: Project) {
     let toolsHTML: string = "";
     project.tools.forEach(tool => {
@@ -251,8 +246,6 @@ function addProject(project: Project) {
         }
     });
 
-
-
     let projectPageHTML: string;
     if (project.pageUrl) {
         projectPageHTML = `
@@ -267,16 +260,12 @@ function addProject(project: Project) {
         `;
     };
 
-
-
     const projectHTML: string = `
         <div class="project" id="${project.name}">
 
             <div class="preview">
                 ${projectPageHTML}
             </div>
-
-
 
             <div class="infos">
 
@@ -329,16 +318,13 @@ function addProject(project: Project) {
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 
-
-
-
-
     const projectDiv: HTMLElement | null = document.getElementById(`${project.name}`);
     if (!projectDiv) {
         console.error("no project div");
         return;
     }
 
+    // switch to gif
     projectDiv.addEventListener("mouseenter", () => {
         const previewImage = document.getElementById(`${project.name}-preview-image`) as HTMLImageElement;
         if (!previewImage) {
@@ -348,6 +334,7 @@ function addProject(project: Project) {
         previewImage.src = project.gifUrl;
     });
 
+    // switch to img
     projectDiv.addEventListener("mouseleave", () => {
         const previewImage = document.getElementById(`${project.name}-preview-image`) as HTMLImageElement;
         if (!previewImage) {
@@ -358,9 +345,7 @@ function addProject(project: Project) {
     });
 }
 
-
-
-
+// show / hide header
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
