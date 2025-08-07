@@ -157,7 +157,7 @@ function addProjects(){
         pageUrl: "",
         imageUrl: "projects/images/twoCrowns.png",
         gifUrl: "projects/images/twoCrowns.png", // no gif yet
-        description: "A reproduction of the game Two Crowns, the visuals were made by a friend.",
+        description: "A reproduction of the game Two Crowns made in a week, the visuals were made by a friend.",
         date: "April 2025",
         tools: [unrealEngine]
     };
@@ -214,7 +214,7 @@ function addProjects(){
 
     // Order from latest to oldest
     addProject(wanderBlossom);
-    addProject(twoCrowns);
+    //addProject(twoCrowns);
     addProject(kotonoEngine);
     addProject(mazeGenerator);
     addProject(thalassia);
