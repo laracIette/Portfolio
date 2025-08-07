@@ -123,9 +123,9 @@ function addProjects() {
     var kotonoEngine = {
         name: "Kotono Engine",
         category: Category.Program,
-        pageUrl: "",
+        pageUrl: "https://github.com/laracIette/KotonoEngine",
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "",
+        gifUrl: "projects/images/kotonoEngine.png", // no gif yet
         description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
@@ -135,7 +135,7 @@ function addProjects() {
         category: Category.Game,
         pageUrl: "",
         imageUrl: "projects/images/twoCrowns.png",
-        gifUrl: "",
+        gifUrl: "projects/images/twoCrowns.png", // no gif yet
         description: "A reproduction of the game Two Crowns, the visuals were made by a friend.",
         date: "April 2025",
         tools: [unrealEngine]
@@ -183,7 +183,7 @@ function addProjects() {
     var wanderBlossom = {
         name: "Wander Blossom",
         category: Category.Game,
-        pageUrl: "https://youtu.be/2RYzSmP6kX0?si=GeswzKZOlibR_J6_",
+        pageUrl: "https://laraclette.itch.io/wander-blossom",
         imageUrl: "projects/images/wanderblossom.png",
         gifUrl: "projects/gifs/wanderblossom.gif",
         description: "An original game created in 10 weeks with 3 friends, I was the team's developper. Also the project that made me learn Unreal Engine the most and the project in which I had the most creative liberty so far.",
@@ -206,7 +206,6 @@ function addProjects() {
     addProject(osu);
     addProject(maze);
 }
-// todo: replace vid by gif, link to github / site
 function addProject(project) {
     var toolsHTML = "";
     project.tools.forEach(function (tool) {
@@ -225,7 +224,7 @@ function addProject(project) {
         projectPageHTML = "\n            <img id=\"".concat(project.name, "-preview-image\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />\n        ");
     }
     ;
-    var projectHTML = "\n        <div class=\"project\" id=\"".concat(project.name, "\">\n\n            <div class=\"preview\">\n                ").concat(projectPageHTML, "\n            </div>\n\n\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n\n                    <div class=\"list\">\n                        ").concat(toolsHTML, "\n                    </div>\n\n                    <div class=\"spacer\"></div>\n                </div>\n\n            </div>\n\n        </div>\n    ");
+    var projectHTML = "\n        <div class=\"project\" id=\"".concat(project.name, "\">\n\n            <div class=\"preview\">\n                ").concat(projectPageHTML, "\n            </div>\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n\n                    <div class=\"list\">\n                        ").concat(toolsHTML, "\n                    </div>\n\n                    <div class=\"spacer\"></div>\n                </div>\n\n            </div>\n\n        </div>\n    ");
     var projectsDiv = document.getElementById('projects-div');
     if (!projectsDiv) {
         console.error("no projects div");
@@ -247,6 +246,7 @@ function addProject(project) {
         console.error("no project div");
         return;
     }
+    // switch to gif
     projectDiv.addEventListener("mouseenter", function () {
         var previewImage = document.getElementById("".concat(project.name, "-preview-image"));
         if (!previewImage) {
@@ -255,6 +255,7 @@ function addProject(project) {
         }
         previewImage.src = project.gifUrl;
     });
+    // switch to img
     projectDiv.addEventListener("mouseleave", function () {
         var previewImage = document.getElementById("".concat(project.name, "-preview-image"));
         if (!previewImage) {
@@ -264,6 +265,7 @@ function addProject(project) {
         previewImage.src = project.imageUrl;
     });
 }
+// show / hide header
 var lastScrollY = 0;
 window.addEventListener('scroll', function () {
     var header = document.getElementById('header');
