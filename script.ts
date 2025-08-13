@@ -68,6 +68,11 @@ function addProjects(){
         pageUrl: "https://www.vulkan.org",
         imageUrl: "tools/vulkan.png"
     };
+    const flutter: Tool = {
+        name: "Flutter",
+        pageUrl: "https://flutter.dev",
+        imageUrl: "tools/flutter.png"
+    };
 
 
 
@@ -76,7 +81,7 @@ function addProjects(){
         name: "Thalassia",
         category: Category.Game,
         githubUrl: null,
-        pageUrl: "https://youtu.be/GCY0TKGBFfA?si=RbNbSZp0PFaJvlPe",
+        pageUrl: "https://youtu.be/GCY0TKGBFfA",
         imageUrl: "projects/images/thalassia.png",
         gifUrl: "projects/gifs/thalassia.gif",
         description: "A Shoot'em Up Game made in a team of 4 of which I was the only developper. The target of the project was to create a Shoot'em Up game in 6 weeks.",
@@ -87,7 +92,7 @@ function addProjects(){
         name: "Maze",
         category: Category.Game,
         githubUrl: null,
-        pageUrl: "https://youtu.be/edjYLYggQ_M?si=XSOTVVHwQgjpIerI",
+        pageUrl: "https://youtu.be/edjYLYggQ_M",
         imageUrl: "projects/images/maze.png",
         gifUrl: "projects/gifs/maze.gif",
         description: "A randomly generated maze game I made using my own maze generation algorithm. This project was my introduction to game development.",
@@ -98,7 +103,7 @@ function addProjects(){
         name: "Reaction Time",
         category: Category.Program,
         githubUrl: null,
-        pageUrl: "https://youtu.be/soree9B7Zs4?si=UjgEidNrgp5tXuxn",
+        pageUrl: "https://youtu.be/soree9B7Zs4",
         imageUrl: "projects/images/reactionTime.png",
         gifUrl: "projects/gifs/reactionTime.gif",
         description: "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
@@ -109,7 +114,7 @@ function addProjects(){
         name: "Rhythm Game",
         category: Category.Game,
         githubUrl: "https://github.com/laracIette/SDL_RhythmGame",
-        pageUrl: "https://youtu.be/ZwmMd3aLjXk?si=Q4a69uhPGtkVzlnQ",
+        pageUrl: "https://youtu.be/ZwmMd3aLjXk",
         imageUrl: "projects/images/rhythmGame.png",
         gifUrl: "projects/gifs/rhythmGame.gif",
         description: "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
@@ -120,7 +125,7 @@ function addProjects(){
         name: "3D Render",
         category: Category.Test,
         githubUrl: null,
-        pageUrl: "https://youtu.be/A3TB4-_OypA?si=MyJS3uOYRslv0Dd8",
+        pageUrl: "https://youtu.be/A3TB4-_OypA",
         imageUrl: "projects/images/first3DRender.png",
         gifUrl: "projects/gifs/first3DRender.gif",
         description: "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
@@ -131,7 +136,7 @@ function addProjects(){
         name: "Particle Collision",
         category: Category.Test,
         githubUrl: null,
-        pageUrl: "https://youtu.be/bGIVZxsEAs4?si=mb1Zn7TDQkQWyjtN",
+        pageUrl: "https://youtu.be/bGIVZxsEAs4",
         imageUrl: "projects/images/particle2DCollision.png",
         gifUrl: "projects/gifs/particle2DCollision.gif",
         description: "An attempt at creating a simple 2D collision system for particles and walls, later upgraded to a path finder using collisons.",
@@ -142,7 +147,7 @@ function addProjects(){
         name: "Kotono",
         category: Category.Program,
         githubUrl: "https://github.com/laracIette/Kotono",
-        pageUrl: "https://youtu.be/DkHal2KlUbM?si=ditjJb_EUEfWp54U",
+        pageUrl: "https://youtu.be/DkHal2KlUbM",
         imageUrl: "projects/images/kotono.png",
         gifUrl: "projects/gifs/kotono.gif",
         description: "A first attempt at making a 3D game engine in C# using OpenGL with OpenTK.",
@@ -175,7 +180,7 @@ function addProjects(){
         name: "Maze Generator",
         category: Category.Program,
         githubUrl: "https://github.com/laracIette/MazeGenerator",
-        pageUrl: "https://youtu.be/mQRLY4BPCgo?si=2aXjwJsPjtOf4YR-",
+        pageUrl: "https://youtu.be/mQRLY4BPCgo",
         imageUrl: "projects/images/mazeGenerator.png",
         gifUrl: "projects/gifs/mazeGenerator.gif",
         description: "A very fast maze generator, I used this project to upgrade my maze generator algorithm I first developped in python and to make it as fast as I possibly could.",
@@ -186,7 +191,7 @@ function addProjects(){
         name: "Ship Shooter",
         category: Category.Test,
         githubUrl: null,
-        pageUrl: "https://youtu.be/8Rn2myJjLbo?si=Bp9i1S-IXVR9_dKw",
+        pageUrl: "https://youtu.be/8Rn2myJjLbo",
         imageUrl: "projects/images/shipShooter.png",
         gifUrl: "projects/gifs/shipShooter.gif",
         description: "A little program made to understand how movement works in a realtime game.",
@@ -197,7 +202,7 @@ function addProjects(){
         name: "osu! (copy)",
         category: Category.Game,
         githubUrl: "https://github.com/laracIette/projet_osu",
-        pageUrl: "https://youtu.be/mL0DNwiN798?si=is88izhV0ROeqG_H",
+        pageUrl: "https://youtu.be/mL0DNwiN798",
         imageUrl: "projects/images/osu.png",
         gifUrl: "projects/gifs/osu.gif",
         description: "A project about recreating the rhythm game osu!, including saving game data, importing maps from files in a custom file format I made for the game.",
@@ -208,7 +213,7 @@ function addProjects(){
         name: "Tetris (copy)",
         category: Category.Game,
         githubUrl: null,
-        pageUrl: "https://youtu.be/nDP051pyXOE?si=Je2X_9D_n4l0l8Ij",
+        pageUrl: "https://youtu.be/nDP051pyXOE",
         imageUrl: "projects/images/tetris.png",
         gifUrl: "projects/gifs/tetris.gif",
         description: "A recreation of the game Tetris and my first C++ game, the goal was to make it as rapidly as possible to understand basic SDL2 and how a game loop works.",
@@ -226,8 +231,20 @@ function addProjects(){
         date: "April - June 2025",
         tools: [unrealEngine]
     };
+    const mcdoMenuGenerator: Project = {
+        name: "McDo Menu Generator",
+        category: Category.Program,
+        githubUrl: "https://github.com/laracIette/mcdo_menu_generator",
+        pageUrl: "https://youtube.com/shorts/0dnF7b_WPw0",
+        imageUrl: "projects/images/mcdoMenuGenerator.png",
+        gifUrl: "projects/gifs/mcdoMenuGenerator.gif",
+        description: "An application made in Flutter in about 10 days, this is a tool to generate McDonald's menus given a target calories count. It gets restaurants products from the McDonald's API (France only), you can filter which products are required or excluded from the menu. This is my also first try at making anything using Flutter.",
+        date: "August 2025",
+        tools: [flutter]
+    };
 
     // Order from latest to oldest
+    addProject(mcdoMenuGenerator);
     addProject(wanderBlossom);
     //addProject(twoCrowns);
     addProject(kotonoEngine);
@@ -318,9 +335,9 @@ function addProject(project: Project) {
         </div>
     `;
 
-    const projectsDiv: HTMLDivElement | null = document.getElementById('projects-div') as HTMLDivElement;
+    const categoriesDiv: HTMLDivElement | null = document.getElementById('categories-div') as HTMLDivElement;
 
-    if (!projectsDiv) {
+    if (!categoriesDiv) {
         console.error("no projects div");
         return;
     }
@@ -329,11 +346,12 @@ function addProject(project: Project) {
 
     if (!projectsCategory) {
         const projectsCategoryHTML: string = `
-            <div class="category" id="projects-${project.category}">
+            <div class="category">
                 <h1>${project.category}</h1>
+                <div class="projects" id="projects-${project.category}">
             </div>
         `;
-        projectsDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
+        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
         projectsCategory = document.getElementById(`projects-${project.category}`) as HTMLDivElement;
     }
 

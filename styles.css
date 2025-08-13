@@ -86,142 +86,153 @@ p {
 
         p {
             margin-top: 1em;
+            padding: 1em;
         }
     }
 
-    .projects {
+    .categories {
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 3em;
 
         .category {
             display: flex;
             flex-direction: column;
             gap: 1em;
 
-            .project {
+            .projects {
                 display: flex;
-                flex-direction: row;
-                background-color: var(--nico-blue);
+                flex-direction: column;
+                gap: 1em;
+                padding: 1em;
 
-                border-width: 0.5em;
-                border-style: solid;
-                border-color: var(--nico-dark-blue);
-                border-radius: 3em;
-                box-shadow: 0 0 0.2em var(--nico-dark-blue);
-
-                transition: transform 0.25s ease, filter 0.3s ease;
-                filter: grayscale(50%);
-
-                .preview {
-                    width: 55%;
-                    padding: 1em;
-                    align-items: flex-start;
-
-                    img {
-                        width: 100%;
-                        height: auto;
-                        margin: auto;
-                        border-width: 0.3em;
-                        border-style: solid;
-                        border-color: var(--nico-dark-blue);
-                        border-radius: 2em;
-
-                        transition: transform 0.25s ease, filter 0.3s ease;
-                    }
-
-                    img:hover {
-                        transform: scale(1.005);
-                    }
-                }
-
-                .infos {
-                    width: 45%;
+                .project {
                     display: flex;
-                    flex-direction: column;
-                    padding: 1em;
-                    gap: 1em;
+                    flex-direction: row;
+                    background-color: var(--nico-blue);
 
-                    h1 {
-                        font-size: 32px;
-                        font-weight: bold;
+                    border-width: 0.5em;
+                    border-style: solid;
+                    border-color: var(--nico-dark-blue);
+                    border-radius: 3em;
+                    box-shadow: 0 0 0.2em var(--nico-dark-blue);
+
+                    transition: transform 0.25s ease, filter 0.3s ease;
+                    filter: grayscale(50%);
+
+                    .preview {
+                        width: 55%;
+                        padding: 1em;
+                        align-items: flex-start;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                            margin: auto;
+                            border-width: 0.3em;
+                            border-style: solid;
+                            border-color: var(--nico-dark-blue);
+                            border-radius: 2em;
+
+                            transition: transform 0.25s ease, filter 0.3s ease;
+                        }
+
+                        img:hover {
+                            transform: scale(1.005);
+                        }
                     }
 
-                    p {
-                        margin: 0em;
-                        font-size: 22px;
-                    }
-
-                    div {
+                    .infos {
+                        width: 45%;
                         display: flex;
-                    }
-
-                    .title {
-                        flex-direction: row;
-
-                        .date {
-                            justify-content: end;
-                            flex: auto;
-                            padding-top: 0.2em;
-                            padding-right: 0.2em;
-
-                            p {
-                                font-size: 16px;
-                                color: var(--nico-gray)
-                            }
-                        }
-                    }
-
-                    .tools {
                         flex-direction: column;
-                        height: 100%;
-                        justify-content: flex-end;
+                        padding: 1em;
+                        gap: 1em;
 
-                        .list {
+                        h1 {
+                            font-size: 30px;
+                            font-weight: bold;
+                        }
+
+                        p {
+                            margin: 0em;
+                            font-size: 20px;
+                        }
+
+                        div {
                             display: flex;
-                            gap: 1em;
+                        }
 
-                            img {
-                                background-color: color-mix(in srgb, var(--nico-blue) 80%, var(--nico-dark-blue));
-                                border-width: 0.2em;
-                                border-color: var(--nico-dark-blue);
-                                border-style: solid;
-                                border-radius: 1em;
-                                width: 3.5em;
-                                height: 3.5em;
-                                padding: 0.3em;
+                        .title {
+                            flex-direction: row;
 
-                                transition: transform 0.25s ease, filter 0.3s ease;
-                            }
+                            .date {
+                                justify-content: end;
+                                flex: auto;
+                                padding-top: 0.2em;
+                                padding-right: 0.2em;
 
-                            img:hover {
-                                transform: scale(1.05);
-                            }
-
-                            .separator {
-                                width: 2px;
-                                background-color: gray;
-                                margin: 0.5em 0;
+                                p {
+                                    font-size: 16px;
+                                    color: var(--nico-gray)
+                                }
                             }
                         }
 
-                        .spacer {
-                            max-height: 1em;
+                        .tools {
+                            flex-direction: column;
                             height: 100%;
+                            justify-content: flex-end;
+
+                            .list {
+                                display: flex;
+                                gap: 1em;
+
+                                img {
+                                    background-color: color-mix(in srgb, var(--nico-blue) 80%, var(--nico-dark-blue));
+                                    border-width: 0.2em;
+                                    border-color: color-mix(in srgb, var(--nico-blue) 10%, var(--nico-dark-blue));
+                                    border-style: solid;
+                                    border-radius: 1em;
+                                    width: 3.5em;
+                                    height: 3.5em;
+                                    padding: 0.3em;
+
+                                    transition: transform 0.25s ease, filter 0.3s ease;
+                                }
+
+                                img:hover {
+                                    transform: scale(1.05);
+                                }
+
+                                .separator {
+                                    width: 2px;
+                                    background-color: gray;
+                                    margin: 0.5em 0;
+                                }
+                            }
+
+                            .spacer {
+                                max-height: 1em;
+                                height: 100%;
+                            }
                         }
                     }
                 }
-            }
 
-            .project:hover {
-                transform: scale(1.02);
-                filter: grayscale(0%);
+                .project:hover {
+                    transform: scale(1.02);
+                    filter: grayscale(0%);
+                }
             }
         }
     }
 
     .bottom {
-        background-color: rgb(115, 124, 31);
+        p {
+            color: var(--nico-gray);
+            font-style: italic;
+        }
     }
 }
 
