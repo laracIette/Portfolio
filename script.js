@@ -53,6 +53,7 @@ function addProjects() {
     var thalassia = {
         name: "Thalassia",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/GCY0TKGBFfA?si=RbNbSZp0PFaJvlPe",
         imageUrl: "projects/images/thalassia.png",
         gifUrl: "projects/gifs/thalassia.gif",
@@ -63,6 +64,7 @@ function addProjects() {
     var maze = {
         name: "Maze",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/edjYLYggQ_M?si=XSOTVVHwQgjpIerI",
         imageUrl: "projects/images/maze.png",
         gifUrl: "projects/gifs/maze.gif",
@@ -73,6 +75,7 @@ function addProjects() {
     var reactionTime = {
         name: "Reaction Time",
         category: Category.Program,
+        githubUrl: null,
         pageUrl: "https://youtu.be/soree9B7Zs4?si=UjgEidNrgp5tXuxn",
         imageUrl: "projects/images/reactionTime.png",
         gifUrl: "projects/gifs/reactionTime.gif",
@@ -83,6 +86,7 @@ function addProjects() {
     var rhythmGame = {
         name: "Rhythm Game",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/SDL_RhythmGame",
         pageUrl: "https://youtu.be/ZwmMd3aLjXk?si=Q4a69uhPGtkVzlnQ",
         imageUrl: "projects/images/rhythmGame.png",
         gifUrl: "projects/gifs/rhythmGame.gif",
@@ -93,6 +97,7 @@ function addProjects() {
     var first3DRender = {
         name: "3D Render",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/A3TB4-_OypA?si=MyJS3uOYRslv0Dd8",
         imageUrl: "projects/images/first3DRender.png",
         gifUrl: "projects/gifs/first3DRender.gif",
@@ -103,6 +108,7 @@ function addProjects() {
     var particle2DCollision = {
         name: "Particle Collision",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/bGIVZxsEAs4?si=mb1Zn7TDQkQWyjtN",
         imageUrl: "projects/images/particle2DCollision.png",
         gifUrl: "projects/gifs/particle2DCollision.gif",
@@ -113,6 +119,7 @@ function addProjects() {
     var kotono = {
         name: "Kotono",
         category: Category.Program,
+        githubUrl: "https://github.com/laracIette/Kotono",
         pageUrl: "https://youtu.be/DkHal2KlUbM?si=ditjJb_EUEfWp54U",
         imageUrl: "projects/images/kotono.png",
         gifUrl: "projects/gifs/kotono.gif",
@@ -123,9 +130,10 @@ function addProjects() {
     var kotonoEngine = {
         name: "Kotono Engine",
         category: Category.Program,
-        pageUrl: "https://github.com/laracIette/KotonoEngine",
+        githubUrl: "https://github.com/laracIette/KotonoEngine",
+        pageUrl: "https://github.com/laracIette/KotonoEngine", // no page
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "projects/images/kotonoEngine.png", // no gif yet
+        gifUrl: "projects/images/kotonoEngine.png", // no gif
         description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
@@ -133,9 +141,10 @@ function addProjects() {
     var twoCrowns = {
         name: "Two Crowns (copy)",
         category: Category.Game,
-        pageUrl: "",
+        githubUrl: null,
+        pageUrl: null,
         imageUrl: "projects/images/twoCrowns.png",
-        gifUrl: "projects/images/twoCrowns.png", // no gif yet
+        gifUrl: "projects/images/twoCrowns.png", // no gif
         description: "A reproduction of the game Two Crowns made in a week, the visuals were made by a friend.",
         date: "April 2025",
         tools: [unrealEngine]
@@ -143,6 +152,7 @@ function addProjects() {
     var mazeGenerator = {
         name: "Maze Generator",
         category: Category.Program,
+        githubUrl: "https://github.com/laracIette/MazeGenerator",
         pageUrl: "https://youtu.be/mQRLY4BPCgo?si=2aXjwJsPjtOf4YR-",
         imageUrl: "projects/images/mazeGenerator.png",
         gifUrl: "projects/gifs/mazeGenerator.gif",
@@ -153,6 +163,7 @@ function addProjects() {
     var shipShooter = {
         name: "Ship Shooter",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/8Rn2myJjLbo?si=Bp9i1S-IXVR9_dKw",
         imageUrl: "projects/images/shipShooter.png",
         gifUrl: "projects/gifs/shipShooter.gif",
@@ -163,6 +174,7 @@ function addProjects() {
     var osu = {
         name: "osu! (copy)",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/projet_osu",
         pageUrl: "https://youtu.be/mL0DNwiN798?si=is88izhV0ROeqG_H",
         imageUrl: "projects/images/osu.png",
         gifUrl: "projects/gifs/osu.gif",
@@ -173,6 +185,7 @@ function addProjects() {
     var tetris = {
         name: "Tetris (copy)",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/nDP051pyXOE?si=Je2X_9D_n4l0l8Ij",
         imageUrl: "projects/images/tetris.png",
         gifUrl: "projects/gifs/tetris.gif",
@@ -183,6 +196,7 @@ function addProjects() {
     var wanderBlossom = {
         name: "Wander Blossom",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/Wander-Blossom",
         pageUrl: "https://laraclette.itch.io/wander-blossom",
         imageUrl: "projects/images/wanderBlossom.png",
         gifUrl: "projects/gifs/wanderBlossom.gif",
@@ -207,6 +221,10 @@ function addProjects() {
     addProject(maze);
 }
 function addProject(project) {
+    var githubHTML = "";
+    if (project.githubUrl) {
+        githubHTML += "\n            <a href=\"".concat(project.githubUrl, "\" target=\"_blank\">\n                <img src=\"images/github.png\" alt=\"").concat(project.name, " GitHub\" />\n            </a>\n            <div class=\"separator\"></div>\n        ");
+    }
     var toolsHTML = "";
     project.tools.forEach(function (tool) {
         if (tool.pageUrl) {
@@ -224,7 +242,7 @@ function addProject(project) {
         projectPageHTML = "\n            <img id=\"".concat(project.name, "-preview-image\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />\n        ");
     }
     ;
-    var projectHTML = "\n        <div class=\"project\" id=\"".concat(project.name, "\">\n\n            <div class=\"preview\">\n                ").concat(projectPageHTML, "\n            </div>\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n\n                    <div class=\"list\">\n                        ").concat(toolsHTML, "\n                    </div>\n\n                    <div class=\"spacer\"></div>\n                </div>\n\n            </div>\n\n        </div>\n    ");
+    var projectHTML = "\n        <div class=\"project\" id=\"".concat(project.name, "\">\n\n            <div class=\"preview\">\n                ").concat(projectPageHTML, "\n            </div>\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n\n                    <div class=\"list\">\n                        ").concat(githubHTML, "\n                        ").concat(toolsHTML, "\n                    </div>\n\n                    <div class=\"spacer\"></div>\n                </div>\n\n            </div>\n\n        </div>\n    ");
     var projectsDiv = document.getElementById('projects-div');
     if (!projectsDiv) {
         console.error("no projects div");

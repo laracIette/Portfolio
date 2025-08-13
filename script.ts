@@ -13,7 +13,8 @@ type Tool = {
 type Project = {
     name: string;
     category: Category;
-    pageUrl: string;
+    pageUrl: string | null;
+    githubUrl: string | null;
     imageUrl: string;
     gifUrl: string;
     description: string;
@@ -74,6 +75,7 @@ function addProjects(){
     const thalassia: Project = {
         name: "Thalassia",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/GCY0TKGBFfA?si=RbNbSZp0PFaJvlPe",
         imageUrl: "projects/images/thalassia.png",
         gifUrl: "projects/gifs/thalassia.gif",
@@ -84,6 +86,7 @@ function addProjects(){
     const maze: Project = {
         name: "Maze",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/edjYLYggQ_M?si=XSOTVVHwQgjpIerI",
         imageUrl: "projects/images/maze.png",
         gifUrl: "projects/gifs/maze.gif",
@@ -94,6 +97,7 @@ function addProjects(){
     const reactionTime: Project = {
         name: "Reaction Time",
         category: Category.Program,
+        githubUrl: null,
         pageUrl: "https://youtu.be/soree9B7Zs4?si=UjgEidNrgp5tXuxn",
         imageUrl: "projects/images/reactionTime.png",
         gifUrl: "projects/gifs/reactionTime.gif",
@@ -104,6 +108,7 @@ function addProjects(){
     const rhythmGame: Project = {
         name: "Rhythm Game",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/SDL_RhythmGame",
         pageUrl: "https://youtu.be/ZwmMd3aLjXk?si=Q4a69uhPGtkVzlnQ",
         imageUrl: "projects/images/rhythmGame.png",
         gifUrl: "projects/gifs/rhythmGame.gif",
@@ -114,6 +119,7 @@ function addProjects(){
     const first3DRender: Project = {
         name: "3D Render",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/A3TB4-_OypA?si=MyJS3uOYRslv0Dd8",
         imageUrl: "projects/images/first3DRender.png",
         gifUrl: "projects/gifs/first3DRender.gif",
@@ -124,6 +130,7 @@ function addProjects(){
     const particle2DCollision: Project = {
         name: "Particle Collision",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/bGIVZxsEAs4?si=mb1Zn7TDQkQWyjtN",
         imageUrl: "projects/images/particle2DCollision.png",
         gifUrl: "projects/gifs/particle2DCollision.gif",
@@ -134,6 +141,7 @@ function addProjects(){
     const kotono: Project = {
         name: "Kotono",
         category: Category.Program,
+        githubUrl: "https://github.com/laracIette/Kotono",
         pageUrl: "https://youtu.be/DkHal2KlUbM?si=ditjJb_EUEfWp54U",
         imageUrl: "projects/images/kotono.png",
         gifUrl: "projects/gifs/kotono.gif",
@@ -144,9 +152,10 @@ function addProjects(){
     const kotonoEngine: Project = {
         name: "Kotono Engine",
         category: Category.Program,
-        pageUrl: "https://github.com/laracIette/KotonoEngine",
+        githubUrl: "https://github.com/laracIette/KotonoEngine",
+        pageUrl: "https://github.com/laracIette/KotonoEngine", // no page
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "projects/images/kotonoEngine.png", // no gif yet
+        gifUrl: "projects/images/kotonoEngine.png", // no gif
         description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
@@ -154,9 +163,10 @@ function addProjects(){
     const twoCrowns: Project = {
         name: "Two Crowns (copy)",
         category: Category.Game,
-        pageUrl: "",
+        githubUrl: null,
+        pageUrl: null,
         imageUrl: "projects/images/twoCrowns.png",
-        gifUrl: "projects/images/twoCrowns.png", // no gif yet
+        gifUrl: "projects/images/twoCrowns.png", // no gif
         description: "A reproduction of the game Two Crowns made in a week, the visuals were made by a friend.",
         date: "April 2025",
         tools: [unrealEngine]
@@ -164,6 +174,7 @@ function addProjects(){
     const mazeGenerator: Project = {
         name: "Maze Generator",
         category: Category.Program,
+        githubUrl: "https://github.com/laracIette/MazeGenerator",
         pageUrl: "https://youtu.be/mQRLY4BPCgo?si=2aXjwJsPjtOf4YR-",
         imageUrl: "projects/images/mazeGenerator.png",
         gifUrl: "projects/gifs/mazeGenerator.gif",
@@ -174,6 +185,7 @@ function addProjects(){
     const shipShooter: Project = {
         name: "Ship Shooter",
         category: Category.Test,
+        githubUrl: null,
         pageUrl: "https://youtu.be/8Rn2myJjLbo?si=Bp9i1S-IXVR9_dKw",
         imageUrl: "projects/images/shipShooter.png",
         gifUrl: "projects/gifs/shipShooter.gif",
@@ -184,6 +196,7 @@ function addProjects(){
     const osu: Project = {
         name: "osu! (copy)",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/projet_osu",
         pageUrl: "https://youtu.be/mL0DNwiN798?si=is88izhV0ROeqG_H",
         imageUrl: "projects/images/osu.png",
         gifUrl: "projects/gifs/osu.gif",
@@ -194,6 +207,7 @@ function addProjects(){
     const tetris: Project = {
         name: "Tetris (copy)",
         category: Category.Game,
+        githubUrl: null,
         pageUrl: "https://youtu.be/nDP051pyXOE?si=Je2X_9D_n4l0l8Ij",
         imageUrl: "projects/images/tetris.png",
         gifUrl: "projects/gifs/tetris.gif",
@@ -204,6 +218,7 @@ function addProjects(){
     const wanderBlossom: Project = {
         name: "Wander Blossom",
         category: Category.Game,
+        githubUrl: "https://github.com/laracIette/Wander-Blossom",
         pageUrl: "https://laraclette.itch.io/wander-blossom",
         imageUrl: "projects/images/wanderBlossom.png",
         gifUrl: "projects/gifs/wanderBlossom.gif",
@@ -230,6 +245,16 @@ function addProjects(){
 }
 
 function addProject(project: Project) {
+    let githubHTML: string = "";
+    if (project.githubUrl) {
+        githubHTML += `
+            <a href="${project.githubUrl}" target="_blank">
+                <img src="images/github.png" alt="${project.name} GitHub" />
+            </a>
+            <div class="separator"></div>
+        `;
+    }
+
     let toolsHTML: string = "";
     project.tools.forEach(tool => {
         if (tool.pageUrl) {
@@ -281,6 +306,7 @@ function addProject(project: Project) {
                 <div class="tools">
 
                     <div class="list">
+                        ${githubHTML}
                         ${toolsHTML}
                     </div>
 
