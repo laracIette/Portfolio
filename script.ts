@@ -268,8 +268,10 @@ function addProject(project: Project) {
             <a href="${project.githubUrl}" target="_blank">
                 <img src="images/github.png" alt="${project.name} GitHub" />
             </a>
-            <div class="separator"></div>
         `;
+        if (project.tools.length != 0) {
+            githubHTML += `<div class="separator"></div>`;
+        }
     }
 
     let toolsHTML: string = "";

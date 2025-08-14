@@ -240,7 +240,10 @@ function addProjects() {
 function addProject(project) {
     var githubHTML = "";
     if (project.githubUrl) {
-        githubHTML += "\n            <a href=\"".concat(project.githubUrl, "\" target=\"_blank\">\n                <img src=\"images/github.png\" alt=\"").concat(project.name, " GitHub\" />\n            </a>\n            <div class=\"separator\"></div>\n        ");
+        githubHTML += "\n            <a href=\"".concat(project.githubUrl, "\" target=\"_blank\">\n                <img src=\"images/github.png\" alt=\"").concat(project.name, " GitHub\" />\n            </a>\n        ");
+        if (project.tools.length != 0) {
+            githubHTML += "<div class=\"separator\"></div>";
+        }
     }
     var toolsHTML = "";
     project.tools.forEach(function (tool) {
