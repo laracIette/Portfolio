@@ -29,12 +29,12 @@ html {
 }
 
 body {
-    background-color: var(--nico-black);
+    background: linear-gradient(to bottom right, var(--nico-dark-blue), var(--nico-black));
     font-family: 'Cascadia Mono', monospace;
 }
 
 header {
-    background-color: color-mix(in srgb, var(--nico-dark-blue) 80%, transparent);
+    background-color: color-mix(in srgb, var(--nico-black) 80%, transparent);
     width: 100%;
     position: fixed;
     top: 0;
@@ -109,13 +109,14 @@ p {
                 .project {
                     display: flex;
                     flex-direction: row;
-                    background-color: var(--nico-blue);
+                    background-color: color-mix(in srgb, var(--nico-blue) 80%, transparent);
+                    padding: 0.5em;
 
-                    border-width: 0.5em;
-                    border-style: solid;
-                    border-color: var(--nico-dark-blue);
+                    /* backdrop-filter: blur(10px); */
+                    /* -webkit-backdrop-filter: blur(10px);  for Safari */
                     border-radius: 3em;
-                    box-shadow: 0 0 0.2em var(--nico-dark-blue);
+                    border: 1px solid rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 0.2em rgba(255, 255, 255, 1.0);
 
                     transition: transform 0.25s ease, filter 0.3s ease;
                     filter: grayscale(50%);
@@ -129,10 +130,10 @@ p {
                             width: 100%;
                             height: auto;
                             margin: auto;
-                            border-width: 0.3em;
-                            border-style: solid;
-                            border-color: var(--nico-dark-blue);
+
                             border-radius: 2em;
+                            border: 1px solid rgba(255, 255, 255, 0.3);
+                            box-shadow: 0 0 0.25em rgba(255, 255, 255, 0.6);
 
                             transition: transform 0.25s ease, filter 0.3s ease;
                         }
@@ -156,7 +157,7 @@ p {
 
                         p {
                             margin: 0em;
-                            font-size: 20px;
+                            font-size: 18px;
                         }
 
                         div {
@@ -188,20 +189,25 @@ p {
                                 display: flex;
                                 gap: 1em;
 
-                                img {
-                                    background-color: color-mix(in srgb, var(--nico-blue) 80%, var(--nico-dark-blue));
-                                    border-width: 0.2em;
-                                    border-color: color-mix(in srgb, var(--nico-blue) 10%, var(--nico-dark-blue));
-                                    border-style: solid;
+                                .tool {
+                                    background-color: color-mix(in srgb, var(--nico-blue) 75%, var(--nico-dark-blue));
+
                                     border-radius: 1em;
-                                    width: 3.5em;
-                                    height: 3.5em;
-                                    padding: 0.3em;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    box-shadow: 0 0 0.15em rgba(255, 255, 255, 0.4);
+
+                                    padding: 0.5em;
 
                                     transition: transform 0.25s ease, filter 0.3s ease;
+
+                                    img {
+                                        width: 3em;
+                                        height: 3em;
+                                    }
+
                                 }
 
-                                img:hover {
+                                .tool:hover {
                                     transform: scale(1.05);
                                 }
 

@@ -263,9 +263,9 @@ function addProjects(){
 
 function addProject(project: Project) {
     let githubHTML: string = "";
-    if (project.githubUrl) {
+    if (project.githubUrl) { // TODO: github logo is temporarly a tool
         githubHTML += `
-            <a href="${project.githubUrl}" target="_blank">
+            <a class="tool" href="${project.githubUrl}" target="_blank">
                 <img src="images/github.png" alt="${project.name} GitHub" />
             </a>
         `;
@@ -278,7 +278,7 @@ function addProject(project: Project) {
     project.tools.forEach(tool => {
         if (tool.pageUrl) {
             toolsHTML += `
-                <a href="${tool.pageUrl}" target="_blank">
+                <a class="tool" href="${tool.pageUrl}" target="_blank">
                     <img src="${tool.imageUrl}" alt="${tool.name}" />
                 </a>
             `;

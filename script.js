@@ -239,8 +239,8 @@ function addProjects() {
 }
 function addProject(project) {
     var githubHTML = "";
-    if (project.githubUrl) {
-        githubHTML += "\n            <a href=\"".concat(project.githubUrl, "\" target=\"_blank\">\n                <img src=\"images/github.png\" alt=\"").concat(project.name, " GitHub\" />\n            </a>\n        ");
+    if (project.githubUrl) { // TODO: github logo is temporarly a tool
+        githubHTML += "\n            <a class=\"tool\" href=\"".concat(project.githubUrl, "\" target=\"_blank\">\n                <img src=\"images/github.png\" alt=\"").concat(project.name, " GitHub\" />\n            </a>\n        ");
         if (project.tools.length != 0) {
             githubHTML += "<div class=\"separator\"></div>";
         }
@@ -248,7 +248,7 @@ function addProject(project) {
     var toolsHTML = "";
     project.tools.forEach(function (tool) {
         if (tool.pageUrl) {
-            toolsHTML += "\n                <a href=\"".concat(tool.pageUrl, "\" target=\"_blank\">\n                    <img src=\"").concat(tool.imageUrl, "\" alt=\"").concat(tool.name, "\" />\n                </a>\n            ");
+            toolsHTML += "\n                <a class=\"tool\" href=\"".concat(tool.pageUrl, "\" target=\"_blank\">\n                    <img src=\"").concat(tool.imageUrl, "\" alt=\"").concat(tool.name, "\" />\n                </a>\n            ");
         }
         else {
             toolsHTML += "\n                <img src=\"".concat(tool.imageUrl, "\" alt=\"").concat(tool.name, "\" />\n            ");
