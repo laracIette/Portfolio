@@ -95,6 +95,84 @@ p {
         }
     }
 
+    .pinned {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+
+        .projects {
+            display: flex;
+            flex-direction: row;
+            gap: 2em;
+            padding: 1em;
+
+            .project-link {
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                width: 50%; /* actual bounds of a project card */
+            }
+
+            .project {
+                display: flex;
+                flex-direction: row;
+                gap: 0.5em;
+                padding: 0.5em;
+                width: 100%; /* use the full bounds of the link */
+
+                background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
+
+                border-radius: 2em;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 0 0.2em rgba(255, 255, 255, 1.0);
+
+                transition: transform 0.25s ease, filter 0.3s ease;
+                filter: grayscale(50%);
+
+                .preview {
+                    width: 45%;
+                    padding: 0.5em;
+                    align-items: flex-start;
+
+                    img {
+                        width: 100%;
+                        aspect-ratio: 1 / 1;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 1em;
+                    }
+                }
+
+                .infos {
+                    width: 55%;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0.5em;
+                    gap: 1em;
+
+                    h1 {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+
+                    p {
+                        margin: 0em;
+                        font-size: 14px;
+                    }
+
+                    div {
+                        display: flex;
+                    }
+                }
+            }
+
+            .project:hover {
+                transform: scale(1.02);
+                filter: grayscale(0%);
+            }
+        }
+    }
+
     .categories {
         display: flex;
         flex-direction: column;

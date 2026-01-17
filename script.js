@@ -220,7 +220,10 @@ function addProjects() {
         date: "August 2025",
         tools: [flutter]
     };
-    // Order from latest to oldest
+    // Pinned projects
+    addPinned(wanderBlossom);
+    addPinned(mcdoMenuGenerator);
+    // Ordered from latest to oldest
     addProject(mcdoMenuGenerator);
     addProject(wanderBlossom);
     //addProject(twoCrowns);
@@ -236,6 +239,15 @@ function addProjects() {
     addProject(tetris);
     addProject(osu);
     addProject(maze);
+}
+function addPinned(project) {
+    var projectHTML = "\n        <a class=\"project-link\" href=\"#".concat(project.name, "\">\n            <div class=\"project\" id=\"pin-").concat(project.name, "\">\n\n                <div class=\"preview\">\n                    <img id=\"pin-").concat(project.name, "-preview-image\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />\n                </div>\n\n                <div class=\"infos\">\n\n                    <div class=\"title\">\n                        <h1>").concat(project.name, "</h1>\n                    </div>\n                    <p>").concat(project.description.split('.')[0], ".</p>\n\n                </div>\n\n            </div>\n        </a>\n    ");
+    var pinnedDiv = document.getElementById('pinned-div');
+    if (!pinnedDiv) {
+        console.error("no pinned div");
+        return;
+    }
+    pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
 function addProject(project) {
     var githubHTML = "";

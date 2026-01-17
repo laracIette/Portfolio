@@ -243,7 +243,11 @@ function addProjects(){
         tools: [flutter]
     };
 
-    // Order from latest to oldest
+    // Pinned projects
+    addPinned(wanderBlossom);
+    addPinned(mcdoMenuGenerator);
+
+    // Ordered from latest to oldest
     addProject(mcdoMenuGenerator);
     addProject(wanderBlossom);
     //addProject(twoCrowns);
@@ -259,6 +263,38 @@ function addProjects(){
     addProject(tetris);
     addProject(osu);
     addProject(maze);
+}
+
+function addPinned(project: Project) {
+    const projectHTML: string = `
+        <a class="project-link" href="#${project.name}">
+            <div class="project" id="pin-${project.name}">
+
+                <div class="preview">
+                    <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+                </div>
+
+                <div class="infos">
+
+                    <div class="title">
+                        <h1>${project.name}</h1>
+                    </div>
+                    <p>${project.description.split('.')[0]}.</p>
+
+                </div>
+
+            </div>
+        </a>
+    `;
+
+    const pinnedDiv: HTMLDivElement | null = document.getElementById('pinned-div') as HTMLDivElement;
+
+    if (!pinnedDiv) {
+        console.error("no pinned div");
+        return;
+    }
+
+    pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
 
 function addProject(project: Project) {
@@ -411,12 +447,3 @@ window.addEventListener('scroll', () => {
     }
     lastScrollY = window.scrollY;
 });
-
-
-
-
-
-
-
-
-
