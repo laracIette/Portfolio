@@ -138,8 +138,8 @@ function addProjects() {
         githubUrl: "https://github.com/laracIette/KotonoEngine",
         pageUrl: "https://github.com/laracIette/KotonoEngine", // no page
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "projects/images/kotonoEngine.png", // no gif
-        description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
+        gifUrl: "projects/gifs/kotonoEngine.gif",
+        description: "This is the second and current iteration of my Kotono game engine. I am designing it with a modular architecture in mind to ensure scalability. Featuring a Flutter-inspired interface system and a renderer powered by the Vulkan API. It also serves as my playground for learning and using a wide range of programming concepts and optimizations.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
     };
@@ -222,7 +222,7 @@ function addProjects() {
     };
     // Pinned projects
     addPinned(wanderBlossom);
-    addPinned(mcdoMenuGenerator);
+    addPinned(kotonoEngine);
     // Ordered from latest to oldest
     addProject(mcdoMenuGenerator);
     addProject(wanderBlossom);
@@ -266,14 +266,16 @@ function addProject(project) {
             toolsHTML += "\n                <img src=\"".concat(tool.imageUrl, "\" alt=\"").concat(tool.name, "\" />\n            ");
         }
     });
-    var projectPageHTML;
+    // Add preview image
+    var projectPageHTML = "";
     if (project.pageUrl) {
-        projectPageHTML = "\n            <a href=\"".concat(project.pageUrl, "\" target=\"_blank\">\n                <img id=\"").concat(project.name, "-preview-image\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />\n            </a>\n        ");
+        projectPageHTML += "<a href=\"".concat(project.pageUrl, "\" target=\"_blank\">");
     }
-    else {
-        projectPageHTML = "\n            <img id=\"".concat(project.name, "-preview-image\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />\n        ");
+    projectPageHTML += "<img class=\"static\" id=\"".concat(project.name, "-preview-image-static\" src=\"").concat(project.imageUrl, "\" alt=\"").concat(project.name, "\" />");
+    projectPageHTML += "<img class=\"gif\" id=\"".concat(project.name, "-preview-image-gif\" src=\"").concat(project.gifUrl, "\" alt=\"").concat(project.name, "\" />");
+    if (project.pageUrl) {
+        projectPageHTML += "</a>";
     }
-    ;
     var projectHTML = "\n        <div class=\"project\" id=\"".concat(project.name, "\">\n\n            <div class=\"preview\">\n                ").concat(projectPageHTML, "\n            </div>\n\n            <div class=\"infos\">\n\n                <div class=\"title\">\n\n                    <h1>").concat(project.name, "</h1>\n                    <div class=\"date\">\n                        <p>").concat(project.date, "</p>\n                    </div>\n                </div>\n                <p>").concat(project.description, "</p>\n\n                <div class=\"tools\">\n\n                    <div class=\"list\">\n                        ").concat(githubHTML, "\n                        ").concat(toolsHTML, "\n                    </div>\n\n                    <div class=\"spacer\"></div>\n                </div>\n\n            </div>\n\n        </div>\n    ");
     var categoriesDiv = document.getElementById('categories-div');
     if (!categoriesDiv) {
@@ -291,29 +293,6 @@ function addProject(project) {
         return;
     }
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
-    var projectDiv = document.getElementById("".concat(project.name));
-    if (!projectDiv) {
-        console.error("no project div");
-        return;
-    }
-    // switch to gif
-    projectDiv.addEventListener("mouseenter", function () {
-        var previewImage = document.getElementById("".concat(project.name, "-preview-image"));
-        if (!previewImage) {
-            console.error("no preview image");
-            return;
-        }
-        previewImage.src = project.gifUrl;
-    });
-    // switch to img
-    projectDiv.addEventListener("mouseleave", function () {
-        var previewImage = document.getElementById("".concat(project.name, "-preview-image"));
-        if (!previewImage) {
-            console.error("no preview image");
-            return;
-        }
-        previewImage.src = project.imageUrl;
-    });
 }
 // show / hide header
 var lastScrollY = 0;

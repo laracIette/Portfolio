@@ -117,14 +117,14 @@ p {
                 display: flex;
                 flex-direction: row;
                 gap: 0.5em;
-                padding: 0.5em;
+                padding: 0.6em;
                 width: 100%; /* use the full bounds of the link */
 
                 background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
 
                 border-radius: 2em;
                 border: 1px solid rgba(255, 255, 255, 0.5);
-                box-shadow: 0 0 0.2em rgba(255, 255, 255, 1.0);
+                box-shadow: 0 0 0.15em rgba(255, 255, 255, 1.0);
 
                 transition: transform 0.25s ease, filter 0.3s ease;
                 filter: grayscale(50%);
@@ -136,10 +136,11 @@ p {
 
                     img {
                         width: 100%;
-                        aspect-ratio: 1 / 1;
+                        aspect-ratio: 4 / 3;
                         object-fit: cover;
                         object-position: center;
                         border-radius: 1em;
+                        box-shadow: 0 0 0.15em rgb(131, 131, 131);
                     }
                 }
 
@@ -164,11 +165,11 @@ p {
                         display: flex;
                     }
                 }
-            }
 
-            .project:hover {
-                transform: scale(1.02);
-                filter: grayscale(0%);
+                &:hover {
+                    transform: scale(1.02);
+                    filter: grayscale(0%);
+                }
             }
         }
     }
@@ -203,24 +204,45 @@ p {
                     filter: grayscale(50%);
 
                     .preview {
-                        width: 55%;
-                        padding: 1em;
-                        align-items: flex-start;
+                        position: relative;
 
-                        img {
+                        width: 55%;
+                        margin: 1em;
+
+                        border-radius: 2em;
+                        border: 1px solid rgba(255, 255, 255, 0.3);
+                        box-shadow: 0 0 0.25em rgba(255, 255, 255, 0.6);
+                        overflow: hidden;
+
+                        transition: transform 0.25s ease-in-out;
+
+                        img.static {
+                            display: block;
                             width: 100%;
                             height: auto;
-                            margin: auto;
 
-                            border-radius: 2em;
-                            border: 1px solid rgba(255, 255, 255, 0.3);
-                            box-shadow: 0 0 0.25em rgba(255, 255, 255, 0.6);
+                            position: relative;
+                            z-index: 2; /* on top of gif */
 
-                            transition: transform 0.25s ease, filter 0.3s ease;
+                            transition: opacity 0.25s ease-in-out;
                         }
 
-                        img:hover {
-                            transform: scale(1.005);
+                        img.gif {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            z-index: 1; /* behind static */
+                        }
+
+                        &:hover {
+                            transform: scale(1.01);
+
+                            img.static {
+                                opacity: 0;
+                            }
                         }
                     }
 
@@ -279,17 +301,16 @@ p {
 
                                     padding: 0.5em;
 
-                                    transition: transform 0.25s ease, filter 0.3s ease;
+                                    transition: transform 0.25s ease-in-out;
 
                                     img {
                                         width: 3em;
                                         height: 3em;
                                     }
 
-                                }
-
-                                .tool:hover {
-                                    transform: scale(1.05);
+                                    &:hover {
+                                        transform: scale(1.05);
+                                    }
                                 }
 
                                 .separator {
@@ -305,11 +326,11 @@ p {
                             }
                         }
                     }
-                }
 
-                .project:hover {
-                    transform: scale(1.02);
-                    filter: grayscale(0%);
+                    &:hover {
+                        transform: scale(1.02);
+                        filter: grayscale(0%);
+                    }
                 }
             }
         }

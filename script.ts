@@ -160,8 +160,8 @@ function addProjects(){
         githubUrl: "https://github.com/laracIette/KotonoEngine",
         pageUrl: "https://github.com/laracIette/KotonoEngine", // no page
         imageUrl: "projects/images/kotonoEngine.png",
-        gifUrl: "projects/images/kotonoEngine.png", // no gif
-        description: "The second and current iteration of the Kotono game engine, with an abstraction layer for rendering I called the Kotono Framework.",
+        gifUrl: "projects/gifs/kotonoEngine.gif",
+        description: "This is the second and current iteration of my Kotono game engine. I am designing it with a modular architecture in mind to ensure scalability. Featuring a Flutter-inspired interface system and a renderer powered by the Vulkan API. It also serves as my playground for learning and using a wide range of programming concepts and optimizations.",
         date: "January 2025 - ",
         tools: [cpp, vulkan]
     };
@@ -245,7 +245,7 @@ function addProjects(){
 
     // Pinned projects
     addPinned(wanderBlossom);
-    addPinned(mcdoMenuGenerator);
+    addPinned(kotonoEngine);
 
     // Ordered from latest to oldest
     addProject(mcdoMenuGenerator);
@@ -326,19 +326,18 @@ function addProject(project: Project) {
         }
     });
 
-    let projectPageHTML: string;
+    // Add preview image
+    let projectPageHTML: string = "";
     if (project.pageUrl) {
-        projectPageHTML = `
-            <a href="${project.pageUrl}" target="_blank">
-                <img id="${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
-            </a>
-        `;
+        projectPageHTML += `<a href="${project.pageUrl}" target="_blank">`;
     }
-    else {
-        projectPageHTML = `
-            <img id="${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
-        `;
-    };
+
+    projectPageHTML += `<img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />`;
+    projectPageHTML += `<img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />`;
+
+    if (project.pageUrl) {
+        projectPageHTML += `</a>`;
+    }
 
     const projectHTML: string = `
         <div class="project" id="${project.name}">
@@ -399,32 +398,6 @@ function addProject(project: Project) {
     }
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
-
-    const projectDiv: HTMLElement | null = document.getElementById(`${project.name}`);
-    if (!projectDiv) {
-        console.error("no project div");
-        return;
-    }
-
-    // switch to gif
-    projectDiv.addEventListener("mouseenter", () => {
-        const previewImage = document.getElementById(`${project.name}-preview-image`) as HTMLImageElement;
-        if (!previewImage) {
-            console.error("no preview image");
-            return;
-        }
-        previewImage.src = project.gifUrl;
-    });
-
-    // switch to img
-    projectDiv.addEventListener("mouseleave", () => {
-        const previewImage = document.getElementById(`${project.name}-preview-image`) as HTMLImageElement;
-        if (!previewImage) {
-            console.error("no preview image");
-            return;
-        }
-        previewImage.src = project.imageUrl;
-    });
 }
 
 // show / hide header
