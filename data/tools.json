@@ -1,0 +1,52 @@
+{
+    "unrealEngine": {
+        "name": "Unreal Engine",
+        "pageUrl": "https://unrealengine.com",
+        "imageUrl": "tools/unrealEngine.png"
+    },
+    "unity": {
+        "name": "Unity",
+        "pageUrl": "https://unity.com",
+        "imageUrl": "tools/unity.png"
+    },
+    "python": {
+        "name": "Python",
+        "pageUrl": "https://python.org",
+        "imageUrl": "tools/python.png"
+    },
+    "pygame": {
+        "name": "Pygame",
+        "pageUrl": "https://pygame.org",
+        "imageUrl": "tools/pygame.png"
+    },
+    "cpp": {
+        "name": "C++",
+        "pageUrl": "https://isocpp.org",
+        "imageUrl": "tools/cpp.png"
+    },
+    "csharp": {
+        "name": "C#",
+        "pageUrl": "https://dotnet.microsoft.com/languages/csharp",
+        "imageUrl": "tools/csharp.png"
+    },
+    "sdl2": {
+        "name": "SDL2",
+        "pageUrl": "https://libsdl.org",
+        "imageUrl": "tools/sdl2.png"
+    },
+    "opentk": {
+        "name": "OpenTK",
+        "pageUrl": "https://opentk.net",
+        "imageUrl": "tools/opentk.png"
+    },
+    "vulkan": {
+        "name": "Vulkan",
+        "pageUrl": "https://vulkan.org",
+        "imageUrl": "tools/vulkan.png"
+    },
+    "flutter": {
+        "name": "Flutter",
+        "pageUrl": "https://flutter.dev",
+        "imageUrl": "tools/flutter.png"
+    }
+}

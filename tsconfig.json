@@ -2,11 +2,13 @@
     "compilerOptions": {
         "module": "ESNext",
         "moduleResolution": "Bundler",
-        "target": "ES2022",
+        "target": "ESNext",
         "jsx": "react",
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true
     },
     "exclude": [
         "node_modules",

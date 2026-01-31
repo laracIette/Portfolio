@@ -1,0 +1,201 @@
+{
+    "projects": {
+        "thalassia": {
+            "name": "Thalassia",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/GCY0TKGBFfA",
+            "imageUrl": "projects/images/thalassia.png",
+            "gifUrl": "projects/gifs/thalassia.gif",
+            "description": "A Shoot'em Up Game made in a team of 4 of which I was the developper. The goal of the project was to create a Shoot'em Up game in 6 weeks.",
+            "date": "May 2024",
+            "tools": ["unity", "csharp"]
+        },
+        "maze": {
+            "name": "Maze",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/edjYLYggQ_M",
+            "imageUrl": "projects/images/maze.png",
+            "gifUrl": "projects/gifs/maze.gif",
+            "description": "A randomly generated maze game I made using my own maze generation algorithm. This project was my introduction to game development.",
+            "date": "April 2022",
+            "tools": ["python", "pygame"]
+        },
+        "reactionTime": {
+            "name": "Reaction Time",
+            "category": "Programs",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/soree9B7Zs4",
+            "imageUrl": "projects/images/reactionTime.png",
+            "gifUrl": "projects/gifs/reactionTime.gif",
+            "description": "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
+            "date": "August 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "rhythmGame": {
+            "name": "Rhythm Game",
+            "category": "Games",
+            "githubUrl": "https://github.com/laracIette/SDL_RhythmGame",
+            "pageUrl": "https://youtu.be/ZwmMd3aLjXk",
+            "imageUrl": "projects/images/rhythmGame.png",
+            "gifUrl": "projects/gifs/rhythmGame.gif",
+            "description": "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
+            "date": "December 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "first3DRender": {
+            "name": "3D Render",
+            "category": "Tests",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/A3TB4-_OypA",
+            "imageUrl": "projects/images/first3DRender.png",
+            "gifUrl": "projects/gifs/first3DRender.gif",
+            "description": "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
+            "date": "July 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "particle2DCollision": {
+            "name": "Particle Collision",
+            "category": "Tests",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/bGIVZxsEAs4",
+            "imageUrl": "projects/images/particle2DCollision.png",
+            "gifUrl": "projects/gifs/particle2DCollision.gif",
+            "description": "An attempt at creating a simple 2D collision system for particles and walls, later upgraded to a path finder using collisons.",
+            "date": "July 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "kotono": {
+            "name": "Kotono",
+            "category": "Programs",
+            "githubUrl": "https://github.com/laracIette/Kotono",
+            "pageUrl": "https://youtu.be/DkHal2KlUbM",
+            "imageUrl": "projects/images/kotono.png",
+            "gifUrl": "projects/gifs/kotono.gif",
+            "description": "A first attempt at making a 3D game engine in C# using OpenGL with OpenTK.",
+            "date": "March 2023 - 2024",
+            "tools": ["csharp", "opentk"]
+        },
+        "kotonoEngine": {
+            "name": "Kotono Engine",
+            "category": "Programs",
+            "githubUrl": "https://github.com/laracIette/KotonoEngine",
+            "pageUrl": "https://github.com/laracIette/KotonoEngine",
+            "imageUrl": "projects/images/kotonoEngine.png",
+            "gifUrl": "projects/gifs/kotonoEngine.gif",
+            "description": "This is the second and current iteration of my Kotono game engine. I am designing it with a modular architecture in mind to ensure scalability. Featuring a Flutter-inspired interface system and a renderer powered by the Vulkan API. It also serves as my playground for learning and using a wide range of programming concepts and optimizations.",
+            "date": "January 2025 - ",
+            "tools": ["cpp", "vulkan"]
+        },
+        "twoCrowns": {
+            "name": "Two Crowns (copy)",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": null,
+            "imageUrl": "projects/images/twoCrowns.png",
+            "gifUrl": "projects/images/twoCrowns.png",
+            "description": "A reproduction of the game Two Crowns made in a week, the visuals were made by a friend.",
+            "date": "April 2025",
+            "tools": ["unrealEngine"]
+        },
+        "mazeGenerator": {
+            "name": "Maze Generator",
+            "category": "Programs",
+            "githubUrl": "https://github.com/laracIette/MazeGenerator",
+            "pageUrl": "https://youtu.be/mQRLY4BPCgo",
+            "imageUrl": "projects/images/mazeGenerator.png",
+            "gifUrl": "projects/gifs/mazeGenerator.gif",
+            "description": "A very fast maze generator, I used this project to upgrade my maze generator algorithm I first developped in python and to make it as fast as I possibly could.",
+            "date": "July 2024",
+            "tools": ["csharp"]
+        },
+        "shipShooter": {
+            "name": "Ship Shooter",
+            "category": "Tests",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/8Rn2myJjLbo",
+            "imageUrl": "projects/images/shipShooter.png",
+            "gifUrl": "projects/gifs/shipShooter.gif",
+            "description": "A little program made to understand how movement works in a realtime game.",
+            "date": "September 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "osu": {
+            "name": "osu! (copy)",
+            "category": "Games",
+            "githubUrl": "https://github.com/laracIette/projet_osu",
+            "pageUrl": "https://youtu.be/mL0DNwiN798",
+            "imageUrl": "projects/images/osu.png",
+            "gifUrl": "projects/gifs/osu.gif",
+            "description": "A project about recreating the rhythm game osu!, including saving game data, importing maps from files in a custom file format I made for the game.",
+            "date": "March 2022",
+            "tools": ["python", "pygame"]
+        },
+        "tetris": {
+            "name": "Tetris (copy)",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": "https://youtu.be/nDP051pyXOE",
+            "imageUrl": "projects/images/tetris.png",
+            "gifUrl": "projects/gifs/tetris.gif",
+            "description": "A recreation of the game Tetris and my first C++ game, the goal was to make it as rapidly as possible to understand basic SDL2 and how a game loop works.",
+            "date": "June 2022",
+            "tools": ["cpp", "sdl2"]
+        },
+        "wanderBlossom": {
+            "name": "Wander Blossom",
+            "category": "Games",
+            "githubUrl": "https://github.com/laracIette/Wander-Blossom",
+            "pageUrl": "https://laraclette.itch.io/wander-blossom",
+            "imageUrl": "projects/images/wanderBlossom.png",
+            "gifUrl": "projects/gifs/wanderBlossom.gif",
+            "description": "An original game created in 10 weeks with 3 friends, I was the team's developper. Also the project that made me learn Unreal Engine the most and the project in which I had the most creative liberty so far.",
+            "date": "April - June 2025",
+            "tools": ["unrealEngine"]
+        },
+        "mcdoMenuGenerator": {
+            "name": "McDo Menu Generator",
+            "category": "Programs",
+            "githubUrl": "https://github.com/laracIette/mcdo_menu_generator",
+            "pageUrl": "https://youtube.com/shorts/0dnF7b_WPw0",
+            "imageUrl": "projects/images/mcdoMenuGenerator.png",
+            "gifUrl": "projects/gifs/mcdoMenuGenerator.gif",
+            "description": "An application made in Flutter in about 10 days, this is a tool to generate McDonald's menus given a target calories count. It gets restaurants products from the McDonald's API (France only), you can filter which products are required or excluded from the menu. This is my also first try at making anything using Flutter.",
+            "date": "August 2025",
+            "tools": ["flutter"]
+        },
+        "pestacle": {
+            "name": "Pestacle",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": "https://jadefmt.itch.io/pestacle",
+            "imageUrl": "projects/images/pestacle.png",
+            "gifUrl": "projects/gifs/pestacle.gif",
+            "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This is my first time developing a point-and-click game.",
+            "date": "January 2026",
+            "tools": ["unrealEngine"]
+        }
+    },
+    "pinned": [
+        "wanderBlossom",
+        "kotonoEngine"
+    ],
+    "structure" : [
+        "pestacle",
+        "mcdoMenuGenerator",
+        "wanderBlossom",
+        "kotonoEngine",
+        "mazeGenerator",
+        "thalassia",
+        "kotono",
+        "rhythmGame",
+        "shipShooter",
+        "reactionTime",
+        "particle2DCollision",
+        "first3DRender",
+        "tetris",
+        "osu",
+        "maze"
+    ]
+}
