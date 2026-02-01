@@ -4,11 +4,11 @@
             "name": "Thalassia",
             "category": "Games",
             "githubUrl": null,
-            "pageUrl": "https://youtu.be/GCY0TKGBFfA",
+            "pageUrl": "https://laraclette.itch.io/thalassia",
             "imageUrl": "projects/images/thalassia.png",
             "gifUrl": "projects/gifs/thalassia.gif",
             "description": "A Shoot'em Up Game made in a team of 4 of which I was the developer. The goal of the project was to create a Shoot'em Up game in 6 weeks.",
-            "date": "May 2024",
+            "date": "May - June 2024",
             "tools": ["unity", "csharp"]
         },
         "maze": {
@@ -177,7 +177,7 @@
             "tools": ["unrealEngine"]
         },
         "karmaPlease": {
-            "name": "Karma Please",
+            "name": "Karma, Please",
             "category": "Games",
             "githubUrl": null,
             "pageUrl": "https://laraclette.itch.io/karma-please",
@@ -186,6 +186,17 @@
             "description": "The first game I created during a game jam that took place over a weekend. I was one of the developers of the team and made the chat system among other things.",
             "date": "November 2023",
             "tools": ["unity"]
+        },
+        "songe": {
+            "name": "Songe",
+            "category": "Games",
+            "githubUrl": null,
+            "pageUrl": "https://laraclette.itch.io/songe",
+            "imageUrl": "projects/images/songe.png",
+            "gifUrl": "projects/gifs/songe.gif",
+            "description": "A game made for the Global Game Jam 2025. I was the developer of the team.",
+            "date": "January 2025",
+            "tools": ["unrealEngine"]
         }
     },
     "pinned": [
@@ -197,6 +208,7 @@
         "mcdoMenuGenerator",
         "wanderBlossom",
         "kotonoEngine",
+        "songe",
         "mazeGenerator",
         "thalassia",
         "kotono",
