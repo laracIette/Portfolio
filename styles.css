@@ -199,6 +199,14 @@ main {
                 grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
                 grid-auto-flow: row;
 
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    width: auto;
+                    height: auto;
+                    text-decoration: none;
+                }
+
                 .project {
                     display: flex;
                     flex-direction: column;

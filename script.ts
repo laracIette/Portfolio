@@ -101,9 +101,10 @@ function addProject(project: Project) {
     });
 
     // Add preview image
-    let projectPageHTML: string = "";
-    projectPageHTML += `<img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />`;
-    projectPageHTML += `<img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />`;
+    const projectPageHTML: string = `
+        <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+        <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+    `;
     
     let projectHTML: string = "";
     if (project.pageUrl) {

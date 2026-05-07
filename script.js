@@ -73,9 +73,10 @@ function addProject(project) {
         }
     });
     // Add preview image
-    let projectPageHTML = "";
-    projectPageHTML += `<img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />`;
-    projectPageHTML += `<img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />`;
+    const projectPageHTML = `
+        <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+        <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+    `;
     let projectHTML = "";
     if (project.pageUrl) {
         //projectHTML += `<a href="${project.pageUrl}" target="_blank">`;
