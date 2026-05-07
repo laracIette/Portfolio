@@ -50,7 +50,7 @@ function addPinned(project: Project) {
                 <div class="infos">
 
                     <div class="title">
-                        <h1>${project.name}</h1>
+                        <h2>${project.name}</h2>
                     </div>
                     <p>${project.description.split('.')[0]}.</p>
 
@@ -102,18 +102,15 @@ function addProject(project: Project) {
 
     // Add preview image
     let projectPageHTML: string = "";
-    if (project.pageUrl) {
-        projectPageHTML += `<a href="${project.pageUrl}" target="_blank">`;
-    }
-
     projectPageHTML += `<img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />`;
     projectPageHTML += `<img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />`;
-
+    
+    let projectHTML: string = "";
     if (project.pageUrl) {
-        projectPageHTML += `</a>`;
+        //projectHTML += `<a href="${project.pageUrl}" target="_blank">`;
     }
 
-    const projectHTML: string = `
+    projectHTML += `
         <div class="project" id="${project.name}">
 
             <div class="preview">
@@ -124,7 +121,7 @@ function addProject(project: Project) {
 
                 <div class="title">
 
-                    <h1>${project.name}</h1>
+                    <h2>${project.name}</h2>
                     <div class="date">
                         <p>${project.date}</p>
                     </div>
@@ -137,14 +134,17 @@ function addProject(project: Project) {
                         ${githubHTML}
                         ${toolsHTML}
                     </div>
-
-                    <div class="spacer"></div>
                 </div>
 
             </div>
 
         </div>
     `;
+
+    
+    if (project.pageUrl) {
+        //projectHTML += `</a>`;
+    }
 
     const categoriesDiv: HTMLDivElement | null = document.getElementById('categories-div') as HTMLDivElement;
 
