@@ -9,17 +9,21 @@
 
 :root {
     --nico-black: #010409;
-    --nico-dark-blue: #0D1117;
-    --nico-blue: rgb(30, 46, 110);
+    --nico-blue: #1e2e6e;
     --nico-light-blue: #79C0FF;
+    --nico-dark-blue: #0D1117;
     --nico-gray: #909AA6;
     --nico-light-gray: #E6EDF3;
     --nico-light-yellow: #DCDCAA;
+    --nico-dark-yellow: #5f5f3d;
 
     --nico-dark-blue-80: color-mix(in srgb, var(--nico-dark-blue) 80%, var(--nico-blue));
     --nico-dark-blue-50: color-mix(in srgb, var(--nico-dark-blue) 50%, var(--nico-blue));
     --nico-dark-blue-30: color-mix(in srgb, var(--nico-dark-blue) 30%, var(--nico-blue));
     --nico-dark-blue-20: color-mix(in srgb, var(--nico-dark-blue) 20%, var(--nico-blue));
+
+    --nico-font-title: 'Cascadia Mono', monospace;
+    --nico-font-text: 'Roboto Mono', monospace;
 }
 
 * {
@@ -34,13 +38,15 @@ html {
 }
 
 body {
-    background: linear-gradient(to bottom right, var(--nico-dark-blue), var(--nico-black));
-    font-family: 'Cascadia Mono', monospace;
+    background: linear-gradient(to bottom right, var(--nico-dark-blue-80), var(--nico-dark-blue));
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: var(--nico-font-title);
 }
 
 p {
     font-size: 16px;
-    font-family: 'Roboto Mono', monospace;
+    font-family: var(--nico-font-text);
     word-spacing: -4px;
 }
 
@@ -64,36 +70,40 @@ a {
 
 header {
     background-color: color-mix(in srgb, var(--nico-black) 80%, transparent);
-    width: 100%;
-    position: fixed;
     top: 0;
     z-index: 1000;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     transition: top 0.4s ease-in-out;
+    height: 5.5em;
 
     .bar {
+        width: 75em;
         display: flex;
         flex-direction: row;
+        align-items: center;
         justify-content: space-between;
 
         .end {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 1em;
+            gap: 2em;
         }
     }
 
     img {
         height: 2em;
         width: auto;
-        margin: 1em;
     }
 }
 
 main {
     display: flex;
     justify-content: center;
-    margin-top: 4em;
+    margin-top: 8em;
 }
 
 .content {
@@ -103,11 +113,12 @@ main {
     gap: 3em;
 
     .top {
-        margin-top: 1em;
+        padding: 1em 1em 1.5em 1em;
+        background: var(--nico-dark-blue-50);
 
-        p {
-            margin-top: 1em;
-        }
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
     }
 
     .pinned {
@@ -211,7 +222,7 @@ main {
                     display: flex;
                     flex-direction: column;
                     background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
-                    
+
                     width: auto;
                     min-width: 20em;
                     max-width: 24em;
@@ -240,10 +251,10 @@ main {
                             height: 14em;
                             object-fit: cover;
                             z-index: 2; /* on top of gif */
-                            
+
                             transition: opacity 0.25s ease-in-out;
                         }
-                        
+
                         img.gif {
                             position: absolute;
                             top: 0;

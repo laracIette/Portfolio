@@ -39,6 +39,12 @@ function addProjects() {
 }
 
 function addPinned(project: Project) {
+    const pinnedDiv = document.querySelector<HTMLDivElement>('#pinned-div');
+    if (!pinnedDiv) {
+        console.error("no pinned div");
+        return;
+    }
+
     const projectHTML: string = `
         <a class="project-link" href="#${project.name}">
             <div class="project" id="pin-${project.name}">
@@ -60,17 +66,35 @@ function addPinned(project: Project) {
         </a>
     `;
 
-    const pinnedDiv: HTMLDivElement | null = document.getElementById('pinned-div') as HTMLDivElement;
-
-    if (!pinnedDiv) {
-        console.error("no pinned div");
-        return;
-    }
-
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
 
 function addProject(project: Project) {
+    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
+    if (!categoriesDiv) {
+        console.error("no projects div");
+        return;
+    }
+
+    let projectsCategory = document.querySelector<HTMLDivElement>(`#projects-${project.category}`);
+    if (!projectsCategory) {
+        const projectsCategoryHTML: string = `
+            <div class="category">
+                <h1 id="category-${project.category}">${project.category}</h1>
+                <div class="projects" id="projects-${project.category}">
+            </div>
+        `;
+        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
+        projectsCategory = document.querySelector<HTMLDivElement>(`#projects-${project.category}`);
+    }
+
+    if (!projectsCategory) {
+        console.error("no projects category");
+        return;
+    }
+
+
+
     let githubHTML: string = "";
     if (project.githubUrl) { // TODO: github logo is temporarly a tool
         githubHTML += `
@@ -105,7 +129,7 @@ function addProject(project: Project) {
         <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
         <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
     `;
-    
+
     let projectHTML: string = "";
     if (project.pageUrl) {
         //projectHTML += `<a href="${project.pageUrl}" target="_blank">`;
@@ -142,34 +166,9 @@ function addProject(project: Project) {
         </div>
     `;
 
-    
+
     if (project.pageUrl) {
         //projectHTML += `</a>`;
-    }
-
-    const categoriesDiv: HTMLDivElement | null = document.getElementById('categories-div') as HTMLDivElement;
-
-    if (!categoriesDiv) {
-        console.error("no projects div");
-        return;
-    }
-
-    let projectsCategory: HTMLDivElement | null = document.getElementById(`projects-${project.category}`) as HTMLDivElement;
-
-    if (!projectsCategory) {
-        const projectsCategoryHTML: string = `
-            <div class="category">
-                <h1>${project.category}</h1>
-                <div class="projects" id="projects-${project.category}">
-            </div>
-        `;
-        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
-        projectsCategory = document.getElementById(`projects-${project.category}`) as HTMLDivElement;
-    }
-
-    if (!projectsCategory) {
-        console.error("no projects category");
-        return;
     }
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
@@ -179,8 +178,7 @@ function addProject(project: Project) {
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
-    const header: HTMLElement | null = document.getElementById('header');
-
+    const header = document.querySelector<HTMLElement>('#header');
     if (!header) {
         console.error("no header");
         return;
@@ -188,7 +186,8 @@ window.addEventListener('scroll', () => {
 
     if (window.scrollY > lastScrollY) {
         // scrolling down
-        header.style.top = '-4em'; // hide header
+
+        header.style.top = '-5.5em'; // hide header
     } else {
         // scrolling up
         header.style.top = '0'; // show header

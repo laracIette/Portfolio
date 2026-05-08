@@ -17,6 +17,11 @@ function addProjects() {
     });
 }
 function addPinned(project) {
+    const pinnedDiv = document.querySelector('#pinned-div');
+    if (!pinnedDiv) {
+        console.error("no pinned div");
+        return;
+    }
     const projectHTML = `
         <a class="project-link" href="#${project.name}">
             <div class="project" id="pin-${project.name}">
@@ -37,14 +42,29 @@ function addPinned(project) {
             </div>
         </a>
     `;
-    const pinnedDiv = document.getElementById('pinned-div');
-    if (!pinnedDiv) {
-        console.error("no pinned div");
-        return;
-    }
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
 function addProject(project) {
+    const categoriesDiv = document.querySelector(`#categories-div`);
+    if (!categoriesDiv) {
+        console.error("no projects div");
+        return;
+    }
+    let projectsCategory = document.querySelector(`#projects-${project.category}`);
+    if (!projectsCategory) {
+        const projectsCategoryHTML = `
+            <div class="category">
+                <h1 id="category-${project.category}">${project.category}</h1>
+                <div class="projects" id="projects-${project.category}">
+            </div>
+        `;
+        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
+        projectsCategory = document.querySelector(`#projects-${project.category}`);
+    }
+    if (!projectsCategory) {
+        console.error("no projects category");
+        return;
+    }
     let githubHTML = "";
     if (project.githubUrl) { // TODO: github logo is temporarly a tool
         githubHTML += `
@@ -114,39 +134,19 @@ function addProject(project) {
     if (project.pageUrl) {
         //projectHTML += `</a>`;
     }
-    const categoriesDiv = document.getElementById('categories-div');
-    if (!categoriesDiv) {
-        console.error("no projects div");
-        return;
-    }
-    let projectsCategory = document.getElementById(`projects-${project.category}`);
-    if (!projectsCategory) {
-        const projectsCategoryHTML = `
-            <div class="category">
-                <h1>${project.category}</h1>
-                <div class="projects" id="projects-${project.category}">
-            </div>
-        `;
-        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
-        projectsCategory = document.getElementById(`projects-${project.category}`);
-    }
-    if (!projectsCategory) {
-        console.error("no projects category");
-        return;
-    }
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 }
 // show / hide header
 let lastScrollY = 0;
 window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
+    const header = document.querySelector('#header');
     if (!header) {
         console.error("no header");
         return;
     }
     if (window.scrollY > lastScrollY) {
         // scrolling down
-        header.style.top = '-4em'; // hide header
+        header.style.top = '-5.5em'; // hide header
     }
     else {
         // scrolling up
