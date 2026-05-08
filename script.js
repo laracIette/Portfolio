@@ -23,24 +23,26 @@ function addPinned(project) {
         return;
     }
     const projectHTML = `
-        <a class="project-link" href="#${project.name}">
-            <div class="project" id="pin-${project.name}">
+        <div class="project" id="pin-${project.name}">
 
-                <div class="preview">
-                    <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+            <a class="link" href="#${project.name}"></a>
+
+            <div class="preview">
+                <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+            </div>
+
+            <div class="infos">
+
+                <div class="title">
+                    <h2>${project.name}</h2>
                 </div>
 
-                <div class="infos">
-
-                    <div class="title">
-                        <h2>${project.name}</h2>
-                    </div>
-                    <p>${project.description.split('.')[0]}.</p>
-
-                </div>
+                <p>${project.description.split('.')[0]}.</p>
 
             </div>
-        </a>
+
+        </div>
+
     `;
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
@@ -92,20 +94,14 @@ function addProject(project) {
             `;
         }
     });
-    // Add preview image
-    const projectPageHTML = `
-        <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-        <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
-    `;
-    let projectHTML = "";
-    if (project.pageUrl) {
-        //projectHTML += `<a href="${project.pageUrl}" target="_blank">`;
-    }
-    projectHTML += `
+    const projectHTML = `
         <div class="project" id="${project.name}">
 
+            <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
+
             <div class="preview">
-                ${projectPageHTML}
+                <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+                <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
             </div>
 
             <div class="infos">
@@ -116,7 +112,9 @@ function addProject(project) {
                     <div class="date">
                         <p>${project.date}</p>
                     </div>
+
                 </div>
+
                 <p>${project.description}</p>
 
                 <div class="tools">
@@ -125,15 +123,13 @@ function addProject(project) {
                         ${githubHTML}
                         ${toolsHTML}
                     </div>
+
                 </div>
 
             </div>
 
         </div>
     `;
-    if (project.pageUrl) {
-        //projectHTML += `</a>`;
-    }
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 }
 // show / hide header
