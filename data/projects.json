@@ -46,7 +46,7 @@
         },
         "first3DRender": {
             "name": "3D Render",
-            "category": "Tests",
+            "category": "Other",
             "githubUrl": null,
             "pageUrl": "https://youtu.be/A3TB4-_OypA",
             "imageUrl": "projects/images/first3DRender.png",
@@ -57,7 +57,7 @@
         },
         "particle2DCollision": {
             "name": "Particle Collision",
-            "category": "Tests",
+            "category": "Other",
             "githubUrl": null,
             "pageUrl": "https://youtu.be/bGIVZxsEAs4",
             "imageUrl": "projects/images/particle2DCollision.png",
@@ -112,7 +112,7 @@
         },
         "shipShooter": {
             "name": "Ship Shooter",
-            "category": "Tests",
+            "category": "Other",
             "githubUrl": null,
             "pageUrl": "https://youtu.be/8Rn2myJjLbo",
             "imageUrl": "projects/images/shipShooter.png",
@@ -172,7 +172,7 @@
             "pageUrl": "https://jadefmt.itch.io/pestacle",
             "imageUrl": "projects/images/pestacle.png",
             "gifUrl": "projects/gifs/pestacle.gif",
-            "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This is my first time developing a point-and-click game.",
+            "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This was my first time developing a point-and-click game.",
             "date": "January 2026",
             "tools": ["unrealEngine"]
         },

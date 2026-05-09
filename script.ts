@@ -4,7 +4,7 @@ import projectData from './data/projects.json' with { type: 'json' };
 enum Category {
     Game = "Games",
     Program = "Programs",
-    Test = "Tests"
+    Other = "Other"
 }
 
 type Tool = {
@@ -57,7 +57,7 @@ function addPinned(project: Project) {
             <div class="infos">
 
                 <div class="title">
-                    <h2>${project.name}</h2>
+                    <h3>${project.name}</h3>
                 </div>
 
                 <p>${project.description.split('.')[0]}.</p>
@@ -81,8 +81,8 @@ function addProject(project: Project) {
     let projectsCategory = document.querySelector<HTMLDivElement>(`#projects-${project.category}`);
     if (!projectsCategory) {
         const projectsCategoryHTML: string = `
-            <div class="category">
-                <h1 id="category-${project.category}">${project.category}</h1>
+            <div class="category active" id="${project.category}">
+                <h2 id="category-${project.category}">${project.category}</h2>
                 <div class="projects" id="projects-${project.category}">
             </div>
         `;
@@ -140,7 +140,7 @@ function addProject(project: Project) {
 
                 <div class="title">
 
-                    <h2>${project.name}</h2>
+                    <h3>${project.name}</h3>
                     <div class="date">
                         <p>${project.date}</p>
                     </div>
@@ -165,6 +165,72 @@ function addProject(project: Project) {
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 }
+
+function trySetElementClassList(id: string, classList: string): boolean {
+    const el = document.querySelector<HTMLDivElement>(id);
+    if (el) {
+        el.classList = classList;
+        return true;
+    }
+    return false;
+}
+
+let currentCategory: Category | null = null;
+
+const tabs: Record<Category, string> = {
+    [Category.Game]: '#tab-games',
+    [Category.Program]: '#tab-programs',
+    [Category.Other]: '#tab-other'
+};
+
+function navigateAll(): void {
+    if (!currentCategory) {
+        return;
+    }
+    currentCategory = null;
+
+    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
+    categoriesDiv?.querySelectorAll('.category').forEach(e => {
+        e.classList = "category active";
+    });
+
+    trySetElementClassList('#tab-all', 'tab active');
+    trySetElementClassList('#tab-Games', 'tab innactive');
+    trySetElementClassList('#tab-Programs', 'tab innactive');
+    trySetElementClassList('#tab-Other', 'tab innactive');
+}
+
+function navigateTab(category: Category) : void {
+    if (currentCategory == category) {
+        return;
+    }
+    currentCategory = category;
+
+    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
+    categoriesDiv?.querySelectorAll('.category').forEach(e => {
+        if (e.id.includes(category)) {
+            e.classList = "category active";
+        }
+        else {
+            e.classList = "category innactive";
+        }
+    });
+
+    const tabsDiv = document.querySelector<HTMLDivElement>(`#tabs-div`);
+    tabsDiv?.querySelectorAll('.tab').forEach(e => {
+        if (e.id.includes(category)) {
+            e.classList = "tab active";
+        }
+        else {
+            e.classList = "tab innactive";
+        }
+    });
+}
+
+document.querySelector<HTMLDivElement>('#tab-all')?.addEventListener('click', () => navigateAll());
+document.querySelector<HTMLDivElement>('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
+document.querySelector<HTMLDivElement>('#tab-Programs')?.addEventListener('click', () => navigateTab(Category.Program));
+document.querySelector<HTMLDivElement>('#tab-Other')?.addEventListener('click', () => navigateTab(Category.Other));
 
 // show / hide header
 let lastScrollY = 0;
