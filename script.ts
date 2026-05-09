@@ -177,12 +177,6 @@ function trySetElementClassList(id: string, classList: string): boolean {
 
 let currentCategory: Category | null = null;
 
-const tabs: Record<Category, string> = {
-    [Category.Game]: '#tab-games',
-    [Category.Program]: '#tab-programs',
-    [Category.Other]: '#tab-other'
-};
-
 function navigateAll(): void {
     if (!currentCategory) {
         return;

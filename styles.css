@@ -18,6 +18,8 @@
     --nico-dark-yellow: #5f5f3d;
 
     --nico-dark-blue-80: color-mix(in srgb, var(--nico-dark-blue) 80%, var(--nico-blue));
+    --nico-dark-blue-70: color-mix(in srgb, var(--nico-dark-blue) 70%, var(--nico-blue));
+    --nico-dark-blue-60: color-mix(in srgb, var(--nico-dark-blue) 60%, var(--nico-blue));
     --nico-dark-blue-50: color-mix(in srgb, var(--nico-dark-blue) 50%, var(--nico-blue));
     --nico-dark-blue-30: color-mix(in srgb, var(--nico-dark-blue) 30%, var(--nico-blue));
     --nico-dark-blue-20: color-mix(in srgb, var(--nico-dark-blue) 20%, var(--nico-blue));
@@ -218,9 +220,9 @@ main {
             flex-direction: row;
             align-self: center;
             gap: 1.5em;
-            background: linear-gradient(to bottom right, var(--nico-dark-blue-50), var(--nico-dark-blue-80));
+            background: linear-gradient(to bottom right, var(--nico-dark-blue-70), var(--nico-dark-blue-80));
             border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 1em 1.2em;
+            padding: 1em 1.3em;
             border-radius: 1.5em;
 
             .tab {
@@ -232,19 +234,32 @@ main {
                 cursor: pointer;
                 border-radius: 1em;
 
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 0 0.15em rgba(255, 255, 255, 0.4);
+
+                background-color: var(--nico-dark-blue-20);
+
                 transition: transform 0.25s ease;
 
                 &:hover {
-                    transform: scale(1.05);
+                    transform: scale(1.03);
                 }
             }
 
             .tab.active {
-                background: linear-gradient(to bottom right, var(--nico-light-blue-30), var(--nico-blue));
+                transform: scale(1.03);
+
+                h3 {
+                    color: var(--nico-light-gray);
+                }
             }
 
             .tab.innactive {
-                background: linear-gradient(to bottom right, #626262, #393939);
+                filter: grayscale(50%);
+
+                h3 {
+                    color: var(--nico-gray);
+                }
             }
         }
 

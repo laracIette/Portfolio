@@ -141,11 +141,6 @@ function trySetElementClassList(id, classList) {
     return false;
 }
 let currentCategory = null;
-const tabs = {
-    [Category.Game]: '#tab-games',
-    [Category.Program]: '#tab-programs',
-    [Category.Other]: '#tab-other'
-};
 function navigateAll() {
     if (!currentCategory) {
         return;
