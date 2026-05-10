@@ -95,7 +95,8 @@ header {
     height: 5.5em;
 
     .bar {
-        width: 75em;
+        width: 77em;
+        padding: 0em 1em;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -124,7 +125,8 @@ main {
 .content {
     display: flex;
     flex-direction: column;
-    width: 75em;
+    width: min(77em, 100%);
+    padding: 0em 1em;
     gap: 10em;
 
     .top {
@@ -149,7 +151,7 @@ main {
             display: grid;
             gap: 2em;
 
-            grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
             grid-auto-flow: row;
             grid-auto-rows: 13em;
 
@@ -216,9 +218,14 @@ main {
         gap: 2em;
 
         .tabs {
-            display: flex;
-            flex-direction: row;
-            align-self: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+            grid-auto-flow: row;
+            grid-auto-rows: 4em;
+            max-width: 50em;
+            width: 100%;
+            margin-inline: auto;
+
             gap: 1.5em;
             background: linear-gradient(to bottom right, var(--nico-dark-blue-70), var(--nico-dark-blue-80));
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -226,9 +233,6 @@ main {
             border-radius: 1.5em;
 
             .tab {
-                width: 10em;
-                height: 4em;
-
                 align-content: center;
                 text-align: center;
                 cursor: pointer;
@@ -281,7 +285,7 @@ main {
                     display: grid;
                     gap: 2em;
 
-                    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+                    grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
                     grid-auto-flow: row;
                     grid-auto-rows: 30em;
 
@@ -291,9 +295,10 @@ main {
                         background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
                         border-radius: 1em;
                         border: 2px solid rgba(255, 255, 255, 0.1);
-                        transition: transform 0.25s ease, filter 0.3s ease;
-                        filter: grayscale(50%);
                         z-index: 0;
+
+                        filter: grayscale(50%);
+                        transition: transform 0.25s ease, filter 0.3s ease;
 
                         .link {
                             position: absolute;

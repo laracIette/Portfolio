@@ -139,7 +139,7 @@
             "pageUrl": "https://youtu.be/nDP051pyXOE",
             "imageUrl": "projects/images/tetris.png",
             "gifUrl": "projects/gifs/tetris.gif",
-            "description": "A recreation of the game Tetris and my first C++ game, the goal was to make it as rapidly as possible to understand basic SDL2 and how a game loop works.",
+            "description": "A recreation of the game Tetris and my first C++ game, the goal was to understand the basics of SDL2 and how a game loop works.",
             "date": "June 2022",
             "tools": ["cpp", "sdl2"]
         },
