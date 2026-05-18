@@ -28,7 +28,7 @@ type Project = {
 const tools = toolData as Record<string, Tool>;
 const projects = projectData["projects"] as Record<string, Project>;
 
-function addProjects() {
+function addProjects(): void {
     projectData["pinned"].forEach(proj => {
         addPinned(projects[proj]);
     });
@@ -38,7 +38,7 @@ function addProjects() {
     });
 }
 
-function addPinned(project: Project) {
+function addPinned(project: Project): void {
     const pinnedDiv = document.querySelector<HTMLDivElement>('#pinned-div');
     if (!pinnedDiv) {
         console.error("no pinned div");
@@ -48,7 +48,7 @@ function addPinned(project: Project) {
     const projectHTML: string = `
         <div class="project" id="pin-${project.name}">
 
-            <a class="link" href="#${project.name}"></a>
+            <a class="link" href="#${project.name}-scrollDest"></a>
 
             <div class="preview">
                 <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
@@ -71,7 +71,7 @@ function addPinned(project: Project) {
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 }
 
-function addProject(project: Project) {
+function addProject(project: Project): void {
     const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
     if (!categoriesDiv) {
         console.error("no projects div");
@@ -128,6 +128,8 @@ function addProject(project: Project) {
 
     const projectHTML: string = `
         <div class="project" id="${project.name}">
+
+            <div class="scrollDest" id="${project.name}-scrollDest"></div>
 
             <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
 
@@ -194,7 +196,7 @@ function navigateAll(): void {
     trySetElementClassList('#tab-Other', 'tab innactive');
 }
 
-function navigateTab(category: Category) : void {
+function navigateTab(category: Category): void {
     if (currentCategory == category) {
         return;
     }

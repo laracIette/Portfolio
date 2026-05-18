@@ -25,7 +25,7 @@ function addPinned(project) {
     const projectHTML = `
         <div class="project" id="pin-${project.name}">
 
-            <a class="link" href="#${project.name}"></a>
+            <a class="link" href="#${project.name}-scrollDest"></a>
 
             <div class="preview">
                 <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
@@ -96,6 +96,8 @@ function addProject(project) {
     });
     const projectHTML = `
         <div class="project" id="${project.name}">
+
+            <div class="scrollDest" id="${project.name}-scrollDest"></div>
 
             <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
 
