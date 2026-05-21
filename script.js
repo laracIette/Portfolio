@@ -99,8 +99,6 @@ function addProject(project) {
 
             <div class="scrollDest" id="${project.name}-scrollDest"></div>
 
-            <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
-
             <div class="preview">
                 <img loading="lazy" class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
                 <img loading="lazy" class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
@@ -133,6 +131,12 @@ function addProject(project) {
         </div>
     `;
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    document.querySelector(`#${project.name}`)?.addEventListener('click', () => showProjectPage(project));
+}
+function showProjectPage(project) {
+    if (project.pageUrl) {
+        open(project.pageUrl, '_blank');
+    }
 }
 function trySetElementClassList(id, classList) {
     const el = document.querySelector(id);

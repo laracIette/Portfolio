@@ -131,8 +131,6 @@ function addProject(project: Project): void {
 
             <div class="scrollDest" id="${project.name}-scrollDest"></div>
 
-            <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
-
             <div class="preview">
                 <img loading="lazy" class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
                 <img loading="lazy" class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
@@ -166,6 +164,14 @@ function addProject(project: Project): void {
     `;
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+
+    document.querySelector<HTMLDivElement>(`#${project.name}`)?.addEventListener('click', () => showProjectPage(project));
+}
+
+function showProjectPage(project: Project): void {
+    const projectHTML: string = `
+        <div class="project-page"></div>
+    `;
 }
 
 function trySetElementClassList(id: string, classList: string): boolean {
