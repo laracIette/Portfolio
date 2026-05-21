@@ -134,8 +134,8 @@ function addProject(project: Project): void {
             <a class="link" href="${project.pageUrl ?? '#' + project.name}" ${project.pageUrl ? "target=\"_blank\"" : ""}></a>
 
             <div class="preview">
-                <img class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-                <img class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+                <img loading="lazy" class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+                <img loading="lazy" class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
             </div>
 
             <div class="infos">
