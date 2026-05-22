@@ -14,6 +14,7 @@ type Tool = {
 };
 
 type Project = {
+    id: string;
     name: string;
     category: Category;
     pageUrl: string | null;
@@ -46,12 +47,12 @@ function addPinned(project: Project): void {
     }
 
     const projectHTML: string = `
-        <div class="project" id="pin-${project.name}">
+        <div class="project" id="pin-${project.id}">
 
-            <a class="link" href="#${project.name}-scrollDest"></a>
+            <a class="link" href="#${project.id}-scrollDest"></a>
 
             <div class="preview">
-                <img id="pin-${project.name}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+                <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
             </div>
 
             <div class="infos">
@@ -127,13 +128,13 @@ function addProject(project: Project): void {
     });
 
     const projectHTML: string = `
-        <div class="project" id="${project.name}">
+        <div class="project" id="${project.id}">
 
-            <div class="scrollDest" id="${project.name}-scrollDest"></div>
+            <div class="scrollDest" id="${project.id}-scrollDest"></div>
 
             <div class="preview">
-                <img loading="lazy" class="static" id="${project.name}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-                <img loading="lazy" class="gif" id="${project.name}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
             </div>
 
             <div class="infos">
@@ -165,23 +166,88 @@ function addProject(project: Project): void {
 
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
 
-    document.querySelector<HTMLDivElement>(`#${project.name}`)?.addEventListener('click', () => showProjectPage(project));
+    document.querySelector<HTMLDivElement>(`#${project.id}`)?.addEventListener('click', () => showProjectPage(project));
 }
+
+function getVisibleProjects(): Array<Project> {
+    const projs: Array<Project> = [];
+    document.querySelectorAll<HTMLDivElement>('.projects')
+        .forEach(projsDiv => projsDiv.querySelectorAll<HTMLDivElement>('.project')
+            .forEach(projDiv => projs.push(projects[projDiv.id])) 
+        );
+    return projs;
+}
+
+function findPreviousProject(project: Project): Project | null {
+    const projs: Array<Project> = getVisibleProjects();
+    const projIndex: number = projs.indexOf(project);
+    if (projIndex > 0) {
+        return projs[projIndex - 1];
+    }
+    return null;
+}
+
+function findNextProject(project: Project): Project | null {
+    const projs: Array<Project> = getVisibleProjects();
+    const projIndex: number = projs.indexOf(project);
+    if (projIndex < projs.length - 1) {
+        return projs[projIndex + 1];
+    }
+    return null;
+}
+
+let currentProject: Project | null = null;
 
 function showProjectPage(project: Project): void {
-    const projectHTML: string = `
-        <div class="project-page"></div>
-    `;
+    document.querySelector<HTMLImageElement>('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
+    const infosName = document.querySelector<HTMLHeadingElement>('#project-page-infos-name');
+    if (infosName) {
+        infosName.textContent = project.name;
+    }
+    const infosDesc = document.querySelector<HTMLParagraphElement>('#project-page-infos-desc');
+    if (infosDesc) {
+        infosDesc.textContent = project.description;
+    }
+
+    document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page active');
+    document.querySelector<HTMLDivElement>('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
+    document.querySelector<HTMLDivElement>('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
+
+    currentProject = project;
+    document.body.classList.add("remove-scrolling");
 }
 
-function trySetElementClassList(id: string, classList: string): boolean {
-    const el = document.querySelector<HTMLDivElement>(id);
-    if (el) {
-        el.classList = classList;
-        return true;
-    }
-    return false;
+function hideProjectPage(): void {
+    document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page innactive');
+    document.body.classList.remove("remove-scrolling"); 
 }
+
+function previousProjectPage(): void {
+    if (!currentProject) {
+        console.log('no current project');
+        return;
+    }
+    const prevProj: Project | null = findPreviousProject(currentProject);
+    if (prevProj) {
+        showProjectPage(prevProj);
+    }
+}
+
+function nextProjectPage(): void {
+     if (!currentProject) {
+        console.log('no current project');
+        return;
+    }
+    const nextProj: Project | null = findNextProject(currentProject);
+    if (nextProj) {
+        showProjectPage(nextProj);
+    }
+}
+
+document.querySelector<HTMLDivElement>('#project-page-close-button')?.addEventListener('click', () => hideProjectPage());
+document.querySelector<HTMLDivElement>('#project-page-background')?.addEventListener('click', () => hideProjectPage());
+document.querySelector<HTMLDivElement>('#previous-project-button')?.addEventListener('click', () => previousProjectPage());
+document.querySelector<HTMLDivElement>('#next-project-button')?.addEventListener('click', () => nextProjectPage());
 
 let currentCategory: Category | null = null;
 
@@ -191,15 +257,15 @@ function navigateAll(): void {
     }
     currentCategory = null;
 
-    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
-    categoriesDiv?.querySelectorAll('.category').forEach(e => {
-        e.classList = "category active";
-    });
+    document.querySelector<HTMLDivElement>(`#categories-div`)?.querySelectorAll('.category')
+        .forEach(e => {
+            e.classList = "category active";
+        });
 
-    trySetElementClassList('#tab-all', 'tab active');
-    trySetElementClassList('#tab-Games', 'tab innactive');
-    trySetElementClassList('#tab-Programs', 'tab innactive');
-    trySetElementClassList('#tab-Other', 'tab innactive');
+    document.querySelector<HTMLDivElement>('#tab-all')?.setAttribute('class', 'tab active');
+    document.querySelector<HTMLDivElement>('#tab-Games')?.setAttribute('class', 'tab innactive');
+    document.querySelector<HTMLDivElement>('#tab-Programs')?.setAttribute('class', 'tab innactive');
+    document.querySelector<HTMLDivElement>('#tab-Other')?.setAttribute('class', 'tab innactive');
 }
 
 function navigateTab(category: Category): void {
@@ -208,25 +274,25 @@ function navigateTab(category: Category): void {
     }
     currentCategory = category;
 
-    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
-    categoriesDiv?.querySelectorAll('.category').forEach(e => {
-        if (e.id.includes(category)) {
-            e.classList = "category active";
-        }
-        else {
-            e.classList = "category innactive";
-        }
-    });
+    document.querySelector<HTMLDivElement>(`#categories-div`)?.querySelectorAll('.category')
+        .forEach(e => {
+            if (e.id.includes(category)) {
+                e.classList = "category active";
+            }
+            else {
+                e.classList = "category innactive";
+            }
+        });
 
-    const tabsDiv = document.querySelector<HTMLDivElement>(`#tabs-div`);
-    tabsDiv?.querySelectorAll('.tab').forEach(e => {
-        if (e.id.includes(category)) {
-            e.classList = "tab active";
-        }
-        else {
-            e.classList = "tab innactive";
-        }
-    });
+    document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll('.tab')
+        .forEach(e => {
+            if (e.id.includes(category)) {
+                e.classList = "tab active";
+            }
+            else {
+                e.classList = "tab innactive";
+            }
+        });
 }
 
 document.querySelector<HTMLDivElement>('#tab-all')?.addEventListener('click', () => navigateAll());
@@ -246,7 +312,6 @@ window.addEventListener('scroll', () => {
 
     if (window.scrollY > lastScrollY) {
         // scrolling down
-
         header.style.top = '-5.5em'; // hide header
     } else {
         // scrolling up

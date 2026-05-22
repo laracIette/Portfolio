@@ -1,6 +1,7 @@
 {
     "projects": {
         "thalassia": {
+            "id": "thalassia",
             "name": "Thalassia",
             "category": "Games",
             "githubUrl": null,
@@ -12,6 +13,7 @@
             "tools": ["unity", "csharp"]
         },
         "maze": {
+            "id": "maze",
             "name": "Maze",
             "category": "Games",
             "githubUrl": null,
@@ -23,6 +25,7 @@
             "tools": ["python", "pygame"]
         },
         "reactionTime": {
+            "id": "reactionTime",
             "name": "Reaction Time",
             "category": "Programs",
             "githubUrl": null,
@@ -34,6 +37,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "rhythmGame": {
+            "id": "rhythmGame",
             "name": "Rhythm Game",
             "category": "Games",
             "githubUrl": "https://github.com/laracIette/SDL_RhythmGame",
@@ -45,6 +49,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "first3DRender": {
+            "id": "first3DRender",
             "name": "3D Render",
             "category": "Other",
             "githubUrl": null,
@@ -56,6 +61,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "particle2DCollision": {
+            "id": "particle2DCollision",
             "name": "Particle Collision",
             "category": "Other",
             "githubUrl": null,
@@ -67,6 +73,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "kotono": {
+            "id": "kotono",
             "name": "Kotono",
             "category": "Programs",
             "githubUrl": "https://github.com/laracIette/Kotono",
@@ -78,6 +85,7 @@
             "tools": ["csharp", "opentk"]
         },
         "kotonoEngine": {
+            "id": "kotonoEngine",
             "name": "Kotono Engine",
             "category": "Programs",
             "githubUrl": "https://github.com/laracIette/KotonoEngine",
@@ -89,6 +97,7 @@
             "tools": ["cpp", "vulkan"]
         },
         "twoCrowns": {
+            "id": "twoCrowns",
             "name": "Two Crowns (copy)",
             "category": "Games",
             "githubUrl": null,
@@ -100,6 +109,7 @@
             "tools": ["unrealEngine"]
         },
         "mazeGenerator": {
+            "id": "mazeGenerator",
             "name": "Maze Generator",
             "category": "Programs",
             "githubUrl": "https://github.com/laracIette/MazeGenerator",
@@ -111,6 +121,7 @@
             "tools": ["csharp"]
         },
         "shipShooter": {
+            "id": "shipShooter",
             "name": "Ship Shooter",
             "category": "Other",
             "githubUrl": null,
@@ -122,6 +133,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "osu": {
+            "id": "osu",
             "name": "osu! (copy)",
             "category": "Games",
             "githubUrl": "https://github.com/laracIette/projet_osu",
@@ -133,6 +145,7 @@
             "tools": ["python", "pygame"]
         },
         "tetris": {
+            "id": "tetris",
             "name": "Tetris (copy)",
             "category": "Games",
             "githubUrl": null,
@@ -144,6 +157,7 @@
             "tools": ["cpp", "sdl2"]
         },
         "wanderBlossom": {
+            "id": "wanderBlossom",
             "name": "Wander Blossom",
             "category": "Games",
             "githubUrl": "https://github.com/laracIette/Wander-Blossom",
@@ -155,6 +169,7 @@
             "tools": ["unrealEngine"]
         },
         "mcdoMenuGenerator": {
+            "id": "mcdoMenuGenerator",
             "name": "McDo Menu Generator",
             "category": "Programs",
             "githubUrl": "https://github.com/laracIette/mcdo_menu_generator",
@@ -166,6 +181,7 @@
             "tools": ["flutter"]
         },
         "pestacle": {
+            "id": "pestacle",
             "name": "Pestacle",
             "category": "Games",
             "githubUrl": null,
@@ -177,6 +193,7 @@
             "tools": ["unrealEngine"]
         },
         "karmaPlease": {
+            "id": "karmaPlease",
             "name": "Karma, Please",
             "category": "Games",
             "githubUrl": null,
@@ -188,6 +205,7 @@
             "tools": ["unity"]
         },
         "songe": {
+            "id": "songe",
             "name": "Songe",
             "category": "Games",
             "githubUrl": null,
@@ -199,6 +217,7 @@
             "tools": ["unrealEngine"]
         },
         "souveniste": {
+            "id": "souveniste",
             "name": "Le Souveniste",
             "category": "Games",
             "githubUrl": null,

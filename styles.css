@@ -116,6 +116,11 @@ header {
     }
 }
 
+.remove-scrolling {
+    height: 100%; 
+    overflow: hidden;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -332,10 +337,9 @@ main {
 
                                 img.gif {
                                     position: absolute;
-                                    top: 0;
-                                    left: 0;
+                                    inset: 0;
                                     width: 100%;
-                                    height: 14em;
+                                    height: 100%;
                                     object-fit: cover;
                                     z-index: 1; /* behind static */
                                 }
@@ -431,62 +435,161 @@ main {
         }
     }
 
-    .project-page {
-        position: fixed;
+    .project-page.active {
         display: flex;
-        width: min(77em, 100%);
-        height: 100vh; 
-        padding: 10em 1em;
-        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
 
-        .page-content {
-            position: relative;
+        .background {
+            position: absolute;
+            backdrop-filter: blur(1em);
+            inset: 0;
+            z-index: 0;
+        }
+
+        .foreground {
             display: flex;
             flex-direction: row;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
-            border-radius: 3em;
-            overflow: hidden;
+            width: min(77em, 100%);
+            height: 50em;
+            gap: 1em;
+            align-self: center;
+            padding: 0em 1em;
+            z-index: 1;
 
-            .left {
+            .button {
                 display: flex;
-                flex-direction: column;
-                width: 50%;
-                height: 100%;
+                height: 8em;
+                aspect-ratio: 0.618;
+                align-self: center;
+                cursor: pointer;
+                border-radius: 1em;
+                border: 2px solid rgba(102, 101, 190, 0.121);
+                padding: 0 0.5em;
+                opacity: 0.8;
+                background-color: var(--nico-dark-blue-80);
+                filter: grayscale(0);
 
-                .preview {
-                    display: flex;
+                transition: all 0.3s ease;
+
+                img {
+                    display: block;
                     width: 100%;
-                    height: 50%;
+                    height: auto;
+                    object-fit: contain;
 
-                    img {
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                    }
-                    
+                    transition: all 0.2s ease;
                 }
 
-                .infos {
-                    display: flex;
-                    flex-direction: column;
-                    padding: 1em;
+                &.active {
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    img:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                &.innactive {
+                    filter: grayscale(1);
+                    opacity: 0.5;
                 }
             }
 
-            .right {
+            .page-content {
+                position: relative;
                 display: flex;
-                width: 50%;
+                flex-direction: row;
+                width: 100%;
                 height: 100%;
-                background-color: #010409;
+                background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
+                border-radius: 3em;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                overflow: hidden;
+
+                .left {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    height: 100%;
+
+                    .preview {
+                        display: flex;
+                        width: 100%;
+                        height: 50%;
+
+                        img {
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .infos {
+                        display: flex;
+                        flex-direction: column;
+                        padding: 1em;
+                        gap: 1em;
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    height: 100%;
+                    background: linear-gradient(to bottom right, var(--nico-dark-blue-50), var(--nico-dark-blue-80));
+
+                    .top-bar {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: end;
+                        width: 100%;
+
+                        .close {
+                            display: flex;
+                            flex-direction: column;
+                            width: 3em;
+                            height: 3em;
+                            cursor: pointer;
+                            justify-content: end;
+
+                            img {
+                                display: block;
+                                width: 1.5em;
+                                height: 1.5em;
+
+                                transition: all 0.2s ease;
+                                
+                                &:hover {
+                                    transform: scale(1.15);
+                                }
+                            }
+
+                        }
+                    }
+
+                    .text {
+                        display: flex;
+                        padding: 1em;
+
+                        p {
+                            font-weight: bold;
+                            font-size: 20px;
+                            color: var(--nico-gray);
+                            
+                        }
+                    }
+                }
             }
         }
     }
-}
 
-footer {
-    width: 100%;
-    background-color: rgb(25, 25, 39);
+    .project-page.innactive {
+        display: none;
+    }
 }
