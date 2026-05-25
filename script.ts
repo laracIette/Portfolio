@@ -218,13 +218,15 @@ function showProjectPage(project: Project): void {
 
     populateProjectPageTools(project);
     populateProjectPageLinks(project);
+    populateProjectPageDots(project);
 
     document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page active');
     document.querySelector<HTMLDivElement>('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
     document.querySelector<HTMLDivElement>('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
 
-    currentProject = project;
     document.body.classList.add("remove-scrolling");
+
+    currentProject = project;
 }
 
 function populateProjectPageTools(project: Project): void {
@@ -234,7 +236,7 @@ function populateProjectPageTools(project: Project): void {
         return;
     }
 
-    if (project.tools.length == 0) {
+    if (project.tools.length === 0) {
         document.querySelector<HTMLDivElement>(`#project-page-tools`)?.setAttribute('class', 'tools innactive');
         toolsList.innerHTML = '';
         return;
@@ -285,6 +287,18 @@ function populateProjectPageLinks(project: Project): void {
     linksList.innerHTML = linksHTML;
 }
 
+function populateProjectPageDots(project: Project): void {
+    const dotsDiv = document.querySelector<HTMLDivElement>(`#project-page-dots`);
+    if (!dotsDiv) {
+        console.log('no dots div');
+        return;
+    }
+
+    let dotsHTML: string = '';
+    getVisibleProjects().forEach(p => dotsHTML += `<div class="${p === project ? 'dot active' : 'dot innactive'}"></div>`);
+    dotsDiv.innerHTML = dotsHTML;
+}
+
 function hideProjectPage(): void {
     document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page innactive');
     document.body.classList.remove("remove-scrolling");
@@ -316,6 +330,29 @@ document.querySelector<HTMLImageElement>('#project-page-close-button')?.addEvent
 document.querySelector<HTMLDivElement>('#project-page-background')?.addEventListener('click', () => hideProjectPage());
 document.querySelector<HTMLDivElement>('#previous-project-button')?.addEventListener('click', () => previousProjectPage());
 document.querySelector<HTMLDivElement>('#next-project-button')?.addEventListener('click', () => nextProjectPage());
+
+let touchStart: number = 0;
+let touchTime: number = 0;
+document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touchstart', e => {
+    touchStart = e.changedTouches[0].screenX;
+    touchTime = Date.now();
+});
+document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touchend', e => {
+    const THRESHOLD: number = 400; // milliseconds
+    if (Date.now() - touchTime > THRESHOLD) {
+        return;
+    }
+
+    const touchEnd: number = e.changedTouches[0].screenX;
+    const DEAD_ZONE: number = 100;
+
+    if (touchEnd < touchStart - DEAD_ZONE) {
+        nextProjectPage();
+    }
+    else if (touchEnd > touchStart + DEAD_ZONE) {
+        previousProjectPage();
+    }
+});
 
 let currentCategory: Category | null = null;
 

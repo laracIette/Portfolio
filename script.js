@@ -174,11 +174,12 @@ function showProjectPage(project) {
     }
     populateProjectPageTools(project);
     populateProjectPageLinks(project);
+    populateProjectPageDots(project);
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page active');
     document.querySelector('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
     document.querySelector('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
-    currentProject = project;
     document.body.classList.add("remove-scrolling");
+    currentProject = project;
 }
 function populateProjectPageTools(project) {
     const toolsList = document.querySelector(`#project-page-tools-list`);
@@ -186,7 +187,7 @@ function populateProjectPageTools(project) {
         console.log('no tools list div');
         return;
     }
-    if (project.tools.length == 0) {
+    if (project.tools.length === 0) {
         document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools innactive');
         toolsList.innerHTML = '';
         return;
@@ -229,6 +230,16 @@ function populateProjectPageLinks(project) {
     document.querySelector(`#project-page-links`)?.setAttribute('class', 'links active');
     linksList.innerHTML = linksHTML;
 }
+function populateProjectPageDots(project) {
+    const dotsDiv = document.querySelector(`#project-page-dots`);
+    if (!dotsDiv) {
+        console.log('no dots div');
+        return;
+    }
+    let dotsHTML = '';
+    getVisibleProjects().forEach(p => dotsHTML += `<div class="${p === project ? 'dot active' : 'dot innactive'}"></div>`);
+    dotsDiv.innerHTML = dotsHTML;
+}
 function hideProjectPage() {
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page innactive');
     document.body.classList.remove("remove-scrolling");
@@ -257,6 +268,26 @@ document.querySelector('#project-page-close-button')?.addEventListener('click', 
 document.querySelector('#project-page-background')?.addEventListener('click', () => hideProjectPage());
 document.querySelector('#previous-project-button')?.addEventListener('click', () => previousProjectPage());
 document.querySelector('#next-project-button')?.addEventListener('click', () => nextProjectPage());
+let touchStart = 0;
+let touchTime = 0;
+document.querySelector('#project-page')?.addEventListener('touchstart', e => {
+    touchStart = e.changedTouches[0].screenX;
+    touchTime = Date.now();
+});
+document.querySelector('#project-page')?.addEventListener('touchend', e => {
+    const THRESHOLD = 400; // milliseconds
+    if (Date.now() - touchTime > THRESHOLD) {
+        return;
+    }
+    const touchEnd = e.changedTouches[0].screenX;
+    const DEAD_ZONE = 100;
+    if (touchEnd < touchStart - DEAD_ZONE) {
+        nextProjectPage();
+    }
+    else if (touchEnd > touchStart + DEAD_ZONE) {
+        previousProjectPage();
+    }
+});
 let currentCategory = null;
 function navigateAll() {
     if (!currentCategory) {
