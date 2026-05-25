@@ -220,7 +220,7 @@
             "id": "souveniste",
             "name": "Le Souveniste",
             "category": "Games",
-            "githubUrl": null,
+            "githubUrl": "https://github.com/laracIette/Souveniste",
             "pageUrl": "https://laraclette.itch.io/souveniste",
             "imageUrl": "projects/images/souveniste.png",
             "gifUrl": "projects/gifs/souveniste.gif",

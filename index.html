@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="bottom">
-                    <p>This page is a work in progress and I can complete missing parts whenever.</p>
+                    <p>You've reached the end of this page, you may want to take a look at my links <a href="https://linktr.ee/nicosavlar" target="_blank">here</a>.</p>
                 </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <div class="background" id="project-page-background"></div>
 
                 <div class="foreground">
-                    <div class="button active" id="previous-project-button">
+                    <div class="button active" id="previous-project-button" title="Previous project">
                         <img src="images/chevronLeft.png"/>
                     </div>
 
@@ -84,24 +84,36 @@
                             </div>
                             <div class="infos">
                                 <h2 id="project-page-infos-name">Project</h2>
-                                <p id="project-page-infos-desc">Description</p>
+                                <div class="text">
+                                    <p id="project-page-infos-desc">Description</p>
+                                </div>
+
+                                <div class="bottom">
+                                    <div class="tools innactive" id="project-page-tools">
+                                        <h3>Tools</h3>
+                                        <div class="list" id="project-page-tools-list"></div>
+                                    </div>
+                                    <div class="links innactive" id="project-page-links">
+                                        <h3>Links</h3>
+                                        <div class="list" id="project-page-links-list"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="right">
                             <div class="top-bar">
-                                <div class="close" id="project-page-close-button">
-                                    <img src="images/cross.png"/>
-                                </div>
+                                <h2>My highlights</h2>
+                                <img id="project-page-close-button" src="images/cross.png" title="Close"/>
                             </div>
                             <div class="text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p id="project-page-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="button active" id="next-project-button">
+                    <div class="button active" id="next-project-button" title="Next project">
                         <img src="images/chevronRight.png"/>
                     </div>
                 </div>

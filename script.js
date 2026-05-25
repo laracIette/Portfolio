@@ -25,26 +25,32 @@ function addPinned(project) {
     const projectHTML = `
         <div class="project" id="pin-${project.id}">
 
-            <a class="link" href="#${project.id}-scrollDest"></a>
+            <div class="link" id="pin-${project.id}-link" title="Open ${project.name}'s page"></div>
 
             <div class="preview">
                 <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
             </div>
 
-            <div class="infos">
+            <div class="right">
 
-                <div class="title">
-                    <h3>${project.name}</h3>
+                <div class="infos">
+                    <div class="title">
+                        <h3>${project.name}</h3>
+                    </div>
+
+                    <p>${project.description.split('.')[0]}.</p>
                 </div>
 
-                <p>${project.description.split('.')[0]}.</p>
+                <a class="navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
+                    <img src="images/chevronDown.png"/>
+                </a>
 
             </div>
-
         </div>
 
     `;
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
+    document.querySelector(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
 }
 function addProject(project) {
     const categoriesDiv = document.querySelector(`#categories-div`);
@@ -70,7 +76,7 @@ function addProject(project) {
     let githubHTML = "";
     if (project.githubUrl) { // TODO: github logo is temporarly a tool
         githubHTML += `
-            <a class="tool" href="${project.githubUrl}" target="_blank">
+            <a class="tool" href="${project.githubUrl}" target="_blank" title="Open ${project.name} on GitHub">
                 <img src="images/github.png" alt="${project.name} GitHub" />
             </a>
         `;
@@ -81,21 +87,16 @@ function addProject(project) {
     let toolsHTML = "";
     project.tools.forEach(toolStr => {
         const tool = tools[toolStr];
-        if (tool.pageUrl) {
-            toolsHTML += `
-                <a class="tool" href="${tool.pageUrl}" target="_blank">
-                    <img src="${tool.imageUrl}" alt="${tool.name}" />
-                </a>
-            `;
-        }
-        else {
-            toolsHTML += `
+        toolsHTML += `
+            <a class="tool" href="${tool.pageUrl}" target="_blank" title="Open ${tool.name}'s website">
                 <img src="${tool.imageUrl}" alt="${tool.name}" />
-            `;
-        }
+            </a>
+        `;
     });
     const projectHTML = `
         <div class="project" id="${project.id}">
+
+            <div class="link" id="${project.id}-link" title="Open ${project.name}'s page"></div>
 
             <div class="scrollDest" id="${project.id}-scrollDest"></div>
 
@@ -131,12 +132,12 @@ function addProject(project) {
         </div>
     `;
     projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
-    document.querySelector(`#${project.id}`)?.addEventListener('click', () => showProjectPage(project));
+    document.querySelector(`#${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
 }
 function getVisibleProjects() {
     const projs = [];
-    document.querySelectorAll('.projects')
-        .forEach(projsDiv => projsDiv.querySelectorAll('.project')
+    document.querySelectorAll('.category.active')
+        .forEach(categoryDiv => categoryDiv.querySelectorAll('.project')
         .forEach(projDiv => projs.push(projects[projDiv.id])));
     return projs;
 }
@@ -167,11 +168,62 @@ function showProjectPage(project) {
     if (infosDesc) {
         infosDesc.textContent = project.description;
     }
+    populateProjectPageTools(project);
+    populateProjectPageLinks(project);
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page active');
     document.querySelector('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
     document.querySelector('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
     currentProject = project;
     document.body.classList.add("remove-scrolling");
+}
+function populateProjectPageTools(project) {
+    const toolsList = document.querySelector(`#project-page-tools-list`);
+    if (!toolsList) {
+        console.log('no tools list div');
+        return;
+    }
+    if (project.tools.length == 0) {
+        document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools innactive');
+        toolsList.innerHTML = '';
+        return;
+    }
+    let toolsHTML = '';
+    project.tools.forEach(toolId => toolsHTML += `
+        <a href="${tools[toolId].pageUrl}" target="_blank">
+            <p>${tools[toolId].name}</p>
+        </a>
+    `);
+    document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools active');
+    toolsList.innerHTML = toolsHTML;
+}
+function populateProjectPageLinks(project) {
+    const linksList = document.querySelector(`#project-page-links-list`);
+    if (!linksList) {
+        console.log('no links list div');
+        return;
+    }
+    if (!(project.pageUrl || project.githubUrl)) {
+        document.querySelector(`#project-page-links`)?.setAttribute('class', 'links innactive');
+        linksList.innerHTML = '';
+        return;
+    }
+    let linksHTML = '';
+    if (project.pageUrl) {
+        linksHTML += `
+            <a href="${project.pageUrl}" target="_blank">
+                <p>Project page</p>
+            </a>
+        `;
+    }
+    if (project.githubUrl) {
+        linksHTML += `
+            <a href="${project.pageUrl}" target="_blank">
+                <p>Project repository</p>
+            </a>
+        `;
+    }
+    document.querySelector(`#project-page-links`)?.setAttribute('class', 'links active');
+    linksList.innerHTML = linksHTML;
 }
 function hideProjectPage() {
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page innactive');

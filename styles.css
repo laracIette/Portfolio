@@ -83,10 +83,14 @@ a {
     display: flex;
 }
 
+p a {
+    display: inline;
+}
+
 header {
     background-color: color-mix(in srgb, var(--nico-black) 80%, transparent);
     top: 0;
-    z-index: 1000;
+    z-index: 9999;
     position: fixed;
     width: 100%;
     display: flex;
@@ -117,7 +121,7 @@ header {
 }
 
 .remove-scrolling {
-    height: 100%; 
+    height: 100%;
     overflow: hidden;
 }
 
@@ -173,15 +177,20 @@ main {
                     transition: transform 0.25s ease, filter 0.3s ease;
                     filter: grayscale(50%);
 
+                    &:hover {
+                        transform: scale(1.02);
+                        filter: grayscale(0%);
+                    }
+
                     .link {
                         position: absolute;
                         inset: 0;
-                        z-index: 1;
+                        z-index: 0;
+                        cursor: pointer;
                     }
 
                     .preview {
                         width: 47%;
-                        align-items: flex-start;
 
                         img {
                             height: 100%;
@@ -193,24 +202,44 @@ main {
                         }
                     }
 
-                    .infos {
-                        width: 53%;
+                    .right {
                         display: flex;
                         flex-direction: column;
-                        gap: 1em;
+                        justify-content: space-between;
+                        width: 53%;
 
-                        p {
-                            margin: 0em;
-                        }
-
-                        div {
+                        .infos {
                             display: flex;
-                        }
-                    }
+                            flex-direction: column;
+                            gap: 1em;
 
-                    &:hover {
-                        transform: scale(1.02);
-                        filter: grayscale(0%);
+                            p {
+                                margin: 0em;
+                            }
+
+                            div {
+                                display: flex;
+                            }
+                        }
+
+                        .navigate-link {
+                            align-self: end;
+                            z-index: 1;
+
+                            transform: scale(1);
+
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                transform: scale(1.2);
+                            }
+
+                            img {
+                                display: block;
+                                width: 2em;
+                                height: 2em;
+                            }
+                        }
                     }
                 }
             }
@@ -299,22 +328,30 @@ main {
                             background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
                             border-radius: 1em;
                             border: 2px solid rgba(255, 255, 255, 0.1);
-                            z-index: 0;
-                            cursor: pointer;
                             overflow: hidden;
 
                             filter: grayscale(50%);
-                            transition: transform 0.25s ease, filter 0.3s ease;
+                            transition: all 0.25s ease;
 
-                            .scrollDest {
-                                position: relative;
-                                top: -14em;
+                            &:hover {
+                                transform: scale(1.02);
+                                filter: grayscale(0%);
+
+                                .preview img.static {
+                                    opacity: 0;
+                                }
                             }
 
                             .link {
                                 position: absolute;
                                 inset: 0;
                                 z-index: 3;
+                                cursor: pointer;
+                            }
+
+                            .scrollDest {
+                                position: relative;
+                                top: -14em;
                             }
 
                             .preview {
@@ -355,11 +392,11 @@ main {
                                 .title {
                                     display: flex;
                                     flex-direction: row;
+                                    justify-content: space-between;
+                                    width: 100%;
 
                                     .date {
                                         display: flex;
-                                        justify-content: end;
-                                        flex: auto;
                                         padding-top: 0.2em;
                                         padding-right: 0.2em;
 
@@ -412,15 +449,6 @@ main {
                                     }
                                 }
                             }
-
-                            &:hover {
-                                transform: scale(1.02);
-                                filter: grayscale(0%);
-
-                                .preview img.static {
-                                    opacity: 0;
-                                }
-                            }
                         }
                     }
                 }
@@ -435,12 +463,19 @@ main {
         }
     }
 
-    .project-page.active {
-        display: flex;
+    .project-page {
         position: fixed;
         width: 100vw;
         height: 100vh;
         justify-content: center;
+
+        &.active {
+            display: flex;
+        }
+
+        &.innactive {
+            display: none;
+        }
 
         .background {
             position: absolute;
@@ -453,7 +488,7 @@ main {
             display: flex;
             flex-direction: row;
             width: min(77em, 100%);
-            height: 50em;
+            height: 45em;
             gap: 1em;
             align-self: center;
             padding: 0em 1em;
@@ -474,15 +509,6 @@ main {
 
                 transition: all 0.3s ease;
 
-                img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    object-fit: contain;
-
-                    transition: all 0.2s ease;
-                }
-
                 &.active {
                     &:hover {
                         opacity: 1;
@@ -496,6 +522,15 @@ main {
                 &.innactive {
                     filter: grayscale(1);
                     opacity: 0.5;
+                }
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+
+                    transition: all 0.2s ease;
                 }
             }
 
@@ -519,7 +554,7 @@ main {
                     .preview {
                         display: flex;
                         width: 100%;
-                        height: 50%;
+                        height: 40%;
 
                         img {
                             display: block;
@@ -532,8 +567,53 @@ main {
                     .infos {
                         display: flex;
                         flex-direction: column;
-                        padding: 1em;
+                        height: 60%;
+                        padding: 1.5em;
                         gap: 1em;
+
+                        .text {
+                            p {
+                                font-weight: 500;
+                            }
+                        }
+
+                        .bottom {
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                            justify-content: end;
+                            padding-bottom: 1em;
+                            gap: 1em;
+
+                            a {
+                                width: fit-content;
+                                color: var(--nico-light-blue);
+                            }
+
+                            .tools {
+                                flex-direction: column;
+
+                                &.active {
+                                    display: flex;
+                                }
+
+                                &.innactive {
+                                    display: none;
+                                }
+                            }
+
+                            .links {
+                                flex-direction: column;
+
+                                &.active {
+                                    display: flex;
+                                }
+
+                                &.innactive {
+                                    display: none;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -547,49 +627,43 @@ main {
                     .top-bar {
                         display: flex;
                         flex-direction: row;
-                        justify-content: end;
                         width: 100%;
+                        padding: 1.5em;
+                        align-content: center;
+                        justify-content: space-between;
 
-                        .close {
-                            display: flex;
-                            flex-direction: column;
-                            width: 3em;
-                            height: 3em;
+                        h2 {
+                            align-self: center;
+                        }
+
+                        img {
+                            display: block;
+                            width: 1.5em;
+                            height: 1.5em;
                             cursor: pointer;
-                            justify-content: end;
+                            align-self: center;
 
-                            img {
-                                display: block;
-                                width: 1.5em;
-                                height: 1.5em;
+                            transition: all 0.2s ease;
 
-                                transition: all 0.2s ease;
-                                
-                                &:hover {
-                                    transform: scale(1.15);
-                                }
+                            &:hover {
+                                transform: scale(1.15);
                             }
-
                         }
                     }
 
                     .text {
                         display: flex;
-                        padding: 1em;
+                        padding: 1.5em;
 
                         p {
                             font-weight: bold;
                             font-size: 20px;
                             color: var(--nico-gray);
-                            
+
                         }
                     }
                 }
             }
         }
-    }
-
-    .project-page.innactive {
-        display: none;
     }
 }
