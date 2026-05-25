@@ -168,6 +168,10 @@ function showProjectPage(project) {
     if (infosDesc) {
         infosDesc.textContent = project.description;
     }
+    const pageText = document.querySelector('#project-page-text');
+    if (pageText) {
+        pageText.textContent = project.pageText;
+    }
     populateProjectPageTools(project);
     populateProjectPageLinks(project);
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page active');

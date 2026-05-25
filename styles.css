@@ -29,6 +29,8 @@
     --nico-light-blue-30: color-mix(in srgb, var(--nico-light-blue) 30%, var(--nico-blue));
     --nico-light-blue-20: color-mix(in srgb, var(--nico-light-blue) 20%, var(--nico-blue));
 
+    --nico-light-gray-50: color-mix(in srgb, var(--nico-light-gray) 50%, var(--nico-gray));
+
     --nico-font-title: 'Cascadia Mono', monospace;
     --nico-font-text: 'Roboto Mono', monospace;
 }
@@ -57,6 +59,18 @@ p {
     word-spacing: -4px;
 }
 
+a {
+    display: flex;
+}
+
+p a {
+    display: inline;
+}
+
+a p {
+    color: inherit;
+}
+
 h1 {
     font-size: 32px;
     color: var(--nico-light-yellow);
@@ -77,14 +91,6 @@ h3 {
     color: var(--nico-light-yellow);
     font-weight: bold;
     word-spacing: -6px;
-}
-
-a {
-    display: flex;
-}
-
-p a {
-    display: inline;
 }
 
 header {
@@ -135,6 +141,7 @@ main {
         width: min(77em, 100%);
         padding: 0em 1em;
         margin-top: 5.5em;
+        margin-bottom: 1em;
         gap: 10em;
 
         .top {
@@ -456,6 +463,10 @@ main {
         }
 
         .bottom {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
             p {
                 color: var(--nico-gray);
                 font-style: italic;
@@ -537,129 +548,144 @@ main {
             .page-content {
                 position: relative;
                 display: flex;
-                flex-direction: row;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
-                border-radius: 3em;
-                border: 2px solid rgba(255, 255, 255, 0.1);
                 overflow: hidden;
 
-                .left {
-                    display: flex;
-                    flex-direction: column;
-                    width: 50%;
+                width: 100%;
+                height: 100%;
+
+                background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
+                border-radius: max(1em, min(7cqi, 3em));
+                border: 2px solid rgba(255, 255, 255, 0.1);
+
+                .grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+                    grid-auto-flow: row;
+                    overflow: scroll;
+
+                    width: 100%;
                     height: 100%;
 
-                    .preview {
+                    .left {
                         display: flex;
-                        width: 100%;
-                        height: 40%;
+                        flex-direction: column;
+                        height: 100%;
 
-                        img {
-                            display: block;
-                            height: 100%;
+                        .preview {
+                            display: flex;
                             width: 100%;
-                            object-fit: cover;
+                            height: 40%;
+
+                            img {
+                                display: block;
+                                height: 100%;
+                                width: 100%;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .infos {
+                            display: flex;
+                            flex-direction: column;
+                            height: 60%;
+                            padding: 1.5em;
+                            gap: 1em;
+
+                            .text {
+                                p {
+                                    font-weight: 500;
+                                }
+                            }
+
+                            .bottom {
+                                display: flex;
+                                flex-direction: column;
+                                height: 100%;
+                                justify-content: end;
+                                padding-bottom: 1em;
+                                gap: 1em;
+
+                                a {
+                                    width: fit-content;
+                                    color: var(--nico-light-blue);
+                                }
+
+                                .tools {
+                                    flex-direction: column;
+
+                                    &.active {
+                                        display: flex;
+                                    }
+
+                                    &.innactive {
+                                        display: none;
+                                    }
+                                }
+
+                                .links {
+                                    flex-direction: column;
+
+                                    &.active {
+                                        display: flex;
+                                    }
+
+                                    &.innactive {
+                                        display: none;
+                                    }
+                                }
+                            }
                         }
                     }
 
-                    .infos {
+                    .right {
                         display: flex;
                         flex-direction: column;
-                        height: 60%;
-                        padding: 1.5em;
-                        gap: 1em;
+                        width: 100%;
+                        background: linear-gradient(to bottom right, var(--nico-dark-blue-50), var(--nico-dark-blue-80));
 
-                        .text {
-                            p {
-                                font-weight: 500;
+                        .top-bar {
+                            display: flex;
+                            flex-direction: row;
+                            width: 100%;
+                            padding: 1.5em;
+                            align-content: center;
+                            justify-content: space-between;
+
+                            h2 {
+                                align-self: center;
                             }
                         }
 
-                        .bottom {
+                        .text {
                             display: flex;
-                            flex-direction: column;
-                            height: 100%;
-                            justify-content: end;
-                            padding-bottom: 1em;
-                            gap: 1em;
+                            padding: 1.5em;
 
-                            a {
-                                width: fit-content;
-                                color: var(--nico-light-blue);
-                            }
-
-                            .tools {
-                                flex-direction: column;
-
-                                &.active {
-                                    display: flex;
-                                }
-
-                                &.innactive {
-                                    display: none;
-                                }
-                            }
-
-                            .links {
-                                flex-direction: column;
-
-                                &.active {
-                                    display: flex;
-                                }
-
-                                &.innactive {
-                                    display: none;
-                                }
+                            p {
+                                font-weight: 500;
+                                font-size: 18px;
+                                color: var(--nico-light-gray-50);
+                                white-space: pre-wrap;
                             }
                         }
                     }
                 }
 
-                .right {
-                    display: flex;
-                    flex-direction: column;
-                    width: 50%;
-                    height: 100%;
-                    background: linear-gradient(to bottom right, var(--nico-dark-blue-50), var(--nico-dark-blue-80));
+                .close {
+                    position: absolute;
+                    top: 1em;
+                    right: 1em;
 
-                    .top-bar {
-                        display: flex;
-                        flex-direction: row;
-                        width: 100%;
-                        padding: 1.5em;
-                        align-content: center;
-                        justify-content: space-between;
+                    img {
+                        display: block;
+                        width: 3em;
+                        height: 3em;
+                        cursor: pointer;
+                        align-self: center;
 
-                        h2 {
-                            align-self: center;
-                        }
+                        transition: all 0.2s ease;
 
-                        img {
-                            display: block;
-                            width: 1.5em;
-                            height: 1.5em;
-                            cursor: pointer;
-                            align-self: center;
-
-                            transition: all 0.2s ease;
-
-                            &:hover {
-                                transform: scale(1.15);
-                            }
-                        }
-                    }
-
-                    .text {
-                        display: flex;
-                        padding: 1.5em;
-
-                        p {
-                            font-weight: bold;
-                            font-size: 20px;
-                            color: var(--nico-gray);
-
+                        &:hover {
+                            transform: scale(1.15);
                         }
                     }
                 }

@@ -13,14 +13,14 @@
 
         <header id="header">
             <div class="bar">
-                <a href="#" class="back-to-top">
+                <a href="#" class="back-to-top" title="Navigate home">
                     <img src="images/logo.png" alt="nico-logo">
                 </a>
                 <div class="end">
                     <a href="https://linktr.ee/nicosavlar" target="_blank">
                         <p>My Links</p>
                     </a>
-                    <a href="https://github.com/laracIette/Portfolio" target="_blank">
+                    <a href="https://github.com/laracIette/Portfolio" target="_blank" title="Open this page's repository on GitHub">
                         <img src="images/github.png" alt="github-logo">
                     </a>
                 </div>
@@ -33,9 +33,9 @@
 
                 <div class="top">
                     <h1>About me</h1>
-                    <p> Hi! I'm Nico, a junior developer and third-year student at e-artsup in Toulouse.
-                        I specialize in C++, C#, Unreal Engine and also learned Python, HTML / CSS / TypeScript.
-                        Here are some of my projects, from games created in a team, to my personal coding projects, to small tests I made.
+                    <p> Hi! I'm Nico, a developer with 5 years of experience in backend development and a three year bachelor degree in game development at e-artsup.
+                        I specialize in C++, Unreal Engine, C# and also learned Python and web development.
+                        Here are some of my projects, from games created in a team, to personal coding projects, to small tests I made.
                     </p>
                 </div>
 
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="bottom">
-                    <p>You've reached the end of this page, you may want to take a look at my links <a href="https://linktr.ee/nicosavlar" target="_blank">here</a>.</p>
+                    <p>You've reached the end of this page. To learn more about me, you may want to take a look at my links <a href="https://linktr.ee/nicosavlar" target="_blank">here</a>.</p>
                 </div>
             </div>
 
@@ -78,37 +78,44 @@
                     </div>
 
                     <div class="page-content">
-                        <div class="left">
-                            <div class="preview">
-                                <img id="project-page-preview-image" src="projects/images/souveniste.png"/>
-                            </div>
-                            <div class="infos">
-                                <h2 id="project-page-infos-name">Project</h2>
-                                <div class="text">
-                                    <p id="project-page-infos-desc">Description</p>
-                                </div>
 
-                                <div class="bottom">
-                                    <div class="tools innactive" id="project-page-tools">
-                                        <h3>Tools</h3>
-                                        <div class="list" id="project-page-tools-list"></div>
+                        <div class="grid">
+                            <div class="left">
+                                <div class="preview">
+                                    <img id="project-page-preview-image" src="projects/images/souveniste.png"/>
+                                </div>
+                                <div class="infos">
+                                    <h2 id="project-page-infos-name">Project</h2>
+                                    <div class="text">
+                                        <p id="project-page-infos-desc">Description</p>
                                     </div>
-                                    <div class="links innactive" id="project-page-links">
-                                        <h3>Links</h3>
-                                        <div class="list" id="project-page-links-list"></div>
+
+                                    <div class="bottom">
+                                        <div class="tools innactive" id="project-page-tools">
+                                            <h3>Tools</h3>
+                                            <div class="list" id="project-page-tools-list"></div>
+                                        </div>
+                                        <div class="links innactive" id="project-page-links">
+                                            <h3>Links</h3>
+                                            <div class="list" id="project-page-links-list"></div>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="right">
+                                <div class="top-bar">
+                                    <h2>My highlights</h2>
+
+                                </div>
+                                <div class="text">
+                                    <p id="project-page-text"></p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="right">
-                            <div class="top-bar">
-                                <h2>My highlights</h2>
-                                <img id="project-page-close-button" src="images/cross.png" title="Close"/>
-                            </div>
-                            <div class="text">
-                                <p id="project-page-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
+                        <div class="close">
+                            <img id="project-page-close-button" src="images/cross.png" title="Close"/>
                         </div>
 
                     </div>

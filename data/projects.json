@@ -9,6 +9,7 @@
             "imageUrl": "projects/images/thalassia.png",
             "gifUrl": "projects/gifs/thalassia.gif",
             "description": "A Shoot'em Up Game made in a team of 4 of which I was the developer. The goal of the project was to create a Shoot'em Up game in 6 weeks.",
+            "pageText": "",
             "date": "May - Jun 2024",
             "tools": ["unity", "csharp"]
         },
@@ -21,6 +22,7 @@
             "imageUrl": "projects/images/maze.png",
             "gifUrl": "projects/gifs/maze.gif",
             "description": "A randomly generated maze game I made using my own maze generation algorithm. This project was my introduction to game development.",
+            "pageText": "",
             "date": "Apr 2022",
             "tools": ["python", "pygame"]
         },
@@ -33,6 +35,7 @@
             "imageUrl": "projects/images/reactionTime.png",
             "gifUrl": "projects/gifs/reactionTime.gif",
             "description": "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
+            "pageText": "",
             "date": "Aug 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -45,6 +48,7 @@
             "imageUrl": "projects/images/rhythmGame.png",
             "gifUrl": "projects/gifs/rhythmGame.gif",
             "description": "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
+            "pageText": "",
             "date": "Dec 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -57,6 +61,7 @@
             "imageUrl": "projects/images/first3DRender.png",
             "gifUrl": "projects/gifs/first3DRender.gif",
             "description": "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
+            "pageText": "",
             "date": "Jul 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -69,6 +74,7 @@
             "imageUrl": "projects/images/particle2DCollision.png",
             "gifUrl": "projects/gifs/particle2DCollision.gif",
             "description": "An attempt at creating a simple 2D collision system for particles and walls, later upgraded to a path finder using collisons.",
+            "pageText": "",
             "date": "Jul 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -81,6 +87,7 @@
             "imageUrl": "projects/images/kotono.png",
             "gifUrl": "projects/gifs/kotono.gif",
             "description": "A first attempt at making a 3D game engine in C# using OpenGL with OpenTK.",
+            "pageText": "",
             "date": "Mar 2023 - 2024",
             "tools": ["csharp", "opentk"]
         },
@@ -93,6 +100,7 @@
             "imageUrl": "projects/images/kotonoEngine.png",
             "gifUrl": "projects/gifs/kotonoEngine.gif",
             "description": "This is the current iteration of my game engine. Designed with a modular architecture in mind and powered by the Vulkan API.",
+            "pageText": "",
             "date": "Jan 2025 - ",
             "tools": ["cpp", "vulkan"]
         },
@@ -105,6 +113,7 @@
             "imageUrl": "projects/images/twoCrowns.png",
             "gifUrl": "projects/images/twoCrowns.png",
             "description": "A reproduction of the game Two Crowns made in a week, the visuals were made by a friend.",
+            "pageText": "",
             "date": "Apr 2025",
             "tools": ["unrealEngine"]
         },
@@ -117,6 +126,7 @@
             "imageUrl": "projects/images/mazeGenerator.png",
             "gifUrl": "projects/gifs/mazeGenerator.gif",
             "description": "A stupidly fast maze generator, I used this project to upgrade my maze generator algorithm I first developed in python.",
+            "pageText": "",
             "date": "Jul 2024",
             "tools": ["csharp"]
         },
@@ -129,6 +139,7 @@
             "imageUrl": "projects/images/shipShooter.png",
             "gifUrl": "projects/gifs/shipShooter.gif",
             "description": "A little program made to understand how movement works in a realtime game.",
+            "pageText": "",
             "date": "Sep 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -141,6 +152,7 @@
             "imageUrl": "projects/images/osu.png",
             "gifUrl": "projects/gifs/osu.gif",
             "description": "A project about recreating the rhythm game osu!, including saving game data and importing maps from files.",
+            "pageText": "",
             "date": "Mar 2022",
             "tools": ["python", "pygame"]
         },
@@ -153,6 +165,7 @@
             "imageUrl": "projects/images/tetris.png",
             "gifUrl": "projects/gifs/tetris.gif",
             "description": "A recreation of the game Tetris and my first C++ game, the goal was to understand the basics of SDL2 and how a game loop works.",
+            "pageText": "",
             "date": "Jun 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -165,6 +178,7 @@
             "imageUrl": "projects/images/wanderBlossom.png",
             "gifUrl": "projects/gifs/wanderBlossom.gif",
             "description": "An original game created in 10 weeks with 3 friends, I was the team's developer. The project that made me love Unreal Engine.",
+            "pageText": "",
             "date": "Apr - Jun 2025",
             "tools": ["unrealEngine"]
         },
@@ -177,6 +191,7 @@
             "imageUrl": "projects/images/mcdoMenuGenerator.png",
             "gifUrl": "projects/gifs/mcdoMenuGenerator.gif",
             "description": "My first application made in Flutter in about 10 days. Get a menu given a calories count target in any McDo in France.",
+            "pageText": "",
             "date": "Aug 2025",
             "tools": ["flutter"]
         },
@@ -189,6 +204,7 @@
             "imageUrl": "projects/images/pestacle.png",
             "gifUrl": "projects/gifs/pestacle.gif",
             "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This was my first time developing a point-and-click game.",
+            "pageText": "",
             "date": "Jan 2026",
             "tools": ["unrealEngine"]
         },
@@ -201,6 +217,7 @@
             "imageUrl": "projects/images/karmaPlease.png",
             "gifUrl": "projects/gifs/karmaPlease.gif",
             "description": "The first game I created during a game jam that took place over a weekend. I was among the developers of the team and made the chat system.",
+            "pageText": "",
             "date": "Nov 2023",
             "tools": ["unity"]
         },
@@ -213,6 +230,7 @@
             "imageUrl": "projects/images/songe.png",
             "gifUrl": "projects/gifs/songe.gif",
             "description": "A game made for the Global Game Jam 2025. I was the developer of the team, we had 4 days to make a game with the theme \"Bubble\".",
+            "pageText": "",
             "date": "Jan 2025",
             "tools": ["unrealEngine"]
         },
@@ -225,6 +243,7 @@
             "imageUrl": "projects/images/souveniste.png",
             "gifUrl": "projects/gifs/souveniste.gif",
             "description": "A game made in a team of 4 people over the span of our third year at e-artsup. We had a total creative liberty.",
+            "pageText": "This is the project that challenged me in the most ways so far. Over the span of a year I practiced my understanding of the Unreal Engine more than ever before.\n\n\nThis project allowed me to explore a lot of concepts like :\n\n - Creating, optimizing a static lighting and combining it with dynamically lit elements.\n\n - Understanding how Unreal's interface system works with Common UI and mutliple input types.\n\n - Learning a lot of shader concepts for the portal, the apparition feedbacks or the foliage's organic movements.\n\n - Using the localization system for texts and assets.",
             "date": "Sep 2025 - Jun 2026",
             "tools": ["unrealEngine"]
         }

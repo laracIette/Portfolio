@@ -22,6 +22,7 @@ type Project = {
     imageUrl: string;
     gifUrl: string;
     description: string;
+    pageText: string;
     date: string;
     tools: string[];
 };
@@ -209,6 +210,10 @@ function showProjectPage(project: Project): void {
     const infosDesc = document.querySelector<HTMLParagraphElement>('#project-page-infos-desc');
     if (infosDesc) {
         infosDesc.textContent = project.description;
+    }
+    const pageText = document.querySelector<HTMLParagraphElement>('#project-page-text');
+    if (pageText) {
+        pageText.textContent = project.pageText;
     }
 
     populateProjectPageTools(project);
