@@ -514,8 +514,10 @@ main {
                 border-radius: 1em;
                 border: 2px solid rgba(102, 101, 190, 0.121);
                 padding: 0 0.5em;
+                margin-bottom: 2em;
                 opacity: 0.8;
                 background-color: var(--nico-dark-blue-80);
+                
                 filter: grayscale(0);
 
                 transition: all 0.3s ease;

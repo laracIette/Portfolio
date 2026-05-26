@@ -8,8 +8,8 @@
             "pageUrl": "https://laraclette.itch.io/thalassia",
             "imageUrl": "projects/images/thalassia.png",
             "gifUrl": "projects/gifs/thalassia.gif",
-            "description": "A Shoot'em Up Game made in a team of 4 of which I was the developer. The goal of the project was to create a Shoot'em Up game in 6 weeks.",
-            "pageText": "",
+            "description": "A Shoot'em Up Game made in a team of 4 of which I was the developer. The goal of the project was to create a vertical slice in 6 weeks.",
+            "pageText": "This is my first long project in a team and the result of a year of learning the Unity engine.\n\nIt is my first time at creating a full environment for my level-designer to work with, for placing elements and making the levels easily scalable with somewhat complex interactions and customizable properties.\n\nI designed it profiting of the Unity modules structure and it encouraged me in making my code as modulable as possible going forward.",
             "date": "May - Jun 2024",
             "tools": ["unity", "csharp"]
         },
@@ -48,7 +48,7 @@
             "imageUrl": "projects/images/rhythmGame.png",
             "gifUrl": "projects/gifs/rhythmGame.gif",
             "description": "A project supposed to be a game that ended up being my first attempt at creating a game engine.",
-            "pageText": "",
+            "pageText": "This was supposed to be an original game majorly inspired by Muse Dash, but with a playfield where the notes could come from all 4 directions.\n\nThe artist I was collaborating with stopped working on the project very early on, so I started instead just making it an SDL2 renderer.\n\nThis started my passion for creating a game engine and finding ways to make everything I can as optimized as possible.",
             "date": "Dec 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -178,7 +178,7 @@
             "imageUrl": "projects/images/wanderBlossom.png",
             "gifUrl": "projects/gifs/wanderBlossom.gif",
             "description": "An original game created in 10 weeks with 3 friends, I was the team's developer. The project that made me love Unreal Engine.",
-            "pageText": "",
+            "pageText": "We were asked for this project to create a retro style action-adventure game using Unreal Engine. We chose to lean into a cartoon-like world.\n\nI helped with the game-design that we drastically changed multiple times to find what we think is the best possible mechanic for the game, the flower umbrella.\n\nDuring this project, my understanding of the Unreal Engine started to expand a lot. I learned to use concepts like sub-levels to make our open-world idea possible, I learned to optimize active and innactive actors for it.\n\nIt also served as a first dive into animation blueprints, cinematics, mesh instancing, relatively complex shaders, particle systems and other concepts.",
             "date": "Apr - Jun 2025",
             "tools": ["unrealEngine"]
         },
@@ -191,7 +191,7 @@
             "imageUrl": "projects/images/mcdoMenuGenerator.png",
             "gifUrl": "projects/gifs/mcdoMenuGenerator.gif",
             "description": "My first application made in Flutter in about 10 days. Get a menu given a calories count target in any McDo in France.",
-            "pageText": "",
+            "pageText": "For this project, I wanted to use the skills I had acquired over the years to complete a project in a short period of time, and that I could actually regularly use for myself.\n\nI chose to use Flutter for it because I wanted to learn something new and it looked like the most adapted choice out there.\n\nIt was surprisingly easy to convert the skills I had learned in other programming languages and taught me a lot about interface styling and all the logic behind.",
             "date": "Aug 2025",
             "tools": ["flutter"]
         },
@@ -203,8 +203,8 @@
             "pageUrl": "https://jadefmt.itch.io/pestacle",
             "imageUrl": "projects/images/pestacle.png",
             "gifUrl": "projects/gifs/pestacle.gif",
-            "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This was my first time developing a point-and-click game.",
-            "pageText": "",
+            "description": "A game made with 3 friends over the span of 5 days for the Global Game Jam 2026. This was my first time making a point-and-click game.",
+            "pageText": "We wanted for this project to create a game that is in an actual releasable state after only the 5 days of development.\n\nThis was used as a small break from the production of \"Le Souveniste\" and a way for our team to gain confidence by finishing a game.\n\n\nI was the only developer of the team and helped in the game-design, I really wanted to create a mechanic where the player could place actors on a theater stage.\n\nWe also made the game easily scalable by adding a shop and splitting the game in levels that correspond to famous theater plays.",
             "date": "Jan 2026",
             "tools": ["unrealEngine"]
         },
@@ -217,7 +217,7 @@
             "imageUrl": "projects/images/karmaPlease.png",
             "gifUrl": "projects/gifs/karmaPlease.gif",
             "description": "The first game I created during a game jam that took place over a weekend. I was among the developers of the team and made the chat system.",
-            "pageText": "",
+            "pageText": "This was my first time working in a team of game developers, it was also the first game I developed using a game engine.\n\nThis was a really fun experience that confirmed I wanted to make games.\n\nMy role in this project being creating a chat system, I wanted to give my all to the task and found an easy and modulable way for the narrative designer to implement dialogues.\n\nThis may not be the greatest project visually, but I am really proud of what I produced with the experience I had.",
             "date": "Nov 2023",
             "tools": ["unity"]
         },
@@ -230,7 +230,7 @@
             "imageUrl": "projects/images/songe.png",
             "gifUrl": "projects/gifs/songe.gif",
             "description": "A game made for the Global Game Jam 2025. I was the developer of the team, we had 4 days to make a game with the theme \"Bubble\".",
-            "pageText": "",
+            "pageText": "This is the first time I worked using the Unreal Engine inside of a team. I was tasked of all the gameplay programming, it was an intense week that helped me prepare handling future projects.\n\nThis was also the first time I finished a game using this engine, and my first real dive into blueprint development and all the Unreal actor system.\n\nAs the team was quite bigger than what I had previously worked in, I learned a lot about team communication and project management.",
             "date": "Jan 2025",
             "tools": ["unrealEngine"]
         },
