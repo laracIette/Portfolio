@@ -1,5 +1,4 @@
-import toolData from './data/tools.json' with { type: 'json' };
-import projectData from './data/projects.json' with { type: 'json' };
+import data from './data.json' with { type: 'json' };
 
 enum Category {
     Game = "Games",
@@ -27,15 +26,15 @@ type Project = {
     tools: string[];
 };
 
-const tools = toolData as Record<string, Tool>;
-const projects = projectData["projects"] as Record<string, Project>;
+const tools = data["tools"] as Record<string, Tool>;
+const projects = data["projects"] as Record<string, Project>;
 
 function addProjects(): void {
-    projectData["pinned"].forEach(proj => {
+    data["pinned"].forEach(proj => {
         addPinned(projects[proj]);
     });
 
-    projectData["structure"].forEach(proj => {
+    data["structure"].forEach(proj => {
         addProject(projects[proj]);
     });
 }
@@ -207,6 +206,10 @@ function showProjectPage(project: Project): void {
     if (infosName) {
         infosName.textContent = project.name;
     }
+    const pageDate = document.querySelector<HTMLParagraphElement>('#project-page-infos-date');
+    if (pageDate) {
+        pageDate.textContent = project.date;
+    }
     const infosDesc = document.querySelector<HTMLParagraphElement>('#project-page-infos-desc');
     if (infosDesc) {
         infosDesc.textContent = project.description;
@@ -215,7 +218,7 @@ function showProjectPage(project: Project): void {
     if (pageText) {
         pageText.textContent = project.pageText;
     }
-
+        
     populateProjectPageTools(project);
     populateProjectPageLinks(project);
     populateProjectPageDots(project);
@@ -294,9 +297,13 @@ function populateProjectPageDots(project: Project): void {
         return;
     }
 
-    let dotsHTML: string = '';
-    getVisibleProjects().forEach(p => dotsHTML += `<div class="${p === project ? 'dot active' : 'dot innactive'}"></div>`);
-    dotsDiv.innerHTML = dotsHTML;
+    dotsDiv.innerHTML = '';
+    getVisibleProjects().forEach(p => {
+        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot innactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
+        if (p !== project) {
+            dotsDiv.querySelector<HTMLDivElement>(`#dot-${p.id}`)?.addEventListener('click', () => showProjectPage(p));
+        }
+    });
 }
 
 function hideProjectPage(): void {

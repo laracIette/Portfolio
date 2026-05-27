@@ -1,18 +1,17 @@
-import toolData from './data/tools.json' with { type: 'json' };
-import projectData from './data/projects.json' with { type: 'json' };
+import data from './data.json' with { type: 'json' };
 var Category;
 (function (Category) {
     Category["Game"] = "Games";
     Category["Program"] = "Programs";
     Category["Other"] = "Other";
 })(Category || (Category = {}));
-const tools = toolData;
-const projects = projectData["projects"];
+const tools = data["tools"];
+const projects = data["projects"];
 function addProjects() {
-    projectData["pinned"].forEach(proj => {
+    data["pinned"].forEach(proj => {
         addPinned(projects[proj]);
     });
-    projectData["structure"].forEach(proj => {
+    data["structure"].forEach(proj => {
         addProject(projects[proj]);
     });
 }
@@ -164,6 +163,10 @@ function showProjectPage(project) {
     if (infosName) {
         infosName.textContent = project.name;
     }
+    const pageDate = document.querySelector('#project-page-infos-date');
+    if (pageDate) {
+        pageDate.textContent = project.date;
+    }
     const infosDesc = document.querySelector('#project-page-infos-desc');
     if (infosDesc) {
         infosDesc.textContent = project.description;
@@ -236,9 +239,13 @@ function populateProjectPageDots(project) {
         console.log('no dots div');
         return;
     }
-    let dotsHTML = '';
-    getVisibleProjects().forEach(p => dotsHTML += `<div class="${p === project ? 'dot active' : 'dot innactive'}"></div>`);
-    dotsDiv.innerHTML = dotsHTML;
+    dotsDiv.innerHTML = '';
+    getVisibleProjects().forEach(p => {
+        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot innactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
+        if (p !== project) {
+            dotsDiv.querySelector(`#dot-${p.id}`)?.addEventListener('click', () => showProjectPage(p));
+        }
+    });
 }
 function hideProjectPage() {
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page innactive');

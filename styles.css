@@ -606,7 +606,21 @@ main {
                                 flex-direction: column;
                                 height: 60%;
                                 padding: 1.5em;
-                                gap: 1em;
+                                gap: 1.5em;
+
+                                .title {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: space-between;
+                                    align-items: center;
+
+                                    .date {
+                                        p {
+                                            color: var(--nico-light-gray-60);
+                                            font-size: 16px;
+                                        }
+                                    }
+                                }
 
                                 .text {
                                     p {
@@ -724,6 +738,8 @@ main {
                         border: 1px solid rgba(255, 255, 255, 0.6);
                         opacity: 60%;
 
+                        transition: all 0.2s ease;
+
                         &.active {
                             transform: scale(1.15);
                             background-color: var(--nico-light-gray-60);
@@ -732,6 +748,11 @@ main {
                         &.innactive {
                             transform: scale(1);
                             background-color: var(--nico-gray);
+                            cursor: pointer;
+
+                            &:hover {
+                                transform: scale(1.15);
+                            }
                         }
                     }
                 }
