@@ -87,7 +87,7 @@
             "imageUrl": "projects/images/reactionTime.png",
             "gifUrl": "projects/gifs/reactionTime.gif",
             "description": "A program whose goal was for me to get used to the C++ language and raw computer graphics with SDL2.",
-            "pageText": "",
+            "pageText": "It was a very quick project I made over a few days to test my understanding of SDL2.\n\nI made this application because I wanted to see if there was a difference between an online benchmarking website and a very fast C++ program.",
             "date": "Aug 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -139,8 +139,8 @@
             "imageUrl": "projects/images/kotono.png",
             "gifUrl": "projects/gifs/kotono.gif",
             "description": "A first attempt at making a 3D game engine in C# using OpenGL with OpenTK.",
-            "pageText": "",
-            "date": "Mar 2023 - 2024",
+            "pageText": "This is the first version of my Kotono Engine, I started this project because I was really starting to get into computer graphics and wanted to really pursue path.\n\nI chose to go with OpenTK in C# as this was the occasion to learn both a new language and the OpenGL graphics system.\n\nIt made me dive into all the basics of rendering, shaders, pipelines. I also started to enjoy polymorphism and experimented creating a complex object architecture.",
+            "date": "Mar 2023 - Sep 2024",
             "tools": ["csharp", "opentk"]
         },
         "kotonoEngine": {
@@ -152,8 +152,8 @@
             "imageUrl": "projects/images/kotonoEngine.png",
             "gifUrl": "projects/gifs/kotonoEngine.gif",
             "description": "This is the current iteration of my game engine. Designed with a modular architecture in mind and powered by the Vulkan API.",
-            "pageText": "",
-            "date": "Jan 2025 - ",
+            "pageText": "This project is based on the object architecture of Kotono, my first iteration of this engine. Which had started to become convoluted and whose structure I reworked every other day.\n\n\nI chose to remake it entirely from scratch and swapped both the language and rendering system :\n\n - I chose to replace C# with C++ as I already had some experience using it and wanted to actually learn to and use it well.\n\n - I also decided to move from OpenGL to the Vulkan API for rendering, as I had already completed the Vulkan Tutorial and was very interested in the philosophy behind it.",
+            "date": "Jan 2025 - Today",
             "tools": ["cpp", "vulkan"]
         },
         "twoCrowns": {
@@ -178,7 +178,7 @@
             "imageUrl": "projects/images/mazeGenerator.png",
             "gifUrl": "projects/gifs/mazeGenerator.gif",
             "description": "A stupidly fast maze generator, I used this project to upgrade my maze generator algorithm I first developed in python.",
-            "pageText": "",
+            "pageText": "The algorithm I used for this project was originally one I created for my randomly generated maze game in python back in high school.\n\nI made this for fun in a few days as a side project during the first year of my game-design bachelor.\n\nI then went back to it a couple of times whenever I learned about new optimizations techniques from C# or other languages I was learning at the time that I could apply to this project.",
             "date": "Jul 2024",
             "tools": ["csharp"]
         },
@@ -217,7 +217,7 @@
             "imageUrl": "projects/images/tetris.png",
             "gifUrl": "projects/gifs/tetris.gif",
             "description": "A recreation of the game Tetris and my first C++ game, the goal was to understand the basics of SDL2 and how a game loop works.",
-            "pageText": "",
+            "pageText": "This was my first attempt ever at creating an application that wasn't command line only in C++.",
             "date": "Jun 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -295,7 +295,7 @@
             "imageUrl": "projects/images/souveniste.png",
             "gifUrl": "projects/gifs/souveniste.gif",
             "description": "A game made in a team of 4 people over the span of our third year at e-artsup. We had a total creative liberty.",
-            "pageText": "This is the project that challenged me in the most ways so far. Over the span of a year I practiced my understanding of the Unreal Engine more than ever before.\n\n\nThis project allowed me to explore a lot of concepts like :\n\n - Creating, optimizing a static lighting and combining it with dynamically lit elements.\n\n - Understanding how Unreal's interface system works with Common UI and mutliple input types.\n\n - Learning a lot of shader concepts for the portal, the apparition feedbacks or the foliage's organic movements.\n\n - Using the localization system for texts and assets.",
+            "pageText": "This is the game that challenged me in the most ways so far. Over the span of a year I practiced my understanding of the Unreal Engine more than ever before.\n\n\nThis project allowed me to explore a lot of concepts like :\n\n - Creating, optimizing a static lighting and combining it with dynamically lit elements.\n\n - Understanding how Unreal's interface system works with Common UI and mutliple input types.\n\n - Learning a lot of shader concepts for the portal, the apparition feedbacks or the foliage's organic movements.\n\n - Using the localization system for texts and assets.",
             "date": "Sep 2025 - Jun 2026",
             "tools": ["unrealEngine"]
         },
