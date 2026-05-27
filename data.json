@@ -74,7 +74,7 @@
             "imageUrl": "projects/images/maze.png",
             "gifUrl": "projects/gifs/maze.gif",
             "description": "A randomly generated maze game I made using my own maze generation algorithm. This project was my introduction to game development.",
-            "pageText": "",
+            "pageText": "I created this game for an assignement in highschool that spanned over a few weeks. A friend helped me with the sprites of the background.\n\nIt was supposed to be the sequel to a previous game I made, but ended up a completely different concept as I was obsessed by the idea of creating a maze algorithm, idea that would come back years later, this time for optimization purposes.\n\nI had a lot of fun creating the progressively revealing map, as well as the drawable path and waypoint systems.",
             "date": "Apr 2022",
             "tools": ["python", "pygame"]
         },
@@ -112,8 +112,8 @@
             "pageUrl": "https://youtu.be/A3TB4-_OypA",
             "imageUrl": "projects/images/first3DRender.png",
             "gifUrl": "projects/gifs/first3DRender.gif",
-            "description": "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D engine.",
-            "pageText": "",
+            "description": "A test project rendering in 3D on the CPU, made to understand vector math. It inspired me to later make a 3D renderer.",
+            "pageText": "This is an attempt at rendering 3D geometry by individual pixels on the CPU, using almost entirely custom (innaccurate) math for computing fragment positions.\n\nIt's during this project that I understood that I shouldn't try to reinvent the wheel. It made me start using rendering APIs from that point on.\n\nNonetheless, it served as an introduction in 3D geometry by teaching me the basics about how vectors, matrices and transformations work.",
             "date": "Jul 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -203,8 +203,8 @@
             "pageUrl": "https://youtu.be/mL0DNwiN798",
             "imageUrl": "projects/images/osu.png",
             "gifUrl": "projects/gifs/osu.gif",
-            "description": "A project about recreating the rhythm game osu!, including saving game data and importing maps from files.",
-            "pageText": "",
+            "description": "A project about recreating the rhythm game \"osu!\", including saving game data and importing maps from files.",
+            "pageText": "The idea for this project was to recreate as much as I could of the rhythm game \"osu!\" over the span of a month.\n\nI was able to develop most of the main gameplay of playing a beatmap, as well as a system for importing beatmaps from text files and various difficulty modifiers.\n\nIt was my very first time working with 2D vectors and making a proper game loop as older games I made all updated states depending on user inputs.",
             "date": "Mar 2022",
             "tools": ["python", "pygame"]
         },
@@ -216,8 +216,8 @@
             "pageUrl": "https://youtu.be/nDP051pyXOE",
             "imageUrl": "projects/images/tetris.png",
             "gifUrl": "projects/gifs/tetris.gif",
-            "description": "A recreation of the game Tetris and my first C++ game, the goal was to understand the basics of SDL2 and how a game loop works.",
-            "pageText": "This was my first attempt ever at creating an application that wasn't command line only in C++.",
+            "description": "A recreation of the game \"Tetris\" and my first C++ game, the goal was to understand the basics of SDL2.",
+            "pageText": "This was my first attempt at creating an application that wasn't command line only in C++.\n\nI chose to recreate the game \"Tetris\" as I thought it was a fairly beginner project for trying out SDL2.",
             "date": "Jun 2022",
             "tools": ["cpp", "sdl2"]
         },
@@ -335,7 +335,7 @@
         "particle2DCollision",
         "first3DRender",
         "tetris",
-        "osu",
-        "maze"
+        "maze",
+        "osu"
     ]
 }

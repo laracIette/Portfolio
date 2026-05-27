@@ -225,7 +225,7 @@ function populateProjectPageLinks(project) {
     }
     if (project.githubUrl) {
         linksHTML += `
-            <a href="${project.pageUrl}" target="_blank">
+            <a href="${project.githubUrl}" target="_blank">
                 <p>Project repository</p>
             </a>
         `;

@@ -218,7 +218,7 @@ function showProjectPage(project: Project): void {
     if (pageText) {
         pageText.textContent = project.pageText;
     }
-        
+
     populateProjectPageTools(project);
     populateProjectPageLinks(project);
     populateProjectPageDots(project);
@@ -280,7 +280,7 @@ function populateProjectPageLinks(project: Project): void {
     }
     if (project.githubUrl) {
         linksHTML += `
-            <a href="${project.pageUrl}" target="_blank">
+            <a href="${project.githubUrl}" target="_blank">
                 <p>Project repository</p>
             </a>
         `;
