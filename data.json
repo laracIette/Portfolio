@@ -305,7 +305,7 @@
             "imageUrl": "projects/images/souveniste.png",
             "gifUrl": "projects/gifs/souveniste.gif",
             "description": "A game made in a team of 4 people over the span of our third year at e-artsup. We had a total creative liberty.",
-            "pageText": "This is the game that challenged me in the most ways so far. Over the span of a year I practiced my understanding of the Unreal Engine more than ever before.\n\n\nThis project allowed me to explore a lot of concepts like :\n\n - Creating, optimizing a static lighting and combining it with dynamically lit elements.\n\n - Understanding how Unreal's interface system works with Common UI and mutliple input types.\n\n - Learning a lot of shader concepts for the portal, the apparition feedbacks or the foliage's organic movements.\n\n - Using the localization system for texts and assets.",
+            "pageText": "This is the game that challenged me in the most ways so far. Over the span of a year I practiced my understanding of the Unreal Engine more than ever before.\n\nThis project allowed me to explore a lot of concepts like :\n\n - Creating, optimizing a static lighting and combining it with dynamically lit elements.\n\n - Understanding how Unreal's interface system works with Common UI and mutliple input types.\n\n - Learning a lot of shader concepts for the portal, the apparition feedbacks or the foliage's organic movements.\n\n - Using the localization system for texts and assets.",
             "date": "Sep 2025 - Jun 2026",
             "tools": ["unrealEngine"]
         },

@@ -31,6 +31,18 @@ type Project = {
 const tools = new Map<string, Tool>();
 const projects = new Map<string, Project>();
 
+let lastScrollY: number = 0;
+
+let touchStart: number = 0;
+let touchTime: number = 0;
+
+let currentCategory: Category | null = null;
+let currentProject: Project | null = null;
+
+let wasHeaderVisible: boolean = false;
+const HEADER_VISIBLE: string = '0px';
+const HEADER_HIDDEN: string = '-5.5em';
+
 function addProjects(): void {
     (data["tools"] as Array<Tool>).forEach(tool => tools.set(tool.id, tool));
     (data["projects"] as Array<Project>).forEach(proj => projects.set(proj.id, proj));
@@ -70,7 +82,7 @@ function addPinned(project: Project): void {
                     <p>${project.description.split('.')[0]}.</p>
                 </div>
 
-                <a class="navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
+                <a class="navigate-link" id="pin-${project.id}-navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
                     <img src="images/chevronDown.png"/>
                 </a>
 
@@ -81,6 +93,7 @@ function addPinned(project: Project): void {
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
 
     document.querySelector<HTMLDivElement>(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
+    document.querySelector<HTMLAnchorElement>(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
 }
 
 function addProject(project: Project): void {
@@ -89,7 +102,6 @@ function addProject(project: Project): void {
         console.error("no projects div");
         return;
     }
-
 
     let githubHTML: string = "";
     if (project.githubUrl) { // TODO: github logo is temporarly a tool
@@ -183,9 +195,13 @@ function findNextProject(project: Project): Project | null {
     return null;
 }
 
-let currentProject: Project | null = null;
-
 function showProjectPage(project: Project): void {
+    const header = document.querySelector<HTMLElement>('#header');
+    if (header) {
+        wasHeaderVisible = header.style.top == HEADER_VISIBLE;
+        header.style.top = HEADER_HIDDEN;
+    }
+
     document.querySelector<HTMLImageElement>('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
     const infosName = document.querySelector<HTMLHeadingElement>('#project-page-infos-name');
     if (infosName) {
@@ -294,6 +310,13 @@ function populateProjectPageDots(project: Project): void {
 function hideProjectPage(): void {
     document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page innactive');
     document.body.classList.remove("remove-scrolling");
+
+    if (wasHeaderVisible) {
+        const header = document.querySelector<HTMLElement>('#header');
+        if (header) {
+            header.style.top = HEADER_VISIBLE;
+        }
+    }
 }
 
 function previousProjectPage(): void {
@@ -323,8 +346,6 @@ document.querySelector<HTMLDivElement>('#project-page-background')?.addEventList
 document.querySelector<HTMLDivElement>('#previous-project-button')?.addEventListener('click', () => previousProjectPage());
 document.querySelector<HTMLDivElement>('#next-project-button')?.addEventListener('click', () => nextProjectPage());
 
-let touchStart: number = 0;
-let touchTime: number = 0;
 document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touchstart', e => {
     touchStart = e.changedTouches[0].screenX;
     touchTime = Date.now();
@@ -345,8 +366,6 @@ document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touch
         previousProjectPage();
     }
 });
-
-let currentCategory: Category | null = null;
 
 function navigateTab(category: Category): void {
     if (currentCategory == category) {
@@ -371,9 +390,6 @@ document.querySelector<HTMLDivElement>('#tab-Games')?.addEventListener('click', 
 document.querySelector<HTMLDivElement>('#tab-Programs')?.addEventListener('click', () => navigateTab(Category.Program));
 document.querySelector<HTMLDivElement>('#tab-Other')?.addEventListener('click', () => navigateTab(Category.Other));
 
-// show / hide header
-let lastScrollY = 0;
-
 window.addEventListener('scroll', () => {
     const header = document.querySelector<HTMLElement>('#header');
     if (!header) {
@@ -383,10 +399,10 @@ window.addEventListener('scroll', () => {
 
     if (window.scrollY > lastScrollY) {
         // scrolling down
-        header.style.top = '-5.5em'; // hide header
+        header.style.top = HEADER_HIDDEN;
     } else {
         // scrolling up
-        header.style.top = '0'; // show header
+        header.style.top = HEADER_VISIBLE;
     }
     lastScrollY = window.scrollY;
 });

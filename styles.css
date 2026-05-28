@@ -138,7 +138,7 @@ main {
     display: flex;
     justify-content: center;
 
-    .content {
+    > .content {
         display: flex;
         flex-direction: column;
         width: min(77em, 100%);
@@ -147,7 +147,7 @@ main {
         margin-bottom: 1em;
         gap: 10em;
 
-        .top {
+        > .top {
             display: flex;
             flex-direction: column;
             gap: 2em;
@@ -165,14 +165,14 @@ main {
             flex-direction: column;
             gap: 2em;
 
-            .projects {
+            > .projects {
                 display: grid;
                 gap: 2em;
 
                 grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
                 grid-auto-flow: row;
 
-                .project {
+                > .project {
                     display: flex;
                     flex-direction: row;
                     overflow: hidden;
@@ -190,14 +190,14 @@ main {
                         filter: grayscale(0%);
                     }
 
-                    .link {
+                    > .link {
                         position: absolute;
                         inset: 0;
                         z-index: 0;
                         cursor: pointer;
                     }
 
-                    .preview {
+                    > .preview {
                         width: 50%;
                         height: 100%;
 
@@ -209,14 +209,14 @@ main {
                         }
                     }
 
-                    .right {
+                    > .right {
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
                         width: 50%;
                         padding: 1em;
 
-                        .infos {
+                        > .infos {
                             display: flex;
                             flex-direction: column;
                             gap: 1em;
@@ -309,7 +309,7 @@ main {
                 }
             }
 
-            .projects {
+            > .projects {
                 display: grid;
                 gap: 2em;
 
@@ -317,7 +317,7 @@ main {
                 grid-auto-flow: row;
                 grid-auto-rows: 30em;
 
-                .project {
+                > .project {
                     flex-direction: column;
                     background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
                     border-radius: 1em;
@@ -339,12 +339,12 @@ main {
                         transform: scale(1.02);
                         filter: grayscale(0%);
 
-                        .preview img.static {
+                        > .preview img.static {
                             opacity: 0;
                         }
                     }
 
-                    .link {
+                    > .link {
                         position: absolute;
                         inset: 0;
                         z-index: 3;
@@ -356,48 +356,46 @@ main {
                         top: -14em;
                     }
 
-                    .preview {
+                    > .preview {
                         position: relative;
-
                         height: 14em;
-
                         border-radius: 1em 1em 0 0;
 
-                        img.static {
-                            position: relative;
+                        img {
                             display: block;
                             height: 100%;
                             width: 100%;
                             object-fit: cover;
-                            z-index: 2; /* on top of gif */
 
-                            transition: opacity 0.25s ease-in-out;
-                        }
+                            &.static {
+                                position: relative;
+                                z-index: 2;
 
-                        img.gif {
-                            position: absolute;
-                            inset: 0;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            z-index: 1; /* behind static */
+                                transition: opacity 0.25s ease-in-out;
+                            }
+
+                            &.gif {
+                                position: absolute;
+                                inset: 0;
+                                z-index: 1;
+                            }
                         }
                     }
 
-                    .infos {
+                    > .infos {
                         display: flex;
                         flex-direction: column;
                         gap: 1em;
                         padding: 1em;
                         height: 16em;
 
-                        .title {
+                        > .title {
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
                             width: 100%;
 
-                            .date {
+                            > .date {
                                 display: flex;
                                 padding-top: 0.2em;
                                 padding-right: 0.2em;
@@ -408,7 +406,7 @@ main {
                             }
                         }
 
-                        .tools {
+                        > .tools {
                             display: flex;
                             flex-direction: column;
                             justify-content: end;
@@ -454,7 +452,7 @@ main {
             }
         }
 
-        .bottom {
+        > .bottom {
             display: flex;
             justify-content: center;
             width: 100%;
@@ -484,6 +482,7 @@ main {
 
             .foreground {
                 transform: scale(0);
+                opacity: 0;
             }
         }
 
@@ -562,7 +561,7 @@ main {
                 height: 100%;
                 gap: 1em;
 
-                .page-content {
+                > .content {
                     display: flex;
                     position: relative;
                     overflow: hidden;
@@ -588,33 +587,55 @@ main {
                             flex-direction: column;
                             height: 100%;
 
-                            .preview {
+                            > .preview {
+                                position: relative;
                                 display: flex;
+                                height: 18.5em;
                                 width: 100%;
-                                height: 43%;
 
                                 img {
                                     display: block;
                                     height: 100%;
                                     width: 100%;
                                     object-fit: cover;
+
+                                    &.static {
+                                        position: relative;
+                                        z-index: 1;
+
+                                        transition: opacity 0.25s ease-in-out;
+                                    }
+
+                                    &.gif {
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 0;
+                                    }
+
+                                    &:hover {
+                                        &.static {
+                                            opacity: 0;
+                                        }
+                                    }
                                 }
                             }
 
-                            .infos {
+                            > .infos {
                                 display: flex;
                                 flex-direction: column;
-                                height: 57%;
+                                flex-grow: 1;
                                 padding: 1.5em;
                                 gap: 1.5em;
 
-                                .title {
+                                > .title {
                                     display: flex;
                                     flex-direction: row;
+                                    flex-wrap: wrap;
                                     justify-content: space-between;
                                     align-items: center;
+                                    gap: 1em;
 
-                                    .date {
+                                    > .date {
                                         p {
                                             color: var(--nico-light-gray-60);
                                             font-size: 16px;
@@ -622,26 +643,26 @@ main {
                                     }
                                 }
 
-                                .text {
+                                > .text {
                                     p {
                                         font-weight: 500;
                                     }
                                 }
 
-                                .bottom {
+                                > .bottom {
                                     display: flex;
                                     flex-direction: column;
-                                    height: 100%;
                                     justify-content: end;
                                     padding-bottom: 1em;
                                     gap: 1em;
+                                    height: 100%;
 
                                     a {
                                         width: fit-content;
                                         color: var(--nico-light-blue);
                                     }
 
-                                    .tools {
+                                    > .tools {
                                         flex-direction: column;
 
                                         &.active {
@@ -668,26 +689,25 @@ main {
                             }
                         }
 
-                        .right {
+                        > .right {
                             display: flex;
                             flex-direction: column;
                             width: 100%;
                             background: linear-gradient(to bottom right, var(--nico-dark-blue-50), var(--nico-dark-blue-80));
 
-                            .top-bar {
+                            > .top {
                                 display: flex;
                                 flex-direction: row;
                                 width: 100%;
                                 padding: 1.5em;
                                 align-content: center;
-                                justify-content: space-between;
 
                                 h2 {
                                     align-self: center;
                                 }
                             }
 
-                            .text {
+                            > .text {
                                 display: flex;
                                 padding: 1.5em;
 
@@ -705,6 +725,7 @@ main {
                         position: absolute;
                         top: 1em;
                         right: 1em;
+                        z-index: 9999;
 
                         img {
                             display: block;
@@ -722,37 +743,53 @@ main {
                     }
                 }
 
-                .dots {
+                > .bottom {
                     display: flex;
-                    flex-wrap: wrap;
+                    flex-direction: row;
                     justify-content: center;
-                    gap: 0.6em;
-                    width: 100%;
+                    align-items: center;
                     padding: 0em 1em;
+                    gap: 1em;
 
-                    .dot {
-                        display: block;
-                        width: 0.8em;
-                        aspect-ratio: 1;
-                        border-radius: 50%;
-                        border: 1px solid rgba(255, 255, 255, 0.6);
-                        opacity: 60%;
+                    p {
+                        color: var(--nico-light-gray-60);
 
-                        transition: all 0.2s ease;
-
-                        &.active {
-                            transform: scale(1.15);
-                            background-color: var(--nico-light-gray-60);
-                            pointer-events: none;
+                        @media screen and (max-width: 50em) {
+                            display: none;
                         }
+                    }
 
-                        &.innactive {
-                            background-color: var(--nico-gray);
-                            cursor: pointer;
-                        }
+                    .dots {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 0.6em;
 
-                        &:hover {
-                            transform: scale(1.15);
+                        .dot {
+                            display: block;
+                            width: 0.8em;
+                            aspect-ratio: 1;
+                            border-radius: 50%;
+                            border: 1px solid rgba(255, 255, 255, 0.6);
+                            opacity: 60%;
+
+                            transition: all 0.2s ease;
+
+                            &.active {
+                                transform: scale(1.15);
+                                background-color: var(--nico-light-gray-60);
+                                pointer-events: none;
+                            }
+
+                            &.innactive {
+                                background-color: var(--nico-gray);
+                                cursor: pointer;
+                            }
+
+                            &:hover {
+                                transform: scale(1.15);
+                            }
                         }
                     }
                 }

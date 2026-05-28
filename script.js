@@ -8,6 +8,14 @@ var Category;
 })(Category || (Category = {}));
 const tools = new Map();
 const projects = new Map();
+let lastScrollY = 0;
+let touchStart = 0;
+let touchTime = 0;
+let currentCategory = null;
+let currentProject = null;
+let wasHeaderVisible = false;
+const HEADER_VISIBLE = '0px';
+const HEADER_HIDDEN = '-5.5em';
 function addProjects() {
     data["tools"].forEach(tool => tools.set(tool.id, tool));
     data["projects"].forEach(proj => projects.set(proj.id, proj));
@@ -43,7 +51,7 @@ function addPinned(project) {
                     <p>${project.description.split('.')[0]}.</p>
                 </div>
 
-                <a class="navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
+                <a class="navigate-link" id="pin-${project.id}-navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
                     <img src="images/chevronDown.png"/>
                 </a>
 
@@ -52,6 +60,7 @@ function addPinned(project) {
     `;
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
     document.querySelector(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
+    document.querySelector(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
 }
 function addProject(project) {
     const projectsDiv = document.querySelector(`#projects-div`);
@@ -142,8 +151,12 @@ function findNextProject(project) {
     }
     return null;
 }
-let currentProject = null;
 function showProjectPage(project) {
+    const header = document.querySelector('#header');
+    if (header) {
+        wasHeaderVisible = header.style.top == HEADER_VISIBLE;
+        header.style.top = HEADER_HIDDEN;
+    }
     document.querySelector('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
     const infosName = document.querySelector('#project-page-infos-name');
     if (infosName) {
@@ -236,6 +249,12 @@ function populateProjectPageDots(project) {
 function hideProjectPage() {
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page innactive');
     document.body.classList.remove("remove-scrolling");
+    if (wasHeaderVisible) {
+        const header = document.querySelector('#header');
+        if (header) {
+            header.style.top = HEADER_VISIBLE;
+        }
+    }
 }
 function previousProjectPage() {
     if (!currentProject) {
@@ -261,8 +280,6 @@ document.querySelector('#project-page-close-button')?.addEventListener('click', 
 document.querySelector('#project-page-background')?.addEventListener('click', () => hideProjectPage());
 document.querySelector('#previous-project-button')?.addEventListener('click', () => previousProjectPage());
 document.querySelector('#next-project-button')?.addEventListener('click', () => nextProjectPage());
-let touchStart = 0;
-let touchTime = 0;
 document.querySelector('#project-page')?.addEventListener('touchstart', e => {
     touchStart = e.changedTouches[0].screenX;
     touchTime = Date.now();
@@ -281,7 +298,6 @@ document.querySelector('#project-page')?.addEventListener('touchend', e => {
         previousProjectPage();
     }
 });
-let currentCategory = null;
 function navigateTab(category) {
     if (currentCategory == category) {
         return;
@@ -295,21 +311,12 @@ function navigateTab(category) {
             : "project innactive";
     });
     document.querySelector(`#tabs-div`)?.querySelectorAll('.tab')
-        .forEach(e => {
-        if (e.id.includes(category)) {
-            e.classList = "tab active";
-        }
-        else {
-            e.classList = "tab innactive";
-        }
-    });
+        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab innactive");
 }
 document.querySelector('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
 document.querySelector('#tab-Programs')?.addEventListener('click', () => navigateTab(Category.Program));
 document.querySelector('#tab-Other')?.addEventListener('click', () => navigateTab(Category.Other));
-// show / hide header
-let lastScrollY = 0;
 window.addEventListener('scroll', () => {
     const header = document.querySelector('#header');
     if (!header) {
@@ -318,11 +325,11 @@ window.addEventListener('scroll', () => {
     }
     if (window.scrollY > lastScrollY) {
         // scrolling down
-        header.style.top = '-5.5em'; // hide header
+        header.style.top = HEADER_HIDDEN;
     }
     else {
         // scrolling up
-        header.style.top = '0'; // show header
+        header.style.top = HEADER_VISIBLE;
     }
     lastScrollY = window.scrollY;
 });
