@@ -1,18 +1,21 @@
 import data from './data.json' with { type: 'json' };
 var Category;
 (function (Category) {
+    Category["All"] = "All";
     Category["Game"] = "Games";
     Category["Program"] = "Programs";
     Category["Other"] = "Other";
 })(Category || (Category = {}));
-const tools = data["tools"];
-const projects = data["projects"];
+const tools = new Map();
+const projects = new Map();
 function addProjects() {
+    data["tools"].forEach(tool => tools.set(tool.id, tool));
+    data["projects"].forEach(proj => projects.set(proj.id, proj));
     data["pinned"].forEach(proj => {
-        addPinned(projects[proj]);
+        addPinned(projects.get(proj));
     });
     data["structure"].forEach(proj => {
-        addProject(projects[proj]);
+        addProject(projects.get(proj));
     });
 }
 function addPinned(project) {
@@ -46,30 +49,14 @@ function addPinned(project) {
 
             </div>
         </div>
-
     `;
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
     document.querySelector(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
 }
 function addProject(project) {
-    const categoriesDiv = document.querySelector(`#categories-div`);
-    if (!categoriesDiv) {
+    const projectsDiv = document.querySelector(`#projects-div`);
+    if (!projectsDiv) {
         console.error("no projects div");
-        return;
-    }
-    let projectsCategory = document.querySelector(`#projects-${project.category}`);
-    if (!projectsCategory) {
-        const projectsCategoryHTML = `
-            <div class="category active" id="${project.category}">
-                <h2 id="category-${project.category}">${project.category}</h2>
-                <div class="projects" id="projects-${project.category}">
-            </div>
-        `;
-        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
-        projectsCategory = document.querySelector(`#projects-${project.category}`);
-    }
-    if (!projectsCategory) {
-        console.error("no projects category");
         return;
     }
     let githubHTML = "";
@@ -85,7 +72,7 @@ function addProject(project) {
     }
     let toolsHTML = "";
     project.tools.forEach(toolStr => {
-        const tool = tools[toolStr];
+        const tool = tools.get(toolStr);
         toolsHTML += `
             <a class="tool" href="${tool.pageUrl}" target="_blank" title="Open ${tool.name}'s website">
                 <img src="${tool.imageUrl}" alt="${tool.name}" />
@@ -93,7 +80,7 @@ function addProject(project) {
         `;
     });
     const projectHTML = `
-        <div class="project" id="${project.id}">
+        <div class="project active" id="${project.id}">
 
             <div class="link" id="${project.id}-link" title="Open ${project.name}'s page"></div>
 
@@ -130,14 +117,13 @@ function addProject(project) {
 
         </div>
     `;
-    projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    projectsDiv.insertAdjacentHTML('beforeend', projectHTML);
     document.querySelector(`#${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
 }
 function getVisibleProjects() {
     const projs = [];
-    document.querySelectorAll('.category.active')
-        .forEach(categoryDiv => categoryDiv.querySelectorAll('.project')
-        .forEach(projDiv => projs.push(projects[projDiv.id])));
+    document.querySelectorAll('.project.active')
+        .forEach(projDiv => projs.push(projects.get(projDiv.id)));
     return projs;
 }
 function findPreviousProject(project) {
@@ -197,8 +183,8 @@ function populateProjectPageTools(project) {
     }
     let toolsHTML = '';
     project.tools.forEach(toolId => toolsHTML += `
-        <a href="${tools[toolId].pageUrl}" target="_blank">
-            <p>${tools[toolId].name}</p>
+        <a href="${tools.get(toolId).pageUrl}" target="_blank">
+            <p>${tools.get(toolId).name}</p>
         </a>
     `);
     document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools active');
@@ -296,33 +282,17 @@ document.querySelector('#project-page')?.addEventListener('touchend', e => {
     }
 });
 let currentCategory = null;
-function navigateAll() {
-    if (!currentCategory) {
-        return;
-    }
-    currentCategory = null;
-    document.querySelector(`#categories-div`)?.querySelectorAll('.category')
-        .forEach(e => {
-        e.classList = "category active";
-    });
-    document.querySelector('#tab-all')?.setAttribute('class', 'tab active');
-    document.querySelector('#tab-Games')?.setAttribute('class', 'tab innactive');
-    document.querySelector('#tab-Programs')?.setAttribute('class', 'tab innactive');
-    document.querySelector('#tab-Other')?.setAttribute('class', 'tab innactive');
-}
 function navigateTab(category) {
     if (currentCategory == category) {
         return;
     }
     currentCategory = category;
-    document.querySelector(`#categories-div`)?.querySelectorAll('.category')
-        .forEach(e => {
-        if (e.id.includes(category)) {
-            e.classList = "category active";
-        }
-        else {
-            e.classList = "category innactive";
-        }
+    document.querySelector(`#projects-div`)?.querySelectorAll('.project')
+        .forEach(projDiv => {
+        const proj = projects.get(projDiv.id);
+        projDiv.classList = proj.category === category || category === Category.All
+            ? "project active"
+            : "project innactive";
     });
     document.querySelector(`#tabs-div`)?.querySelectorAll('.tab')
         .forEach(e => {
@@ -334,7 +304,7 @@ function navigateTab(category) {
         }
     });
 }
-document.querySelector('#tab-all')?.addEventListener('click', () => navigateAll());
+document.querySelector('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
 document.querySelector('#tab-Programs')?.addEventListener('click', () => navigateTab(Category.Program));
 document.querySelector('#tab-Other')?.addEventListener('click', () => navigateTab(Category.Other));

@@ -1,12 +1,14 @@
 import data from './data.json' with { type: 'json' };
 
 enum Category {
+    All = "All",
     Game = "Games",
     Program = "Programs",
     Other = "Other"
 }
 
 type Tool = {
+    id: string;
     name: string;
     pageUrl: string;
     imageUrl: string;
@@ -26,16 +28,19 @@ type Project = {
     tools: string[];
 };
 
-const tools = data["tools"] as Record<string, Tool>;
-const projects = data["projects"] as Record<string, Project>;
+const tools = new Map<string, Tool>();
+const projects = new Map<string, Project>();
 
 function addProjects(): void {
+    (data["tools"] as Array<Tool>).forEach(tool => tools.set(tool.id, tool));
+    (data["projects"] as Array<Project>).forEach(proj => projects.set(proj.id, proj));
+
     data["pinned"].forEach(proj => {
-        addPinned(projects[proj]);
+        addPinned(projects.get(proj)!);
     });
 
     data["structure"].forEach(proj => {
-        addProject(projects[proj]);
+        addProject(projects.get(proj)!);
     });
 }
 
@@ -71,7 +76,6 @@ function addPinned(project: Project): void {
 
             </div>
         </div>
-
     `;
 
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
@@ -80,29 +84,11 @@ function addPinned(project: Project): void {
 }
 
 function addProject(project: Project): void {
-    const categoriesDiv = document.querySelector<HTMLDivElement>(`#categories-div`);
-    if (!categoriesDiv) {
+    const projectsDiv = document.querySelector<HTMLDivElement>(`#projects-div`);
+    if (!projectsDiv) {
         console.error("no projects div");
         return;
     }
-
-    let projectsCategory = document.querySelector<HTMLDivElement>(`#projects-${project.category}`);
-    if (!projectsCategory) {
-        const projectsCategoryHTML: string = `
-            <div class="category active" id="${project.category}">
-                <h2 id="category-${project.category}">${project.category}</h2>
-                <div class="projects" id="projects-${project.category}">
-            </div>
-        `;
-        categoriesDiv.insertAdjacentHTML('beforeend', projectsCategoryHTML);
-        projectsCategory = document.querySelector<HTMLDivElement>(`#projects-${project.category}`);
-    }
-
-    if (!projectsCategory) {
-        console.error("no projects category");
-        return;
-    }
-
 
 
     let githubHTML: string = "";
@@ -119,7 +105,7 @@ function addProject(project: Project): void {
 
     let toolsHTML: string = "";
     project.tools.forEach(toolStr => {
-        const tool: Tool = tools[toolStr];
+        const tool: Tool = tools.get(toolStr)!;
         toolsHTML += `
             <a class="tool" href="${tool.pageUrl}" target="_blank" title="Open ${tool.name}'s website">
                 <img src="${tool.imageUrl}" alt="${tool.name}" />
@@ -128,7 +114,7 @@ function addProject(project: Project): void {
     });
 
     const projectHTML: string = `
-        <div class="project" id="${project.id}">
+        <div class="project active" id="${project.id}">
 
             <div class="link" id="${project.id}-link" title="Open ${project.name}'s page"></div>
 
@@ -166,17 +152,16 @@ function addProject(project: Project): void {
         </div>
     `;
 
-    projectsCategory.insertAdjacentHTML('beforeend', projectHTML);
+    projectsDiv.insertAdjacentHTML('beforeend', projectHTML);
 
     document.querySelector<HTMLDivElement>(`#${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
 }
 
 function getVisibleProjects(): Array<Project> {
     const projs: Array<Project> = [];
-    document.querySelectorAll<HTMLDivElement>('.category.active')
-        .forEach(categoryDiv => categoryDiv.querySelectorAll<HTMLDivElement>('.project')
-            .forEach(projDiv => projs.push(projects[projDiv.id]))
-        );
+    document.querySelectorAll<HTMLDivElement>('.project.active')
+        .forEach(projDiv => projs.push(projects.get(projDiv.id)!)
+    );
     return projs;
 }
 
@@ -247,8 +232,8 @@ function populateProjectPageTools(project: Project): void {
 
     let toolsHTML: string = '';
     project.tools.forEach(toolId => toolsHTML += `
-        <a href="${tools[toolId].pageUrl}" target="_blank">
-            <p>${tools[toolId].name}</p>
+        <a href="${tools.get(toolId)!.pageUrl}" target="_blank">
+            <p>${tools.get(toolId)!.name}</p>
         </a>
     `);
 
@@ -363,51 +348,25 @@ document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touch
 
 let currentCategory: Category | null = null;
 
-function navigateAll(): void {
-    if (!currentCategory) {
-        return;
-    }
-    currentCategory = null;
-
-    document.querySelector<HTMLDivElement>(`#categories-div`)?.querySelectorAll('.category')
-        .forEach(e => {
-            e.classList = "category active";
-        });
-
-    document.querySelector<HTMLDivElement>('#tab-all')?.setAttribute('class', 'tab active');
-    document.querySelector<HTMLDivElement>('#tab-Games')?.setAttribute('class', 'tab innactive');
-    document.querySelector<HTMLDivElement>('#tab-Programs')?.setAttribute('class', 'tab innactive');
-    document.querySelector<HTMLDivElement>('#tab-Other')?.setAttribute('class', 'tab innactive');
-}
-
 function navigateTab(category: Category): void {
     if (currentCategory == category) {
         return;
     }
     currentCategory = category;
 
-    document.querySelector<HTMLDivElement>(`#categories-div`)?.querySelectorAll('.category')
-        .forEach(e => {
-            if (e.id.includes(category)) {
-                e.classList = "category active";
-            }
-            else {
-                e.classList = "category innactive";
-            }
+    document.querySelector<HTMLDivElement>(`#projects-div`)?.querySelectorAll<HTMLDivElement>('.project')
+        .forEach(projDiv => {
+            const proj = projects.get(projDiv.id)!;
+            projDiv.classList = proj.category === category || category === Category.All
+                ? "project active"
+                : "project innactive";
         });
 
-    document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll('.tab')
-        .forEach(e => {
-            if (e.id.includes(category)) {
-                e.classList = "tab active";
-            }
-            else {
-                e.classList = "tab innactive";
-            }
-        });
+    document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll<HTMLDivElement>('.tab')
+        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab innactive");
 }
 
-document.querySelector<HTMLDivElement>('#tab-all')?.addEventListener('click', () => navigateAll());
+document.querySelector<HTMLDivElement>('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector<HTMLDivElement>('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
 document.querySelector<HTMLDivElement>('#tab-Programs')?.addEventListener('click', () => navigateTab(Category.Program));
 document.querySelector<HTMLDivElement>('#tab-Other')?.addEventListener('click', () => navigateTab(Category.Other));
