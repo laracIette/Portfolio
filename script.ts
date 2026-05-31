@@ -203,6 +203,7 @@ function showProjectPage(project: Project): void {
     }
 
     document.querySelector<HTMLImageElement>('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
+    document.querySelector<HTMLImageElement>('#project-page-preview-gif')?.setAttribute('src', project.gifUrl);
     const infosName = document.querySelector<HTMLHeadingElement>('#project-page-infos-name');
     if (infosName) {
         infosName.textContent = project.name;

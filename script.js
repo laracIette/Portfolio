@@ -158,6 +158,7 @@ function showProjectPage(project) {
         header.style.top = HEADER_HIDDEN;
     }
     document.querySelector('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
+    document.querySelector('#project-page-preview-gif')?.setAttribute('src', project.gifUrl);
     const infosName = document.querySelector('#project-page-infos-name');
     if (infosName) {
         infosName.textContent = project.name;
