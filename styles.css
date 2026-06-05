@@ -146,6 +146,7 @@ main {
         margin-top: 5.5em;
         margin-bottom: 1em;
         gap: 10em;
+        z-index: 0;
 
         > .top {
             display: flex;
@@ -318,132 +319,180 @@ main {
                 grid-auto-rows: 30em;
 
                 > .project {
-                    flex-direction: column;
-                    background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
-                    border-radius: 1em;
-                    border: 2px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-
-                    filter: grayscale(50%);
-                    transition: all 0.25s ease;
+                    display: flex;
+                    position: relative;
 
                     &.active {
-                        display: flex;
+                        > .back {
+                            transform: scaleX(0);
+                            opacity: 0;
+                            visibility: hidden;
+
+                            transition-delay: 0s;
+                        }
+
+                        > .front {
+                            transform: scaleX(1);
+                            opacity: 1;
+                            visibility: visible;
+
+                            transition-delay: 0.25s;
+                        }
                     }
 
                     &.innactive {
-                        display: none;
-                    }
+                        > .back {
+                            transform: scaleX(1);
+                            opacity: 1;
+                            visibility: visible;
 
-                    &:hover {
-                        transform: scale(1.02);
-                        filter: grayscale(0%);
+                            transition-delay: 0.25s;
+                        }
 
-                        > .preview img.static {
+                        > .front {
+                            transform: scaleX(0);
                             opacity: 0;
+                            visibility: hidden;
+
+                            transition-delay: 0s;
                         }
                     }
 
-                    > .link {
+                    > .back {
                         position: absolute;
                         inset: 0;
-                        z-index: 3;
-                        cursor: pointer;
+                        background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
+                        border-radius: 1em;
+                        border: 2px solid rgba(255, 255, 255, 0.1);
+                        transform-origin: 50%;
+                        z-index: 0;
+                        filter: grayscale(50%);
+
+                        transition: all 0.25s ease-out;
                     }
-
-                    .scrollDest {
+                    
+                    > .front { 
                         position: relative;
-                        top: -14em;
-                    }
+                        background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
+                        border-radius: 1em;
+                        border: 2px solid rgba(255, 255, 255, 0.1);
+                        overflow: hidden;
+                        transform-origin: 50%;
+                        z-index: 1;
+                        filter: grayscale(50%);
 
-                    > .preview {
-                        position: relative;
-                        height: 14em;
-                        border-radius: 1em 1em 0 0;
+                        transition: all 0.25s ease-in;
 
-                        img {
-                            display: block;
-                            height: 100%;
-                            width: 100%;
-                            object-fit: cover;
+                        &:hover {
+                            transform: scale(1.02);
+                            filter: grayscale(0%);
 
-                            &.static {
-                                position: relative;
-                                z-index: 2;
-
-                                transition: opacity 0.25s ease-in-out;
-                            }
-
-                            &.gif {
-                                position: absolute;
-                                inset: 0;
-                                z-index: 1;
+                            > .preview img.static {
+                                opacity: 0;
                             }
                         }
-                    }
 
-                    > .infos {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 1em;
-                        padding: 1em;
-                        height: 16em;
+                        > .link {
+                            position: absolute;
+                            inset: 0;
+                            z-index: 3;
+                            cursor: pointer;
+                        }
 
-                        > .title {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
-                            width: 100%;
+                        .scrollDest {
+                            position: relative;
+                            top: -14em;
+                        }
 
-                            > .date {
-                                display: flex;
-                                padding-top: 0.2em;
-                                padding-right: 0.2em;
+                        > .preview {
+                            position: relative;
+                            height: 14em;
+                            border-radius: 1em 1em 0 0;
 
-                                p {
-                                    color: var(--nico-gray);
+                            img {
+                                display: block;
+                                height: 100%;
+                                width: 100%;
+                                object-fit: cover;
+
+                                &.static {
+                                    position: relative;
+                                    z-index: 2;
+
+                                    transition: opacity 0.25s ease-in-out;
+                                }
+
+                                &.gif {
+                                    position: absolute;
+                                    inset: 0;
+                                    z-index: 1;
                                 }
                             }
                         }
 
-                        > .tools {
+                        > .infos {
                             display: flex;
                             flex-direction: column;
-                            justify-content: end;
-                            height: 100%;
-                            margin: .5em 0 .2em 0;
+                            gap: 1em;
+                            padding: 1em;
+                            height: 16em;
 
-                            .list {
+                            > .title {
                                 display: flex;
-                                justify-content: end;
-                                gap: 1em;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                width: 100%;
 
-                                .tool {
-                                    background-color: var(--nico-dark-blue-20);
+                                > .date {
+                                    display: flex;
+                                    padding-top: 0.2em;
+                                    padding-right: 0.2em;
 
-                                    border-radius: 1em;
-                                    border: 1px solid rgba(255, 255, 255, 0.2);
-                                    box-shadow: 0 0 0.15em rgba(255, 255, 255, 0.4);
-
-                                    padding: 0.5em;
-                                    z-index: 4;
-
-                                    transition: transform 0.25s ease-in-out;
-
-                                    img {
-                                        width: 2.5em;
-                                        height: 2.5em;
-                                    }
-
-                                    &:hover {
-                                        transform: scale(1.05);
+                                    p {
+                                        color: var(--nico-gray);
                                     }
                                 }
+                            }
 
-                                .separator {
-                                    width: 2px;
-                                    background-color: gray;
-                                    margin: 0.5em 0;
+                            > .tools {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: end;
+                                height: 100%;
+                                margin: .5em 0 .2em 0;
+
+                                .list {
+                                    display: flex;
+                                    justify-content: end;
+                                    gap: 1em;
+
+                                    .tool {
+                                        background-color: var(--nico-dark-blue-20);
+
+                                        border-radius: 1em;
+                                        border: 1px solid rgba(255, 255, 255, 0.2);
+                                        box-shadow: 0 0 0.15em rgba(255, 255, 255, 0.4);
+
+                                        padding: 0.5em;
+                                        z-index: 4;
+
+                                        transition: transform 0.25s ease-in-out;
+
+                                        img {
+                                            width: 2.5em;
+                                            height: 2.5em;
+                                        }
+
+                                        &:hover {
+                                            transform: scale(1.05);
+                                        }
+                                    }
+
+                                    .separator {
+                                        width: 2px;
+                                        background-color: gray;
+                                        margin: 0.5em 0;
+                                    }
                                 }
                             }
                         }
@@ -470,6 +519,7 @@ main {
         width: 100vw;
         height: 100vh;
         justify-content: center;
+        z-index: 1;
 
         &.active {
             .background {

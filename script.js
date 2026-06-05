@@ -90,38 +90,44 @@ function addProject(project) {
     });
     const projectHTML = `
         <div class="project active" id="${project.id}">
+            <div class="back"></div>
 
-            <div class="link" id="${project.id}-link" title="Open ${project.name}'s page"></div>
+            <div class="front">
 
-            <div class="scrollDest" id="${project.id}-scrollDest"></div>
+                <div class="link" id="${project.id}-link" title="Open ${project.name}'s page"></div>
 
-            <div class="preview">
-                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
-            </div>
 
-            <div class="infos">
+                <div class="scrollDest" id="${project.id}-scrollDest"></div>
 
-                <div class="title">
+                <div class="preview">
+                    <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
+                    <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+                </div>
 
-                    <h3>${project.name}</h3>
-                    <div class="date">
-                        <p>${project.date}</p>
+                <div class="infos">
+
+                    <div class="title">
+
+                        <h3>${project.name}</h3>
+                        <div class="date">
+                            <p>${project.date}</p>
+                        </div>
+
+                    </div>
+
+                    <p>${project.description}</p>
+
+                    <div class="tools">
+
+                        <div class="list">
+                            ${githubHTML}
+                            ${toolsHTML}
+                        </div>
+
                     </div>
 
                 </div>
-
-                <p>${project.description}</p>
-
-                <div class="tools">
-
-                    <div class="list">
-                        ${githubHTML}
-                        ${toolsHTML}
-                    </div>
-
-                </div>
-
+            
             </div>
 
         </div>
@@ -291,7 +297,7 @@ document.querySelector('#project-page')?.addEventListener('touchend', e => {
         return;
     }
     const touchEnd = e.changedTouches[0].screenX;
-    const DEAD_ZONE = 100;
+    const DEAD_ZONE = 60; // pixels
     if (touchEnd < touchStart - DEAD_ZONE) {
         nextProjectPage();
     }
