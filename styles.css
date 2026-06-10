@@ -336,7 +336,7 @@ main {
                             opacity: 1;
                             visibility: visible;
 
-                            transition-delay: 0.25s;
+                            transition-delay: 0.2s;
                         }
                     }
 
@@ -346,7 +346,7 @@ main {
                             opacity: 1;
                             visibility: visible;
 
-                            transition-delay: 0.25s;
+                            transition-delay: 0.2s;
                         }
 
                         > .front {
@@ -368,10 +368,10 @@ main {
                         z-index: 0;
                         filter: grayscale(50%);
 
-                        transition: all 0.25s ease-out;
+                        transition: all 0.2s;
                     }
-                    
-                    > .front { 
+
+                    > .front {
                         position: relative;
                         background: linear-gradient(to bottom right, var(--nico-blue), var(--nico-dark-blue-50));
                         border-radius: 1em;
@@ -381,7 +381,7 @@ main {
                         z-index: 1;
                         filter: grayscale(50%);
 
-                        transition: all 0.25s ease-in;
+                        transition: all 0.2s;
 
                         &:hover {
                             transform: scale(1.02);
