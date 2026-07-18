@@ -162,8 +162,8 @@
             "imageUrl": "projects/images/kotonoEngine.png",
             "gifUrl": "projects/gifs/kotonoEngine.gif",
             "description": "This is the current iteration of my game engine. Designed with a modular architecture in mind and powered by the Vulkan API.",
-            "pageText": "This project is based on the object architecture of Kotono, my first iteration of this engine. Which had started to become convoluted and whose structure I reworked every other day.\n\n\nI chose to remake it entirely from scratch and swapped both the language and rendering system :\n\n - I chose to replace C# with C++ as I already had some experience using it and wanted to actually learn to and use it well.\n\n - I also decided to move from OpenGL to the Vulkan API for rendering, as I had already completed the Vulkan Tutorial and was very interested in the philosophy behind it.",
-            "date": "Jan 2025 - Today",
+            "pageText": "This project is based on the architecture of Kotono, my first iteration of this engine. Which had started to become convoluted and whose structure I reworked every other day.\n\n\nI chose to remake it entirely from scratch and swapped both the language and rendering system :\n\n - I chose to replace C# with C++ as I already had some experience using it and wanted to actually learn to and use it well.\n\n - I also decided to move from OpenGL to the Vulkan API for rendering, as I had already completed the Vulkan Tutorial and was very interested in the philosophy behind it.\n\n - I successfully built a multi subsystems architecture and a deferred lighting pipeline.",
+            "date": "Jan 2025 - Present",
             "tools": ["cpp", "vulkan"]
         },
         {
@@ -325,7 +325,7 @@
     ],
     "pinned": [
         "souveniste",
-        "wanderBlossom"
+        "kotonoEngine"
     ],
     "structure" : [
         "souveniste",
