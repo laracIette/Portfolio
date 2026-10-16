@@ -7,6 +7,7 @@ var Category;
     Category["Other"] = "Other";
 })(Category || (Category = {}));
 const tools = new Map();
+const links = new Map();
 const projects = new Map();
 let lastScrollY = 0;
 let touchStart = 0;
@@ -18,6 +19,7 @@ const HEADER_VISIBLE = '0px';
 const HEADER_HIDDEN = '-5.5em';
 function addProjects() {
     data["tools"].forEach(tool => tools.set(tool.id, tool));
+    data["links"].forEach(link => links.set(link.id, link));
     data["projects"].forEach(proj => projects.set(proj.id, proj));
     data["pinned"].forEach(proj => {
         addPinned(projects.get(proj));
@@ -69,15 +71,16 @@ function addProject(project) {
         return;
     }
     let githubHTML = "";
-    if (project.githubUrl) { // TODO: github logo is temporarly a tool
+    project.links.forEach(projLink => {
+        const link = links.get(projLink.id);
         githubHTML += `
-            <a class="tool" href="${project.githubUrl}" target="_blank" title="Open ${project.name} on GitHub">
-                <img src="images/github.png" alt="${project.name} GitHub" />
+            <a class="tool" href="${projLink.url}" target="_blank" title="Open ${project.name} on ${link.name}">
+                <img src="${link.imageUrl}" alt="${link.name}" />
             </a>
         `;
-        if (project.tools.length != 0) {
-            githubHTML += `<div class="separator"></div>`;
-        }
+    });
+    if (project.links.length > 0 && project.tools.length > 0) {
+        githubHTML += `<div class="separator"></div>`;
     }
     let toolsHTML = "";
     project.tools.forEach(toolStr => {
@@ -179,8 +182,8 @@ function showProjectPage(project) {
     populateProjectPageLinks(project);
     populateProjectPageDots(project);
     document.querySelector(`#project-page`)?.setAttribute('class', 'project-page active');
-    document.querySelector('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
-    document.querySelector('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
+    document.querySelector('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'inactive'}`);
+    document.querySelector('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'inactive'}`);
     document.body.classList.add("remove-scrolling");
     currentProject = project;
 }
@@ -191,7 +194,7 @@ function populateProjectPageTools(project) {
         return;
     }
     if (project.tools.length === 0) {
-        document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools innactive');
+        document.querySelector(`#project-page-tools`)?.setAttribute('class', 'tools inactive');
         toolsList.innerHTML = '';
         return;
     }
@@ -210,26 +213,20 @@ function populateProjectPageLinks(project) {
         console.log('no links list div');
         return;
     }
-    if (!(project.pageUrl || project.githubUrl)) {
-        document.querySelector(`#project-page-links`)?.setAttribute('class', 'links innactive');
+    if (project.links.length == 0) {
+        document.querySelector(`#project-page-links`)?.setAttribute('class', 'links inactive');
         linksList.innerHTML = '';
         return;
     }
     let linksHTML = '';
-    if (project.pageUrl) {
+    project.links.forEach(projLink => {
+        const link = links.get(projLink.id);
         linksHTML += `
-            <a href="${project.pageUrl}" target="_blank">
-                <p>Project page</p>
+            <a href="${projLink.url}" target="_blank">
+                <p>${link.text}</p>
             </a>
         `;
-    }
-    if (project.githubUrl) {
-        linksHTML += `
-            <a href="${project.githubUrl}" target="_blank">
-                <p>Project repository</p>
-            </a>
-        `;
-    }
+    });
     document.querySelector(`#project-page-links`)?.setAttribute('class', 'links active');
     linksList.innerHTML = linksHTML;
 }
@@ -241,14 +238,14 @@ function populateProjectPageDots(project) {
     }
     dotsDiv.innerHTML = '';
     getVisibleProjects().forEach(p => {
-        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot innactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
+        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot inactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
         if (p !== project) {
             dotsDiv.querySelector(`#dot-${p.id}`)?.addEventListener('click', () => showProjectPage(p));
         }
     });
 }
 function hideProjectPage() {
-    document.querySelector(`#project-page`)?.setAttribute('class', 'project-page innactive');
+    document.querySelector(`#project-page`)?.setAttribute('class', 'project-page inactive');
     document.body.classList.remove("remove-scrolling");
     if (wasHeaderVisible) {
         const header = document.querySelector('#header');
@@ -309,10 +306,10 @@ function navigateTab(category) {
         const proj = projects.get(projDiv.id);
         projDiv.classList = proj.category === category || category === Category.All
             ? "project active"
-            : "project innactive";
+            : "project inactive";
     });
     document.querySelector(`#tabs-div`)?.querySelectorAll('.tab')
-        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab innactive");
+        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
 }
 document.querySelector('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));

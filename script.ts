@@ -14,21 +14,28 @@ type Tool = {
     imageUrl: string;
 };
 
+type Link = {
+    id: string;
+    name: string;
+    text: string;
+    imageUrl: string;
+};
+
 type Project = {
     id: string;
     name: string;
     category: Category;
-    pageUrl: string | null;
-    githubUrl: string | null;
     imageUrl: string;
     gifUrl: string;
     description: string;
     pageText: string;
     date: string;
     tools: string[];
+    links: { id: string, url: string }[];
 };
 
 const tools = new Map<string, Tool>();
+const links = new Map<string, Link>();
 const projects = new Map<string, Project>();
 
 let lastScrollY: number = 0;
@@ -45,6 +52,7 @@ const HEADER_HIDDEN: string = '-5.5em';
 
 function addProjects(): void {
     (data["tools"] as Array<Tool>).forEach(tool => tools.set(tool.id, tool));
+    (data["links"] as Array<Link>).forEach(link => links.set(link.id, link));
     (data["projects"] as Array<Project>).forEach(proj => projects.set(proj.id, proj));
 
     data["pinned"].forEach(proj => {
@@ -104,15 +112,17 @@ function addProject(project: Project): void {
     }
 
     let githubHTML: string = "";
-    if (project.githubUrl) { // TODO: github logo is temporarly a tool
+    project.links.forEach(projLink => {
+        const link: Link = links.get(projLink.id)!;
         githubHTML += `
-            <a class="tool" href="${project.githubUrl}" target="_blank" title="Open ${project.name} on GitHub">
-                <img src="images/github.png" alt="${project.name} GitHub" />
+            <a class="tool" href="${projLink.url}" target="_blank" title="Open ${project.name} on ${link.name}">
+                <img src="${link.imageUrl}" alt="${link.name}" />
             </a>
         `;
-        if (project.tools.length != 0) {
-            githubHTML += `<div class="separator"></div>`;
-        }
+    });
+
+    if (project.links.length > 0 && project.tools.length > 0) {
+        githubHTML += `<div class="separator"></div>`;
     }
 
     let toolsHTML: string = "";
@@ -226,8 +236,8 @@ function showProjectPage(project: Project): void {
     populateProjectPageDots(project);
 
     document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page active');
-    document.querySelector<HTMLDivElement>('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'innactive'}`);
-    document.querySelector<HTMLDivElement>('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'innactive'}`);
+    document.querySelector<HTMLDivElement>('#previous-project-button')?.setAttribute('class', `button ${findPreviousProject(project) ? 'active' : 'inactive'}`);
+    document.querySelector<HTMLDivElement>('#next-project-button')?.setAttribute('class', `button ${findNextProject(project) ? 'active' : 'inactive'}`);
 
     document.body.classList.add("remove-scrolling");
 
@@ -242,7 +252,7 @@ function populateProjectPageTools(project: Project): void {
     }
 
     if (project.tools.length === 0) {
-        document.querySelector<HTMLDivElement>(`#project-page-tools`)?.setAttribute('class', 'tools innactive');
+        document.querySelector<HTMLDivElement>(`#project-page-tools`)?.setAttribute('class', 'tools inactive');
         toolsList.innerHTML = '';
         return;
     }
@@ -265,28 +275,21 @@ function populateProjectPageLinks(project: Project): void {
         return;
     }
 
-    if (!(project.pageUrl || project.githubUrl)) {
-        document.querySelector<HTMLDivElement>(`#project-page-links`)?.setAttribute('class', 'links innactive');
+    if (project.links.length == 0) {
+        document.querySelector<HTMLDivElement>(`#project-page-links`)?.setAttribute('class', 'links inactive');
         linksList.innerHTML = '';
         return;
     }
 
     let linksHTML: string = '';
-
-    if (project.pageUrl) {
+    project.links.forEach(projLink => {
+        const link: Link = links.get(projLink.id)!;
         linksHTML += `
-            <a href="${project.pageUrl}" target="_blank">
-                <p>Project page</p>
+            <a href="${projLink.url}" target="_blank">
+                <p>${link.text}</p>
             </a>
         `;
-    }
-    if (project.githubUrl) {
-        linksHTML += `
-            <a href="${project.githubUrl}" target="_blank">
-                <p>Project repository</p>
-            </a>
-        `;
-    }
+    });
 
     document.querySelector<HTMLDivElement>(`#project-page-links`)?.setAttribute('class', 'links active');
     linksList.innerHTML = linksHTML;
@@ -301,7 +304,7 @@ function populateProjectPageDots(project: Project): void {
 
     dotsDiv.innerHTML = '';
     getVisibleProjects().forEach(p => {
-        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot innactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
+        dotsDiv.insertAdjacentHTML('beforeend', `<div class="${p === project ? 'dot active' : 'dot inactive'}" id="dot-${p.id}" title="${p.name}"></div>`);
         if (p !== project) {
             dotsDiv.querySelector<HTMLDivElement>(`#dot-${p.id}`)?.addEventListener('click', () => showProjectPage(p));
         }
@@ -309,7 +312,7 @@ function populateProjectPageDots(project: Project): void {
 }
 
 function hideProjectPage(): void {
-    document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page innactive');
+    document.querySelector<HTMLDivElement>(`#project-page`)?.setAttribute('class', 'project-page inactive');
     document.body.classList.remove("remove-scrolling");
 
     if (wasHeaderVisible) {
@@ -379,11 +382,11 @@ function navigateTab(category: Category): void {
             const proj = projects.get(projDiv.id)!;
             projDiv.classList = proj.category === category || category === Category.All
                 ? "project active"
-                : "project innactive";
+                : "project inactive";
         });
 
     document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll<HTMLDivElement>('.tab')
-        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab innactive");
+        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
 }
 
 document.querySelector<HTMLDivElement>('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));

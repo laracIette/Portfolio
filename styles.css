@@ -299,7 +299,7 @@ main {
                         }
                     }
 
-                    &.innactive {
+                    &.inactive {
                         filter: grayscale(50%);
 
                         h3 {
@@ -331,7 +331,7 @@ main {
                         display: flex;
                     }
 
-                    &.innactive {
+                    &.inactive {
                         display: none;
                     }
 
@@ -477,7 +477,7 @@ main {
             }
         }
 
-        &.innactive {
+        &.inactive {
             pointer-events: none;
 
             .foreground {
@@ -530,7 +530,7 @@ main {
                     display: flex;
                 }
 
-                &.innactive {
+                &.inactive {
                     filter: grayscale(1);
                     opacity: 0.5;
                     pointer-events: none;
@@ -669,7 +669,7 @@ main {
                                             display: flex;
                                         }
 
-                                        &.innactive {
+                                        &.inactive {
                                             display: none;
                                         }
                                     }
@@ -681,7 +681,7 @@ main {
                                             display: flex;
                                         }
 
-                                        &.innactive {
+                                        &.inactive {
                                             display: none;
                                         }
                                     }
@@ -782,7 +782,7 @@ main {
                                 pointer-events: none;
                             }
 
-                            &.innactive {
+                            &.inactive {
                                 background-color: var(--nico-gray);
                                 cursor: pointer;
                             }
