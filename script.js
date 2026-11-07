@@ -9,6 +9,7 @@ var Category;
 const tools = new Map();
 const links = new Map();
 const projects = new Map();
+const toolStates = new Map();
 let lastScrollY = 0;
 let touchStart = 0;
 let touchTime = 0;
@@ -17,12 +18,15 @@ let currentProject = null;
 let wasHeaderVisible = false;
 const HEADER_VISIBLE = '0px';
 const HEADER_HIDDEN = '-5.5em';
-function addProjects() {
+function init() {
     data["tools"].forEach(tool => tools.set(tool.id, tool));
     data["links"].forEach(link => links.set(link.id, link));
     data["projects"].forEach(proj => projects.set(proj.id, proj));
     data["pinned"].forEach(proj => {
         addPinned(projects.get(proj));
+    });
+    data["tools"].forEach(tool => {
+        addTool(tools.get(tool.id));
     });
     data["structure"].forEach(proj => {
         addProject(projects.get(proj));
@@ -63,6 +67,36 @@ function addPinned(project) {
     pinnedDiv.insertAdjacentHTML('beforeend', projectHTML);
     document.querySelector(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
     document.querySelector(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
+}
+function getActiveTools() {
+    const activeTools = [];
+    toolStates.forEach((isActive, tool) => {
+        if (isActive) {
+            activeTools.push(tool);
+        }
+    });
+    return activeTools;
+}
+function addTool(tool) {
+    const projectsDiv = document.querySelector(`#toggleable-tools-div`);
+    if (!projectsDiv) {
+        console.error("no toggleable tools div");
+        return;
+    }
+    const toolHTML = `
+        <div class="tool inactive" id="toggle-${tool.id}-button" title="Toggle ${tool.name}">
+            <img src="${tool.imageUrl}" alt="${tool.name}-logo">
+        </div>
+    `;
+    projectsDiv.insertAdjacentHTML('beforeend', toolHTML);
+    toolStates.set(tool, false);
+    document.querySelector(`#toggle-${tool.id}-button`)?.addEventListener('click', (event) => {
+        const isActive = toolStates.get(tool);
+        toolStates.set(tool, !isActive);
+        setActiveTools(getActiveTools());
+        const element = event.currentTarget;
+        element.classList = !isActive ? "tool active" : "tool inactive";
+    });
 }
 function addProject(project) {
     const projectsDiv = document.querySelector(`#projects-div`);
@@ -157,7 +191,7 @@ function findNextProject(project) {
 function showProjectPage(project) {
     const header = document.querySelector('#header');
     if (header) {
-        wasHeaderVisible = header.style.top == HEADER_VISIBLE;
+        wasHeaderVisible = header.style.top === HEADER_VISIBLE;
         header.style.top = HEADER_HIDDEN;
     }
     document.querySelector('#project-page-preview-image')?.setAttribute('src', project.imageUrl);
@@ -213,7 +247,7 @@ function populateProjectPageLinks(project) {
         console.log('no links list div');
         return;
     }
-    if (project.links.length == 0) {
+    if (project.links.length === 0) {
         document.querySelector(`#project-page-links`)?.setAttribute('class', 'links inactive');
         linksList.innerHTML = '';
         return;
@@ -296,20 +330,29 @@ document.querySelector('#project-page')?.addEventListener('touchend', e => {
         previousProjectPage();
     }
 });
+function setActiveProjects(func) {
+    document.querySelector(`#projects-div`)?.querySelectorAll('.project')
+        .forEach(projDiv => {
+        const proj = projects.get(projDiv.id);
+        projDiv.classList = func(proj) ? "project active" : "project inactive";
+    });
+}
 function navigateTab(category) {
     if (currentCategory == category) {
         return;
     }
     currentCategory = category;
-    document.querySelector(`#projects-div`)?.querySelectorAll('.project')
-        .forEach(projDiv => {
-        const proj = projects.get(projDiv.id);
-        projDiv.classList = proj.category === category || category === Category.All
-            ? "project active"
-            : "project inactive";
-    });
+    setActiveProjects(project => { return project.category === category || category === Category.All; });
     document.querySelector(`#tabs-div`)?.querySelectorAll('.tab')
         .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
+}
+function setActiveTools(activeTools) {
+    if (activeTools.length === 0) {
+        setActiveProjects(() => true);
+    }
+    else {
+        setActiveProjects(project => project.tools.some(toolId => activeTools.some(tool => tool.id === toolId)));
+    }
 }
 document.querySelector('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
@@ -331,5 +374,5 @@ window.addEventListener('scroll', () => {
     }
     lastScrollY = window.scrollY;
 });
-addProjects();
+init();
 //# sourceMappingURL=script.js.map

@@ -31,12 +31,14 @@ type Project = {
     pageText: string;
     date: string;
     tools: string[];
-    links: { id: string, url: string }[];
+    links: Array<{ id: string, url: string }>;
 };
 
 const tools = new Map<string, Tool>();
 const links = new Map<string, Link>();
 const projects = new Map<string, Project>();
+
+const toolStates = new Map<Tool, boolean>();
 
 let lastScrollY: number = 0;
 
@@ -50,7 +52,7 @@ let wasHeaderVisible: boolean = false;
 const HEADER_VISIBLE: string = '0px';
 const HEADER_HIDDEN: string = '-5.5em';
 
-function addProjects(): void {
+function init(): void {
     (data["tools"] as Array<Tool>).forEach(tool => tools.set(tool.id, tool));
     (data["links"] as Array<Link>).forEach(link => links.set(link.id, link));
     (data["projects"] as Array<Project>).forEach(proj => projects.set(proj.id, proj));
@@ -58,6 +60,10 @@ function addProjects(): void {
     data["pinned"].forEach(proj => {
         addPinned(projects.get(proj)!);
     });
+
+    data["tools"].forEach(tool => {
+        addTool(tools.get(tool.id)!);
+    })
 
     data["structure"].forEach(proj => {
         addProject(projects.get(proj)!);
@@ -102,6 +108,43 @@ function addPinned(project: Project): void {
 
     document.querySelector<HTMLDivElement>(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
     document.querySelector<HTMLAnchorElement>(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
+}
+
+function getActiveTools(): Array<Tool> {
+    const activeTools: Array<Tool> = [];
+    toolStates.forEach((isActive, tool) => {
+        if (isActive) {
+            activeTools.push(tool);
+        }
+    });
+    return activeTools;
+}
+
+function addTool(tool: Tool): void {
+    const projectsDiv = document.querySelector<HTMLDivElement>(`#toggleable-tools-div`);
+    if (!projectsDiv) {
+        console.error("no toggleable tools div");
+        return;
+    }
+
+    const toolHTML: string = `
+        <div class="tool inactive" id="toggle-${tool.id}-button" title="Toggle ${tool.name}">
+            <img src="${tool.imageUrl}" alt="${tool.name}-logo">
+        </div>
+    `;
+
+    projectsDiv.insertAdjacentHTML('beforeend', toolHTML);
+
+    toolStates.set(tool, false);
+
+    document.querySelector<HTMLDivElement>(`#toggle-${tool.id}-button`)?.addEventListener('click', (event) => {
+        const isActive = toolStates.get(tool)!;
+        toolStates.set(tool, !isActive);
+        setActiveTools(getActiveTools());
+
+        const element = event.currentTarget as HTMLDivElement;
+        element.classList = !isActive ? "tool active" : "tool inactive";
+    });
 }
 
 function addProject(project: Project): void {
@@ -208,7 +251,7 @@ function findNextProject(project: Project): Project | null {
 function showProjectPage(project: Project): void {
     const header = document.querySelector<HTMLElement>('#header');
     if (header) {
-        wasHeaderVisible = header.style.top == HEADER_VISIBLE;
+        wasHeaderVisible = header.style.top === HEADER_VISIBLE;
         header.style.top = HEADER_HIDDEN;
     }
 
@@ -275,7 +318,7 @@ function populateProjectPageLinks(project: Project): void {
         return;
     }
 
-    if (project.links.length == 0) {
+    if (project.links.length === 0) {
         document.querySelector<HTMLDivElement>(`#project-page-links`)?.setAttribute('class', 'links inactive');
         linksList.innerHTML = '';
         return;
@@ -371,22 +414,37 @@ document.querySelector<HTMLDivElement>('#project-page')?.addEventListener('touch
     }
 });
 
+function setActiveProjects(func: (project: Project) => boolean): void {
+    document.querySelector<HTMLDivElement>(`#projects-div`)?.querySelectorAll<HTMLDivElement>('.project')
+        .forEach(projDiv => {
+            const proj = projects.get(projDiv.id)!;
+            projDiv.classList = func(proj) ? "project active" : "project inactive";
+        });
+}
+
 function navigateTab(category: Category): void {
     if (currentCategory == category) {
         return;
     }
     currentCategory = category;
 
-    document.querySelector<HTMLDivElement>(`#projects-div`)?.querySelectorAll<HTMLDivElement>('.project')
-        .forEach(projDiv => {
-            const proj = projects.get(projDiv.id)!;
-            projDiv.classList = proj.category === category || category === Category.All
-                ? "project active"
-                : "project inactive";
-        });
+    setActiveProjects(project => { return project.category === category || category === Category.All; })
 
     document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll<HTMLDivElement>('.tab')
         .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
+}
+
+function setActiveTools(activeTools: Array<Tool>): void {
+    if (activeTools.length === 0) {
+        setActiveProjects(() => true);
+    }
+    else {
+        setActiveProjects(project =>
+            project.tools.some(toolId =>
+               activeTools.some(tool => tool.id === toolId)
+            )
+        )
+    }
 }
 
 document.querySelector<HTMLDivElement>('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
@@ -411,4 +469,4 @@ window.addEventListener('scroll', () => {
     lastScrollY = window.scrollY;
 });
 
-addProjects();
+init();
