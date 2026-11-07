@@ -481,13 +481,13 @@
         "kotonoEngine"
     ],
     "structure" : [
+        "kotonoEngine",
         "roomMessenger",
         "souveniste",
         "pestacle",
         "mcdoMenuGenerator",
         "wanderBlossom",
         "vertigo",
-        "kotonoEngine",
         "songe",
         "mazeGenerator",
         "thalassia",
