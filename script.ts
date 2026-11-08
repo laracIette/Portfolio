@@ -38,19 +38,19 @@ const tools = new Map<string, Tool>();
 const links = new Map<string, Link>();
 const projects = new Map<string, Project>();
 
-const toolStates = new Map<Tool, boolean>();
-
 let lastScrollY: number = 0;
 
 let touchStart: number = 0;
 let touchTime: number = 0;
 
-let currentCategory: Category | null = null;
+let currentCategory: Category = Category.All;
 let currentProject: Project | null = null;
 
 let wasHeaderVisible: boolean = false;
 const HEADER_VISIBLE: string = '0px';
 const HEADER_HIDDEN: string = '-5.5em';
+
+const isCurrentCategory = (project: Project) => currentCategory === Category.All || project.category === currentCategory;
 
 function init(): void {
     (data["tools"] as Array<Tool>).forEach(tool => tools.set(tool.id, tool));
@@ -83,7 +83,7 @@ function addPinned(project: Project): void {
             <div class="link" id="pin-${project.id}-link" title="Open ${project.name}'s page"></div>
 
             <div class="preview">
-                <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+                <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}">
             </div>
 
             <div class="right">
@@ -97,7 +97,7 @@ function addPinned(project: Project): void {
                 </div>
 
                 <a class="navigate-link" id="pin-${project.id}-navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
-                    <img src="images/chevronDown.png"/>
+                    <img src="images/chevronDown.png">
                 </a>
 
             </div>
@@ -110,14 +110,13 @@ function addPinned(project: Project): void {
     document.querySelector<HTMLAnchorElement>(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
 }
 
-function getActiveTools(): Array<Tool> {
-    const activeTools: Array<Tool> = [];
-    toolStates.forEach((isActive, tool) => {
-        if (isActive) {
-            activeTools.push(tool);
-        }
-    });
-    return activeTools;
+function toggle(input: DOMTokenList, condition: boolean, trueValue: string, falseValue: string): void {
+    if (condition) {
+        input.replace(falseValue, trueValue);
+    }
+    else {
+        input.replace(trueValue, falseValue);
+    }
 }
 
 function addTool(tool: Tool): void {
@@ -128,22 +127,20 @@ function addTool(tool: Tool): void {
     }
 
     const toolHTML: string = `
-        <div class="tool inactive" id="toggle-${tool.id}-button" title="Toggle ${tool.name}">
+        <div class="tool enabled inactive" id="${tool.id}" title="Toggle ${tool.name}">
             <img src="${tool.imageUrl}" alt="${tool.name}-logo">
         </div>
     `;
 
     projectsDiv.insertAdjacentHTML('beforeend', toolHTML);
 
-    toolStates.set(tool, false);
-
-    document.querySelector<HTMLDivElement>(`#toggle-${tool.id}-button`)?.addEventListener('click', (event) => {
-        const isActive = toolStates.get(tool)!;
-        toolStates.set(tool, !isActive);
-        setActiveTools(getActiveTools());
-
+    document.querySelector<HTMLDivElement>(`#${tool.id}`)?.addEventListener('click', event => {
         const element = event.currentTarget as HTMLDivElement;
-        element.classList = !isActive ? "tool active" : "tool inactive";
+        const isActive = element.classList.contains("active");
+
+        toggle(element.classList, !isActive, "active", "inactive");
+
+        updateActiveProjects();
     });
 }
 
@@ -159,7 +156,7 @@ function addProject(project: Project): void {
         const link: Link = links.get(projLink.id)!;
         githubHTML += `
             <a class="tool" href="${projLink.url}" target="_blank" title="Open ${project.name} on ${link.name}">
-                <img src="${link.imageUrl}" alt="${link.name}" />
+                <img src="${link.imageUrl}" alt="${link.name}">
             </a>
         `;
     });
@@ -173,7 +170,7 @@ function addProject(project: Project): void {
         const tool: Tool = tools.get(toolStr)!;
         toolsHTML += `
             <a class="tool" href="${tool.pageUrl}" target="_blank" title="Open ${tool.name}'s website">
-                <img src="${tool.imageUrl}" alt="${tool.name}" />
+                <img src="${tool.imageUrl}" alt="${tool.name}">
             </a>
         `;
     });
@@ -186,8 +183,8 @@ function addProject(project: Project): void {
             <div class="scrollDest" id="${project.id}-scrollDest"></div>
 
             <div class="preview">
-                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}">
+                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}">
             </div>
 
             <div class="infos">
@@ -418,33 +415,54 @@ function setActiveProjects(func: (project: Project) => boolean): void {
     document.querySelector<HTMLDivElement>(`#projects-div`)?.querySelectorAll<HTMLDivElement>('.project')
         .forEach(projDiv => {
             const proj = projects.get(projDiv.id)!;
-            projDiv.classList = func(proj) ? "project active" : "project inactive";
+            toggle(projDiv.classList, func(proj), "active", "inactive");
+        });
+}
+
+function updateAvailableTools(): void {
+    document.querySelector<HTMLDivElement>(`#toggleable-tools-div`)?.querySelectorAll<HTMLDivElement>('.tool')
+        .forEach(toolDiv => {
+            const tool = tools.get(toolDiv.id)!;
+            for (const [, proj] of projects) {
+                const includes = isCurrentCategory(proj) && proj.tools.includes(tool.id);
+
+                if (includes) {
+                    toolDiv.classList.replace("disabled", "enabled");
+                    return;
+                }
+            }
+
+            toolDiv.classList.replace("enabled", "disabled");
+            toolDiv.classList.replace("active", "inactive");
         });
 }
 
 function navigateTab(category: Category): void {
-    if (currentCategory == category) {
+    if (currentCategory === category) {
         return;
     }
     currentCategory = category;
 
-    setActiveProjects(project => { return project.category === category || category === Category.All; })
+    updateAvailableTools();
+
+    updateActiveProjects();
 
     document.querySelector<HTMLDivElement>(`#tabs-div`)?.querySelectorAll<HTMLDivElement>('.tab')
-        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
+        .forEach(e => toggle(e.classList, e.id.includes(category), "active", "inactive"));
 }
 
-function setActiveTools(activeTools: Array<Tool>): void {
-    if (activeTools.length === 0) {
-        setActiveProjects(() => true);
-    }
-    else {
-        setActiveProjects(project =>
-            project.tools.some(toolId =>
-               activeTools.some(tool => tool.id === toolId)
-            )
-        )
-    }
+function updateActiveProjects(): void {
+    const activeTools: Array<Tool> = [];
+    document.querySelector<HTMLDivElement>(`#toggleable-tools-div`)?.querySelectorAll<HTMLDivElement>('.tool')
+        .forEach(toolDiv => {
+            if (toolDiv.classList.contains("active")) {
+                activeTools.push(tools.get(toolDiv.id)!)
+            }
+        });
+
+    const isActiveTools = (project: Project) => activeTools.length === 0 || project.tools.some(toolId => activeTools.some(tool => tool.id === toolId));
+
+    setActiveProjects(project => isCurrentCategory(project) && isActiveTools(project))
 }
 
 document.querySelector<HTMLDivElement>('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));

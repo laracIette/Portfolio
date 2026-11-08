@@ -9,15 +9,15 @@ var Category;
 const tools = new Map();
 const links = new Map();
 const projects = new Map();
-const toolStates = new Map();
 let lastScrollY = 0;
 let touchStart = 0;
 let touchTime = 0;
-let currentCategory = null;
+let currentCategory = Category.All;
 let currentProject = null;
 let wasHeaderVisible = false;
 const HEADER_VISIBLE = '0px';
 const HEADER_HIDDEN = '-5.5em';
+const isCurrentCategory = (project) => currentCategory === Category.All || project.category === currentCategory;
 function init() {
     data["tools"].forEach(tool => tools.set(tool.id, tool));
     data["links"].forEach(link => links.set(link.id, link));
@@ -44,7 +44,7 @@ function addPinned(project) {
             <div class="link" id="pin-${project.id}-link" title="Open ${project.name}'s page"></div>
 
             <div class="preview">
-                <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}" />
+                <img id="pin-${project.id}-preview-image" src="${project.imageUrl}" alt="${project.name}">
             </div>
 
             <div class="right">
@@ -58,7 +58,7 @@ function addPinned(project) {
                 </div>
 
                 <a class="navigate-link" id="pin-${project.id}-navigate-link" href="#${project.id}-scrollDest" title="Navigate to ${project.name}">
-                    <img src="images/chevronDown.png"/>
+                    <img src="images/chevronDown.png">
                 </a>
 
             </div>
@@ -68,14 +68,13 @@ function addPinned(project) {
     document.querySelector(`#pin-${project.id}-link`)?.addEventListener('click', () => showProjectPage(project));
     document.querySelector(`#pin-${project.id}-navigate-link`)?.addEventListener('click', () => navigateTab(project.category));
 }
-function getActiveTools() {
-    const activeTools = [];
-    toolStates.forEach((isActive, tool) => {
-        if (isActive) {
-            activeTools.push(tool);
-        }
-    });
-    return activeTools;
+function toggle(input, condition, trueValue, falseValue) {
+    if (condition) {
+        input.replace(falseValue, trueValue);
+    }
+    else {
+        input.replace(trueValue, falseValue);
+    }
 }
 function addTool(tool) {
     const projectsDiv = document.querySelector(`#toggleable-tools-div`);
@@ -84,18 +83,16 @@ function addTool(tool) {
         return;
     }
     const toolHTML = `
-        <div class="tool inactive" id="toggle-${tool.id}-button" title="Toggle ${tool.name}">
+        <div class="tool enabled inactive" id="${tool.id}" title="Toggle ${tool.name}">
             <img src="${tool.imageUrl}" alt="${tool.name}-logo">
         </div>
     `;
     projectsDiv.insertAdjacentHTML('beforeend', toolHTML);
-    toolStates.set(tool, false);
-    document.querySelector(`#toggle-${tool.id}-button`)?.addEventListener('click', (event) => {
-        const isActive = toolStates.get(tool);
-        toolStates.set(tool, !isActive);
-        setActiveTools(getActiveTools());
+    document.querySelector(`#${tool.id}`)?.addEventListener('click', event => {
         const element = event.currentTarget;
-        element.classList = !isActive ? "tool active" : "tool inactive";
+        const isActive = element.classList.contains("active");
+        toggle(element.classList, !isActive, "active", "inactive");
+        updateActiveProjects();
     });
 }
 function addProject(project) {
@@ -109,7 +106,7 @@ function addProject(project) {
         const link = links.get(projLink.id);
         githubHTML += `
             <a class="tool" href="${projLink.url}" target="_blank" title="Open ${project.name} on ${link.name}">
-                <img src="${link.imageUrl}" alt="${link.name}" />
+                <img src="${link.imageUrl}" alt="${link.name}">
             </a>
         `;
     });
@@ -121,7 +118,7 @@ function addProject(project) {
         const tool = tools.get(toolStr);
         toolsHTML += `
             <a class="tool" href="${tool.pageUrl}" target="_blank" title="Open ${tool.name}'s website">
-                <img src="${tool.imageUrl}" alt="${tool.name}" />
+                <img src="${tool.imageUrl}" alt="${tool.name}">
             </a>
         `;
     });
@@ -133,8 +130,8 @@ function addProject(project) {
             <div class="scrollDest" id="${project.id}-scrollDest"></div>
 
             <div class="preview">
-                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}" />
-                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}" />
+                <img loading="lazy" class="static" id="${project.id}-preview-image-static" src="${project.imageUrl}" alt="${project.name}">
+                <img loading="lazy" class="gif" id="${project.id}-preview-image-gif" src="${project.gifUrl}" alt="${project.name}">
             </div>
 
             <div class="infos">
@@ -334,25 +331,44 @@ function setActiveProjects(func) {
     document.querySelector(`#projects-div`)?.querySelectorAll('.project')
         .forEach(projDiv => {
         const proj = projects.get(projDiv.id);
-        projDiv.classList = func(proj) ? "project active" : "project inactive";
+        toggle(projDiv.classList, func(proj), "active", "inactive");
+    });
+}
+function updateAvailableTools() {
+    document.querySelector(`#toggleable-tools-div`)?.querySelectorAll('.tool')
+        .forEach(toolDiv => {
+        const tool = tools.get(toolDiv.id);
+        for (const [, proj] of projects) {
+            const includes = isCurrentCategory(proj) && proj.tools.includes(tool.id);
+            if (includes) {
+                toolDiv.classList.replace("disabled", "enabled");
+                return;
+            }
+        }
+        toolDiv.classList.replace("enabled", "disabled");
+        toolDiv.classList.replace("active", "inactive");
     });
 }
 function navigateTab(category) {
-    if (currentCategory == category) {
+    if (currentCategory === category) {
         return;
     }
     currentCategory = category;
-    setActiveProjects(project => { return project.category === category || category === Category.All; });
+    updateAvailableTools();
+    updateActiveProjects();
     document.querySelector(`#tabs-div`)?.querySelectorAll('.tab')
-        .forEach(e => e.classList = e.id.includes(category) ? "tab active" : "tab inactive");
+        .forEach(e => toggle(e.classList, e.id.includes(category), "active", "inactive"));
 }
-function setActiveTools(activeTools) {
-    if (activeTools.length === 0) {
-        setActiveProjects(() => true);
-    }
-    else {
-        setActiveProjects(project => project.tools.some(toolId => activeTools.some(tool => tool.id === toolId)));
-    }
+function updateActiveProjects() {
+    const activeTools = [];
+    document.querySelector(`#toggleable-tools-div`)?.querySelectorAll('.tool')
+        .forEach(toolDiv => {
+        if (toolDiv.classList.contains("active")) {
+            activeTools.push(tools.get(toolDiv.id));
+        }
+    });
+    const isActiveTools = (project) => activeTools.length === 0 || project.tools.some(toolId => activeTools.some(tool => tool.id === toolId));
+    setActiveProjects(project => isCurrentCategory(project) && isActiveTools(project));
 }
 document.querySelector('#tab-All')?.addEventListener('click', () => navigateTab(Category.All));
 document.querySelector('#tab-Games')?.addEventListener('click', () => navigateTab(Category.Game));
