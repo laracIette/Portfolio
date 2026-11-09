@@ -374,6 +374,9 @@ main {
                     border: 2px solid rgba(255, 255, 255, 0.1);
                     overflow: hidden;
 
+                    max-width: 40em;
+                    justify-self: center;
+
                     filter: grayscale(50%);
                     transition: all 0.25s ease;
 
